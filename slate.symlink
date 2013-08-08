@@ -27,12 +27,12 @@ bind pad8:ctrl push top bar-resize:screenSizeY/2
 bind pad9:ctrl ${rightmost}
 
 # Focus Bindings
-bind right:cmd    focus right
-bind left:cmd     focus left
-bind up:cmd       focus up
-bind down:cmd     focus down
-bind up:cmd;alt   focus behind
-bind down:cmd;alt focus behind
+bind right:alt    focus right
+bind left:alt     focus left
+bind up:alt       focus up
+bind down:alt     focus down
+bind up:alt;cmd  focus behind
+bind down:alt;cmd focus behind
 
 # Window Hints
 bind esc:cmd hint
