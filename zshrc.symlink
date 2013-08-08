@@ -39,4 +39,5 @@ plugins=(git brew symfony2)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export EDITOR=vim
+export PATH=/usr/local/bin:/usr/local/share/npm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/texlive/2013/bin/x86_64-darwin

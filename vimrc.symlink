@@ -1,6 +1,4 @@
 " Modeline and Notes {
-" vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
-"
 "   Mostly borrowed from spf13 and janus
 " }
 
@@ -134,6 +132,7 @@
   Bundle 'tpope/vim-surround'
   Bundle 'vim-scripts/ZoomWin'
   Bundle 'Lokaltog/vim-powerline'
+  " Bundle 'Lokaltog/powerline'
   Bundle 'majutsushi/tagbar'
   Bundle 'kien/ctrlp.vim'
 
@@ -143,6 +142,8 @@
   Bundle 'beyondwords/vim-twig'
   Bundle 'groenewege/vim-less'
   Bundle 'lukerandall/haskellmode-vim'
+
+  Bundle 'jcf/vim-latex'
 
 " }
 
@@ -228,7 +229,6 @@
     imap <leader>\ <Esc><plug>NERDCommenterToggle<CR>i
   " }
 
-
   " TagBar {
     nnoremap <silent> <leader>tt :TagbarToggle<CR>
   " }
@@ -238,6 +238,9 @@
     let g:haddock_browser='/usr/local/bin/links'
   " }
 
+  " vim-latex {
+    let g:tex_flavor='latex'
+  " }
 " }
 
 
