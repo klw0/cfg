@@ -114,6 +114,9 @@ set -g status-interval 60
 
 # Maximize and restore a pane
 unbind Up
-bind Up new-window -d -n tmp \; swap-pane -s tmp.1 \; select-window -t tmp 
+bind Up new-window -d -n tmp \; swap-pane -s tmp.1 \; select-window -t tmp
 unbind Down
 bind Down last-window \; swap-pane -s tmp.1 \; kill-window -t tmp
+
+# tmux-MacOSX-pasteboard
+set-option -g default-command "tmux rename-window src; reattach-to-user-namespace -l zsh"

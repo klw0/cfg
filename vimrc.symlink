@@ -10,6 +10,8 @@
   set history=1000           " store a ton of history (default is 20)
   syntax enable              " syntax highlighting
   set encoding=utf-8
+  set t_ti= t_te=            " don't switch to the terminal when running cli commands
+  set ttyfast                " our terminal is faaaaaaaaaast
 
 " }
 
@@ -17,8 +19,8 @@
 " Formatting {
 
   set nowrap                      " don't wrap lines
-  set tabstop=2                   " a tab is two spaces
-  set shiftwidth=2                " an autoindent (with <<) is two spaces
+  set tabstop=4                   " a tab is two spaces
+  set shiftwidth=4                " an autoindent (with <<) is two spaces
   set expandtab                   " use spaces, not tabs
   set list                        " show invisible characters
   set backspace=indent,eol,start  " backspace through everything in insert mode
@@ -113,6 +115,16 @@
 " }
 
 
+" Filetype specific settings {
+
+  au BufNewFile,BufRead *.tss set filetype=css
+  au BufNewFile,BufRead *.as set filetype=actionscript
+  au FileType python setlocal shiftwidth=4 tabstop=4
+  au FileType brs setlocal shiftwidth=4 tabstop=4
+
+" }
+
+
 " Bundles {
 
   " Required for Vundle
@@ -135,15 +147,22 @@
   " Bundle 'Lokaltog/powerline'
   Bundle 'majutsushi/tagbar'
   Bundle 'kien/ctrlp.vim'
+  Bundle 'mileszs/ack.vim'
+
+  Bundle 'ivalkeen/vim-simpledb'
 
   Bundle 'flazz/vim-colorschemes'
   Bundle 'altercation/vim-colors-solarized'
 
+  Bundle 'heavenshell/vim-jsdoc'
   Bundle 'beyondwords/vim-twig'
   Bundle 'groenewege/vim-less'
-  Bundle 'lukerandall/haskellmode-vim'
-
+  Bundle 'juvenn/mustache.vim'
   Bundle 'jcf/vim-latex'
+  Bundle 'chooh/brightscript.vim'
+  Bundle 'cairo140/actionscript.vim'
+
+  Bundle 'lukerandall/haskellmode-vim'
 
 " }
 
@@ -233,6 +252,9 @@
     nnoremap <silent> <leader>tt :TagbarToggle<CR>
   " }
 
+  " CtrlP {
+    let g:ctrlp_custom_ignore='node_modules'
+  " }
 
   " haskellmode-vim {
     let g:haddock_browser='/usr/local/bin/links'
