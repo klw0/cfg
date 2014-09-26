@@ -143,8 +143,8 @@
   Bundle 'ddollar/nerdcommenter'
   Bundle 'tpope/vim-surround'
   Bundle 'vim-scripts/ZoomWin'
-  Bundle 'Lokaltog/vim-powerline'
-  " Bundle 'Lokaltog/powerline'
+  Bundle 'bling/vim-airline'
+  Bundle 'tpope/vim-fugitive'
   Bundle 'majutsushi/tagbar'
   Bundle 'kien/ctrlp.vim'
   Bundle 'mileszs/ack.vim'
@@ -248,16 +248,31 @@
     imap <leader>\ <Esc><plug>NERDCommenterToggle<CR>i
   " }
 
+  " Airline {
+    set noshowmode
+    let g:airline_left_sep=''
+    let g:airline_left_alt_sep='|'
+    let g:airline_right_sep=''
+    let g:airline_right_alt_sep='|'
+    let g:airline_theme='solarized'
+    let g:airline_section_z='%#__accent_base02_bold#% LN %l/%L%#__accent_base01#:%-3c %#__restore__#%'
+
+    function! AirlineThemePatch(palette)
+        let a:palette.accents.base02_bold = ['#073642', '', 235, '', 'bold']
+        let a:palette.accents.base01 = ['#586e75', '', 240, '', '']
+    endfunction
+    let g:airline_theme_patch_func = 'AirlineThemePatch'
+
+    call airline#highlighter#add_accent('base02_bold')
+    call airline#highlighter#add_accent('base01')
+  " }
+
   " TagBar {
     nnoremap <silent> <leader>tt :TagbarToggle<CR>
   " }
 
   " CtrlP {
     let g:ctrlp_custom_ignore='node_modules'
-  " }
-
-  " haskellmode-vim {
-    let g:haddock_browser='/usr/local/bin/links'
   " }
 
   " vim-latex {
