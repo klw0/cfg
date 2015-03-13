@@ -27,8 +27,8 @@
 
   " List chars {
     set listchars=""                  " reset the listchars
-    set listchars=tab:\ \             " a tab should display as "  ", trailing whitespace as "."
-    set listchars+=trail:.            " show trailing spaces as dots
+    set listchars=tab:\ \             " a tab should display as "  "
+    set listchars+=trail:.            " show trailing spaces as periods
     set listchars+=extends:>          " the character to show in the last column when wrap is
                                       " off and the line continues beyond the right of the screen
     set listchars+=precedes:<         " the character to show in the last column when wrap is off and the line continues beyond the right of the screen
@@ -182,7 +182,7 @@
 
   " Syntastic {
     let g:syntastic_enable_signs=1
-    let g:syntastic_quiet_warnings=0
+    let g:syntastic_quiet_messages = {'level': 'warnings'}
     let g:syntastic_auto_loc_list=2
     let g:syntastic_mode_map = { 'mode': 'active',
                                \ 'active_filetypes': [],
@@ -250,21 +250,28 @@
 
   " Airline {
     set noshowmode
-    let g:airline_left_sep=''
-    let g:airline_left_alt_sep='|'
-    let g:airline_right_sep=''
-    let g:airline_right_alt_sep='|'
-    let g:airline_theme='solarized'
-    let g:airline_section_z='%#__accent_base02_bold#% LN %l/%L%#__accent_base01#:%-3c %#__restore__#%'
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = '|'
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = '|'
+    let g:airline_theme = 'solarized'
 
-    function! AirlineThemePatch(palette)
-        let a:palette.accents.base02_bold = ['#073642', '', 235, '', 'bold']
-        let a:palette.accents.base01 = ['#586e75', '', 240, '', '']
+    function! CustomFiletype()
+        return strlen(&filetype) ? &filetype : 'no ft'
     endfunction
-    let g:airline_theme_patch_func = 'AirlineThemePatch'
+    call airline#parts#define_function('filetype', 'CustomFiletype')
 
-    call airline#highlighter#add_accent('base02_bold')
-    call airline#highlighter#add_accent('base01')
+    function! CustomFileEncoding()
+        return strlen(&fenc) ? &fenc : &enc
+    endfunction
+    call airline#parts#define_function('fileencoding', 'CustomFileEncoding')
+
+    function! AirlineInit()
+          let g:airline_section_x = airline#section#create_right([&fileformat . ' | ', 'fileencoding', 'filetype'])
+          let g:airline_section_y = airline#section#create(['%3p%%'])
+          let g:airline_section_z = 'LN %3l:%-3c'
+    endfunction
+    autocmd VimEnter * call AirlineInit()
   " }
 
   " TagBar {
