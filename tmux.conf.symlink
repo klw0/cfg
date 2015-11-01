@@ -55,6 +55,9 @@ set -g visual-activity on
 # Enable vi keys
 setw -g mode-keys vi
 
+# Set the default terminal mode to 256color mode
+set -g default-terminal "screen-256color"
+
 ##
 ## Stauts line and colors (Solarized 256)
 ##
@@ -117,4 +120,4 @@ unbind Down
 bind Down last-window \; swap-pane -s tmp.1 \; kill-window -t tmp
 
 # tmux-MacOSX-pasteboard
-set-option -g default-command "tmux rename-window src; reattach-to-user-namespace -l zsh"
+# set-option -g default-command "tmux rename-window src; reattach-to-user-namespace -l zsh"

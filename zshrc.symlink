@@ -1,46 +1,20 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# ZSH_THEME="robbyrussell"
-# ZSH_THEME="sorin" # clean, nice prompt
-# ZSH_THEME="wedisagree" # interesting git info, don't like the time on the right
-# ZSH_THEME="cloud" # doesn't need git info repeated, or time on right.  like the lightning bolt
-# ZSH_THEME="miloshadzic"
-ZSH_THEME="keithy"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
+# ZSH_THEME="keithy"
 
 # Uncomment following line if you want to disable autosetting terminal title.
-DISABLE_AUTO_TITLE="true"
+# DISABLE_AUTO_TITLE="true"
 
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew)
-
-source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
 export EDITOR=vim
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/bin:/bin:/usr/sbin:/sbin:
+export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
 
 # STOP ANNOYING ME
-unsetopt AUTO_CD
+# unsetopt AUTO_CD
+
+# export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+
+# Source virtualenvwrapper
+# source /usr/local/bin/virtualenvwrapper.sh
+
+# Roku
+# export ROKU_IP=172.21.152.195
+# alias roku_console="telnet $ROKU_IP 8085"
