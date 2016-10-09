@@ -9,51 +9,43 @@
     </item>
 
     <item>
-        <name>Functional Navigation Keys to Media Keys</name>
-        <identifier>private.functional_navigation_keys_to_media_keys</identifier>
+        <name>F7-F9 to Playback Keys (Media)</name>
+        <identifier>private.fn7_-_fn9_to_playback_keys</identifier>
 
-        <autogen>__KeyToKey__ KeyCode::PC_INSERT,   ConsumerKeyCode::MUSIC_PREV</autogen>
-        <autogen>__KeyToKey__ KeyCode::HOME,        ConsumerKeyCode::MUSIC_PLAY</autogen>
-        <autogen>__KeyToKey__ KeyCode::PAGEUP,      ConsumerKeyCode::MUSIC_NEXT</autogen>
-        <autogen>__KeyToKey__ KeyCode::PC_DEL,      ConsumerKeyCode::VOLUME_MUTE</autogen>
-        <autogen>__KeyToKey__ KeyCode::END,         ConsumerKeyCode::VOLUME_DOWN</autogen>
-        <autogen>__KeyToKey__ KeyCode::PAGEDOWN,    ConsumerKeyCode::VOLUME_UP</autogen>
+        <autogen>__KeyToKey__ KeyCode::F7,  ConsumerKeyCode::MUSIC_PREV</autogen>
+        <autogen>__KeyToKey__ KeyCode::F8,  ConsumerKeyCode::MUSIC_PLAY</autogen>
+        <autogen>__KeyToKey__ KeyCode::F9,  ConsumerKeyCode::MUSIC_NEXT</autogen>
     </item>
 
-    <!-- http://stevelosh.com/blog/2012/10/a-modern-space-cadet/#better-shifting -->
     <item>
-        <name>Use the correct shift keys</name>
-        <identifier>private.correct_shift_keys</identifier>
+        <name>Shift_R + Escape to Tilde (~)</name>
+        <identifier>private.shiftR_escape_to_tilde</identifier>
 
-        <autogen>--KeyToKey-- KeyCode::Q, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::W, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::E, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::R, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::T, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::A, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::S, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::D, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::F, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::G, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::Z, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::X, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::C, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::V, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
+        <autogen>
+            __KeyToKey__
+            KeyCode::ESCAPE, ModifierFlag::SHIFT_R,
+            KeyCode::BACKQUOTE, ModifierFlag::SHIFT_L
+        </autogen>
+    </item>
 
-        <autogen>--KeyToKey-- KeyCode::Y,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::U,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::I,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::O,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::P,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::H,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::J,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::K,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::L,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::SEMICOLON, ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::N,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::M,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::COMMA,     ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::DOT,       ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
-        <autogen>--KeyToKey-- KeyCode::QUOTE,     ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
+    <item>
+        <name>Command_R + Escape to Backquote (`)</name>
+        <identifier>private.commandR_escape_to_backquote</identifier>
+
+        <autogen>
+            __KeyToKey__
+            KeyCode::ESCAPE, ModifierFlag::COMMAND_R,
+            KeyCode::BACKQUOTE
+        </autogen>
+    </item>
+
+    <item>
+        <name>Control+Shift+Delete to Control+Shift+Eject (Sleep displays)</name>
+        <identifier>remap.control_shift_delete_to_sleep</identifier>
+        <autogen>
+            __KeyToKey__
+            KeyCode::DELETE, ModifierFlag::CONTROL_L | ModifierFlag::SHIFT_L,
+            ConsumerKeyCode::EJECT, ModifierFlag::CONTROL_L | ModifierFlag::SHIFT_L
+        </autogen>
     </item>
 </root>
