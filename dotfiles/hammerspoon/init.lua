@@ -1,7 +1,9 @@
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-- Window movement
+-------------------------------------------------------------------------------
+
 -- Left align window
---------------------------------------------------------------------------------
-hs.hotkey.bind({'ctrl'}, 'forwarddelete', function()
+hs.hotkey.bind({'cmd', 'shift', 'ctrl'}, 'h', function()
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local screen = win:screen()
@@ -14,10 +16,8 @@ hs.hotkey.bind({'ctrl'}, 'forwarddelete', function()
     win:setFrame(f)
 end)
 
---------------------------------------------------------------------------------
 -- Right align window
---------------------------------------------------------------------------------
-hs.hotkey.bind({'ctrl'}, 'pagedown', function()
+hs.hotkey.bind({'cmd', 'shift', 'ctrl'}, 'l', function()
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local screen = win:screen()
@@ -30,10 +30,8 @@ hs.hotkey.bind({'ctrl'}, 'pagedown', function()
     win:setFrame(f)
 end)
 
---------------------------------------------------------------------------------
 -- Center align window
---------------------------------------------------------------------------------
-hs.hotkey.bind({'ctrl'}, 'end', function()
+hs.hotkey.bind({'cmd', 'shift', 'ctrl'}, 'm', function()
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local screen = win:screen()
@@ -43,31 +41,4 @@ hs.hotkey.bind({'ctrl'}, 'end', function()
     f.y = max.y
     f.h = max.h
     win:setFrame(f)
-end)
-
---------------------------------------------------------------------------------
--- Window focus
---------------------------------------------------------------------------------
-hs.hotkey.bind({'ctrl'}, 'k', function()
-    hs.window.focusedWindow():focusWindowNorth()
-end)
-
-hs.hotkey.bind({'ctrl'}, 'j', function()
-    hs.window.focusedWindow():focusWindowSouth()
-end)
-
-hs.hotkey.bind({'ctrl'}, 'l', function()
-    hs.window.focusedWindow():focusWindowEast(nil, true)
-end)
-
-hs.hotkey.bind({'ctrl'}, 'h', function()
-    hs.window.focusedWindow():focusWindowWest(nil, true)
-end)
-
-hs.hotkey.bind({}, 'F12', function()
-    hs.application.launchOrFocus('Xcode-beta')
-    local xcode = hs.appfinder.appFromName('Xcode')
-    xcode:activate()
-
-    xcode:selectMenuItem({'Product', 'Run'})
 end)
