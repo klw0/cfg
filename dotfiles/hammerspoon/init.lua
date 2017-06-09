@@ -1,4 +1,18 @@
 -------------------------------------------------------------------------------
+-- Key mapping
+-------------------------------------------------------------------------------
+
+-- Map right command + escape to grave accent (`)
+hs.hotkey.bind({'rightcmd'}, 'escape', function()
+    hs.eventtap.keyStroke({}, '`')
+end)
+
+-- Lock the system with shift + ctrl + delete.
+hs.hotkey.bind({'shift', 'ctrl'}, 'delete', function()
+    hs.caffeinate.lockScreen()
+end)
+
+-------------------------------------------------------------------------------
 -- Window movement
 -------------------------------------------------------------------------------
 
@@ -42,3 +56,4 @@ hs.hotkey.bind({'cmd', 'shift', 'ctrl'}, 'm', function()
     f.h = max.h
     win:setFrame(f)
 end)
+
