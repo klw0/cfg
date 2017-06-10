@@ -111,44 +111,39 @@ au FileType ruby setlocal shiftwidth=2 tabstop=2
 
 
 " ------------------------------------------------------------------------------
-" Bundles
-" ------------------------------------------------------------------------------
-filetype off    " Required for Vundle
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle - required!
-Bundle 'gmarik/vundle'
-
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'shougo/neocomplete.vim'
-Bundle 'shougo/neco-vim'
-Bundle 'ddollar/nerdcommenter'
-Bundle 'tpope/vim-surround'
-Bundle 'vim-scripts/ZoomWin'
-Bundle 'bling/vim-airline'
-Bundle 'tpope/vim-fugitive'
-Bundle 'majutsushi/tagbar'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mileszs/ack.vim'
-
-Bundle 'flazz/vim-colorschemes'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'vim-airline/vim-airline-themes'
-
-Bundle 'heavenshell/vim-jsdoc'
-Bundle 'beyondwords/vim-twig'
-Bundle 'groenewege/vim-less'
-Bundle 'juvenn/mustache.vim'
-Bundle 'jcf/vim-latex'
-Bundle 'chooh/brightscript.vim'
-Bundle 'JamshedVesuna/vim-markdown-preview'
-
-
-" ------------------------------------------------------------------------------
 " Plugins
+" ------------------------------------------------------------------------------
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'shougo/neocomplete.vim'
+Plug 'shougo/neco-vim'
+Plug 'ddollar/nerdcommenter'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/ZoomWin'
+Plug 'bling/vim-airline'
+Plug 'tpope/vim-fugitive'
+Plug 'majutsushi/tagbar'
+Plug 'kien/ctrlp.vim'
+Plug 'mileszs/ack.vim'
+
+Plug 'flazz/vim-colorschemes'
+Plug 'altercation/vim-colors-solarized'
+Plug 'vim-airline/vim-airline-themes'
+
+Plug 'heavenshell/vim-jsdoc'
+Plug 'beyondwords/vim-twig'
+Plug 'groenewege/vim-less'
+Plug 'juvenn/mustache.vim'
+Plug 'jcf/vim-latex'
+Plug 'chooh/brightscript.vim'
+Plug 'JamshedVesuna/vim-markdown-preview'
+
+call plug#end()
+
+" ------------------------------------------------------------------------------
+" Plugins Setup
 " ------------------------------------------------------------------------------
 "
 " NerdTree
