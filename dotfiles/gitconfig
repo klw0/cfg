@@ -1,0 +1,9 @@
+[user]
+    name = Keith Whitney
+    email = keithwhitney0@gmail.com
+[credential]
+    helper = osxkeychain
+[color]
+    diff = true
+[diff]
+    tool = vimdiff
