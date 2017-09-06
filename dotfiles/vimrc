@@ -122,15 +122,14 @@ Plug 'shougo/neco-vim'
 Plug 'ddollar/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/ZoomWin'
-Plug 'bling/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
 Plug 'mileszs/ack.vim'
+Plug 'itchyny/lightline.vim'
 
 Plug 'flazz/vim-colorschemes'
 Plug 'altercation/vim-colors-solarized'
-Plug 'vim-airline/vim-airline-themes'
 
 Plug 'heavenshell/vim-jsdoc'
 Plug 'beyondwords/vim-twig'
@@ -213,33 +212,6 @@ map <leader>\ <plug>NERDCommenterToggle<CR>
 imap <leader>\ <Esc><plug>NERDCommenterToggle<CR>i
 
 "
-" Airline
-"
-set noshowmode
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = '|'
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = '|'
-let g:airline_theme = 'solarized'
-
-function! CustomFiletype()
-    return strlen(&filetype) ? &filetype : 'no ft'
-endfunction
-call airline#parts#define_function('filetype', 'CustomFiletype')
-
-function! CustomFileEncoding()
-    return strlen(&fenc) ? &fenc : &enc
-endfunction
-call airline#parts#define_function('fileencoding', 'CustomFileEncoding')
-
-function! AirlineInit()
-    let g:airline_section_x = airline#section#create_right([&fileformat . ' | ', 'fileencoding', 'filetype'])
-    let g:airline_section_y = airline#section#create(['%3p%%'])
-    let g:airline_section_z = 'LN %3l:%-3c'
-endfunction
-autocmd VimEnter * call AirlineInit()
-
-"
 " TagBar
 "
 nnoremap <silent> <leader>tt :TagbarToggle<CR>
@@ -248,6 +220,45 @@ nnoremap <silent> <leader>tt :TagbarToggle<CR>
 " CtrlP
 "
 let g:ctrlp_custom_ignore='node_modules'
+
+"
+" lightline
+"
+set noshowmode
+let g:lightline = {
+    \ 'colorscheme': 'solarized',
+    \ 'active': {
+    \   'left': [['mode', 'paste'],
+    \            ['gitbranch', 'readonly', 'filename']],
+    \   'right': [['syntastic', 'lineinfo'],
+    \             ['percent'],
+    \             ['fileformat', 'fileencoding', 'filetype']]
+    \ },
+    \ 'component_function': {
+    \   'filename': 'LightlineFilename',
+    \   'gitbranch': 'fugitive#head',
+    \ },
+    \ 'component_expand': {
+    \   'syntastic': 'SyntasticStatuslineFlag',
+    \ },
+    \ 'component_type': {
+    \   'syntastic': 'error',
+    \ }
+\ }
+
+function! LightlineFilename()
+    let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+    let modified = &modified ? ' [+]' : ''
+    return filename . modified
+endfunction
+
+augroup AutoSyntastic
+    autocmd!
+    autocmd BufWritePost *.* call s:syntastic()
+function! s:syntastic()
+    SyntasticCheck
+    call lightline#update()
+endfunction
 
 "
 " vim-latex
