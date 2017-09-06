@@ -25,7 +25,7 @@ set expandtab                   " use spaces, not tabs
 set list                        " show invisible characters
 set backspace=indent,eol,start  " backspace through everything in insert mode
 
-" List chars {
+" List chars
 set listchars=""                  " reset the listchars
 set listchars=tab:\ \             " a tab should display as "  "
 set listchars+=trail:.            " show trailing spaces as periods
@@ -120,7 +120,6 @@ Plug 'scrooloose/syntastic'
 Plug 'shougo/neocomplete.vim'
 Plug 'shougo/neco-vim'
 Plug 'ddollar/nerdcommenter'
-Plug 'tpope/vim-surround'
 Plug 'vim-scripts/ZoomWin'
 Plug 'tpope/vim-fugitive'
 Plug 'majutsushi/tagbar'
@@ -131,9 +130,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'altercation/vim-colors-solarized'
 
-Plug 'heavenshell/vim-jsdoc'
-Plug 'beyondwords/vim-twig'
-Plug 'groenewege/vim-less'
 Plug 'juvenn/mustache.vim'
 Plug 'jcf/vim-latex'
 Plug 'chooh/brightscript.vim'
