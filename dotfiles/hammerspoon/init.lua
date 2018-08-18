@@ -2,6 +2,29 @@
 -- Key mapping
 -------------------------------------------------------------------------------
 
+local fnKeyToSystemKey = {
+    {fnKey = 'f1', systemKey = 'BRIGHTNESS_DOWN'},
+    {fnKey = 'f2', systemKey = 'BRIGHTNESS_UP'},
+    {fnKey = 'f7', systemKey = 'PREVIOUS'},
+    {fnKey = 'f8', systemKey = 'PLAY'},
+    {fnKey = 'f9', systemKey = 'NEXT'},
+    {fnKey = 'f10', systemKey = 'MUTE'},
+    {fnKey = 'f11', systemKey = 'SOUND_DOWN'},
+    {fnKey = 'f12', systemKey = 'SOUND_UP'},
+}
+
+-- Map fn function keys to system keys
+for _,fnKeyMap in ipairs(fnKeyToSystemKey) do
+    hs.hotkey.bind({}, fnKeyMap.fnKey,
+        function()
+            hs.eventtap.event.newSystemKeyEvent(fnKeyMap.systemKey, true):post()
+        end,
+        function()
+            hs.eventtap.event.newSystemKeyEvent(fnKeyMap.systemKey, false):post()
+        end
+    )
+end
+
 -- Map right command + escape to grave accent (`)
 hs.hotkey.bind({'rightcmd'}, 'escape', function()
     hs.eventtap.keyStroke({}, '`')

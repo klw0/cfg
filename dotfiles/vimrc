@@ -5,22 +5,22 @@
 " ------------------------------------------------------------------------------
 " General
 " ------------------------------------------------------------------------------
-set nocompatible           " use vim, no vi defaults
-set number                 " show line numbers
-set ruler                  " show line and column number in stats line
-set history=1000           " store a ton of history (default is 20)
-syntax enable              " syntax highlighting
+set nocompatible                " use vim, no vi defaults
+set number                      " show line numbers
+set ruler                       " show line and column number in stats line
+set history=10000               " store a ton of history (default is 20)
+syntax enable                   " syntax highlighting
 set encoding=utf-8
-set t_ti= t_te=            " don't switch to the terminal when running cli commands
-set ttyfast                " our terminal is faaaaaaaaaast
-
+set t_ti= t_te=                 " don't switch to the terminal when running cli commands
+set ttyfast                     " our terminal is fast
+set ttimeoutlen=0               " shorten key sequence timeouts (eliminates delays after pressing ESC)
 
 " ------------------------------------------------------------------------------
 " Formatting
 " ------------------------------------------------------------------------------
 set nowrap                      " don't wrap lines
-set tabstop=4                   " a tab is two spaces
-set shiftwidth=4                " an autoindent (with <<) is two spaces
+set tabstop=4                   " a tab is X spaces
+set shiftwidth=4                " an autoindent (with <<) is X spaces
 set expandtab                   " use spaces, not tabs
 set list                        " show invisible characters
 set backspace=indent,eol,start  " backspace through everything in insert mode
@@ -45,6 +45,7 @@ set smartcase   " ... unless they contain at least one capital letter
 " ------------------------------------------------------------------------------
 " UI
 " ------------------------------------------------------------------------------
+set termguicolors
 set background=dark
 
 if has("statusline")
@@ -78,12 +79,6 @@ set directory=~/.vim/_temp//      " where to put swap files
 " ------------------------------------------------------------------------------
 " General Mappings
 " ------------------------------------------------------------------------------
-" format the entire file
-nmap <leader>fef ggVG=
-
-" cd to the directory containing the file in the buffer
-nmap <silent> <leader>cd :lcd %:h<CR>
-
 " Create the directory containing the file in the buffer
 nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 
@@ -92,9 +87,6 @@ nmap <silent> <leader>ul :t.\|s/./=/g\|:nohls<cr>
 
 " set text wrapping toggles
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
-
-" Toggle hlsearch with <leader>hs
-nmap <leader>hs :set hlsearch! hlsearch?<CR>
 
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
@@ -108,7 +100,30 @@ au FileType python setlocal shiftwidth=4 tabstop=4
 au FileType brs setlocal shiftwidth=4 tabstop=4
 au FileType yaml setlocal shiftwidth=2 tabstop=2
 au FileType ruby setlocal shiftwidth=2 tabstop=2
+au FileType vimwiki setlocal textwidth=120
 
+
+" ------------------------------------------------------------------------------
+" Functions
+" ------------------------------------------------------------------------------
+function! ShortenPath(path)
+    if empty(a:path) | return | endif
+
+    let num_ignore_segments = 2
+    let separator = "/"
+    let segments = split(a:path, separator)
+
+    let shortened_path = a:path
+    if len(segments) > 1
+        let shortened_segments = map(segments[0:-(num_ignore_segments + 1)], "v:val[0]")
+        let ignored_segments = segments[-num_ignore_segments:-1]
+
+        let prefix = a:path[0] == separator ? a:path[0] : ""
+        let shortened_path = prefix . join(shortened_segments + ignored_segments, separator)
+    endif
+
+    return shortened_path
+endfunction
 
 " ------------------------------------------------------------------------------
 " Plugins
@@ -116,24 +131,28 @@ au FileType ruby setlocal shiftwidth=2 tabstop=2
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
-Plug 'shougo/neocomplete.vim'
-Plug 'shougo/neco-vim'
+Plug 'w0rp/ale'
 Plug 'ddollar/nerdcommenter'
-Plug 'vim-scripts/ZoomWin'
 Plug 'tpope/vim-fugitive'
 Plug 'majutsushi/tagbar'
-Plug 'kien/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'icymind/NeoSolarized'
+Plug 'vimwiki/vimwiki'
 
-Plug 'flazz/vim-colorschemes'
-Plug 'altercation/vim-colors-solarized'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'mhartington/nvim-typescript'
+endif
+
+Plug 'leafgarland/typescript-vim'
 Plug 'juvenn/mustache.vim'
 Plug 'jcf/vim-latex'
 Plug 'chooh/brightscript.vim'
-Plug 'JamshedVesuna/vim-markdown-preview'
+" Plug 'iamcco/markdown-preview.vim'
 
 call plug#end()
 
@@ -154,52 +173,9 @@ let NERDTreeMouseMode=2
 let NERDTreeShowHidden=0
 
 "
-" Syntastic
+" deoplete
 "
-let g:syntastic_auto_loc_list=2
-
-"
-" neocomplete
-"
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g> neocomplete#undo_completion()
-inoremap <expr><C-l> neocomplete#complete_common_string()
-
-" <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-    return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#input_patterns = {}
-endif
+let g:deoplete#enable_at_startup = 1
 
 "
 " NerdCommenter
@@ -213,48 +189,83 @@ imap <leader>\ <Esc><plug>NERDCommenterToggle<CR>i
 nnoremap <silent> <leader>tt :TagbarToggle<CR>
 
 "
-" CtrlP
+" ack
 "
-let g:ctrlp_custom_ignore='node_modules'
+let g:ackprg = "rg --vimgrep"
 
 "
 " lightline
 "
 set noshowmode
-let g:lightline = {
-    \ 'colorscheme': 'solarized',
-    \ 'active': {
+let g:lightline = {}
+let g:lightline.colorscheme = 'solarized'
+let g:lightline.active = {
     \   'left': [['mode', 'paste'],
-    \            ['gitbranch', 'readonly', 'filename']],
-    \   'right': [['syntastic', 'lineinfo'],
+    \            ['readonly', 'filename'],
+    \            ['gitbranch']],
+    \   'right': [['linter_warnings', 'linter_errors', 'lineinfo'],
     \             ['percent'],
-    \             ['fileformat', 'fileencoding', 'filetype']]
-    \ },
-    \ 'component_function': {
-    \   'filename': 'LightlineFilename',
-    \   'gitbranch': 'fugitive#head',
-    \ },
-    \ 'component_expand': {
-    \   'syntastic': 'SyntasticStatuslineFlag',
-    \ },
-    \ 'component_type': {
-    \   'syntastic': 'error',
+    \             ['filetype']]
     \ }
-\ }
+let g:lightline.tabline = {
+    \ 'left': [['tabs']],
+    \ 'right': [[]],
+    \ }
+let g:lightline.component_function = {
+    \   'filename': 'LightlineFilename',
+    \   'gitbranch': 'LightlineGitbranch'
+    \ }
+let g:lightline.component_expand = {
+    \   'linter_warnings': 'LightlineLinterWarnings',
+    \   'linter_errors': 'LightlineLinterErrors'
+    \ }
+let g:lightline.component_type = {
+    \   'linter_warnings': 'warning',
+    \   'linter_errors': 'error'
+    \ }
 
 function! LightlineFilename()
-    let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+    let filename = expand('%:f') !=# '' ? ShortenPath(expand('%:P')) : '[No Name]'
     let modified = &modified ? ' [+]' : ''
     return filename . modified
 endfunction
 
-augroup AutoSyntastic
-    autocmd!
-    autocmd BufWritePost *.* call s:syntastic()
-function! s:syntastic()
-    SyntasticCheck
-    call lightline#update()
+function! LightlineGitbranch()
+    return winwidth(0) >= 80 ? fugitive#head() : ''
 endfunction
+
+" ale + lightline
+autocmd User ALELint call lightline#update()
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  return l:all_errors == 0 ? '' : printf('%d >>', all_errors)
+endfunction
+
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:all_non_errors == 0 ? '' : printf('%d --', all_non_errors)
+endfunction
+
+
+"
+" NeoSolarized
+"
+let g:neosolarized_vertSplitBgTrans = 0
+
+"
+" fzf
+"
+nmap <C-p> :Files<CR>
+
+"
+" vimwiki
+"
+let g:vimwiki_list = [{ 'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md' }]
+
 
 "
 " vim-latex
@@ -262,14 +273,12 @@ endfunction
 let g:tex_flavor='latex'
 
 "
-" vim-markdown-preview
+" markdown-preview
 "
-let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_github=1
-
+nmap <silent> <C-m> <Plug>MarkdownPreview
 
 " ------------------------------------------------------------------------------
 " Post-bundle loading
 " ------------------------------------------------------------------------------
 filetype plugin indent on  " automatically detect file types
-colorscheme solarized
+colorscheme NeoSolarized
