@@ -1,0 +1,12 @@
+#!/usr/bin/osascript
+
+if application "Spotify" is running then
+        tell application "Spotify"
+                if current track is not missing value then
+                        set currentArtist to artist of current track as string
+                        set currentTrack to name of current track as string
+
+                        return currentArtist & " - " & currentTrack
+                end if
+        end tell
+end if
