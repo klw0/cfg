@@ -1,2 +1,1 @@
-dotfiles
-========
+# cfg: Dots and not dots
