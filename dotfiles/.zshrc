@@ -8,4 +8,6 @@ for file (~/.zsh/*.zsh(N)); do
 done
 
 # rbenv
-eval "$(rbenv init -)"
+if [[ -x $(command -v rbenv) ]]; then
+    eval "$(rbenv init -)"
+fi
