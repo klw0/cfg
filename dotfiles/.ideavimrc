@@ -2,3 +2,13 @@ source ~/.vimrc
 
 set visualbell
 set noerrorbells
+
+map <leader>n :action ActivateProjectToolWindow<CR>
+
+map <leader>\ :action CommentByLineComment<CR>
+vnoremap <leader>\ :<bs><bs><bs><bs><bs>action VimVisualSwapSelections<CR> :action CommentByLineComment<CR>
+
+map <leader>r :action Refactorings.QuickListPopupAction<CR>
+
+nmap <C-p> :action GotoFile<CR>
+nmap <leader>g :action GotoDeclaration<CR>
