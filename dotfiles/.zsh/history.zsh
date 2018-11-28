@@ -6,18 +6,12 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-#
 # Variables
-#
-
 HISTFILE="${ZDOTDIR:-$HOME}/.zhistory"       # The path to the history file.
 HISTSIZE=10000                   # The maximum number of events to save in the internal history.
 SAVEHIST=10000                   # The maximum number of events to save in the history file.
 
-#
 # Options
-#
-
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
@@ -39,10 +33,7 @@ setopt HIST_BEEP                 # Beep when accessing non-existent history.
 # Source module files.
 source "${0:h}/vendor/zsh-history-substring-search/zsh-history-substring-search.zsh" || return 1
 
-#
 # Key Bindings
-#
-
 if [[ -n "$key_info" ]]; then
   # Vi
   bindkey -M vicmd "k" history-substring-search-up

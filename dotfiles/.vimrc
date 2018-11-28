@@ -145,7 +145,7 @@ Plug 'junegunn/fzf.vim'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'mhartington/nvim-typescript'
+  Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 endif
 
 Plug 'leafgarland/typescript-vim'
