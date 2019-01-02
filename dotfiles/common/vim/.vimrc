@@ -6,6 +6,7 @@
 " General
 " ------------------------------------------------------------------------------
 set nocompatible                " use vim, no vi defaults
+let mapleader="\<Space>"
 set number                      " show line numbers
 set ruler                       " show line and column number in stats line
 set history=10000               " store a ton of history (default is 20)
@@ -14,6 +15,7 @@ set encoding=utf-8
 set t_ti= t_te=                 " don't switch to the terminal when running cli commands
 set ttyfast                     " our terminal is fast
 set ttimeoutlen=0               " shorten key sequence timeouts (eliminates delays after pressing ESC)
+
 
 " ------------------------------------------------------------------------------
 " Formatting
@@ -87,9 +89,6 @@ nmap <silent> <leader>ul :t.\|s/./=/g\|:nohls<cr>
 
 " set text wrapping toggles
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
-
-" Adjust viewports to the same size
-map <Leader>= <C-w>=
 
 
 " ------------------------------------------------------------------------------
@@ -180,8 +179,7 @@ let g:deoplete#enable_at_startup = 1
 "
 " NerdCommenter
 "
-map <leader>\ <plug>NERDCommenterToggle<CR>
-imap <leader>\ <Esc><plug>NERDCommenterToggle<CR>i
+map <leader><leader> <plug>NERDCommenterToggle<CR>
 
 "
 " TagBar
@@ -191,7 +189,7 @@ nnoremap <silent> <leader>tt :TagbarToggle<CR>
 "
 " ack
 "
-let g:ackprg = "rg --vimgrep"
+let g:ackprg = "rg --vimgrep --hidden"
 
 "
 " lightline
