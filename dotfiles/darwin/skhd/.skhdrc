@@ -1,0 +1,72 @@
+#
+# Simulate xmonad key bindings.
+#
+
+# Launch iTerm2
+ctrl + alt + cmd + shift - return : "${HOME}"/bin/launch-terminal
+
+# Launch Spotlight
+ctrl + alt + cmd - p : skhd -k "cmd - space"
+
+# Close focused window
+ctrl + alt + cmd + shift - c : chunkc tiling::window --close
+
+# Rotate through the available layout algorithms
+ctrl + alt + cmd - space : "${HOME}"/bin/rotate-layout
+
+# Move focus
+ctrl + alt + cmd - j : chunkc tiling:window --focus next
+ctrl + alt + cmd - k : chunkc tiling:window --focus prev
+ctrl + alt + cmd - tab : chunkc tiling:window --focus next
+ctrl + alt + cmd - m : chunkc tiling:window --focus biggest
+
+# Swap window
+ctrl + alt + cmd - return : chunkc tiling:window --swap biggest
+ctrl + alt + cmd + shift - j : chunkc tiling:window --swap next
+ctrl + alt + cmd + shift - k : chunkc tiling:window --swap prev
+
+# Shrink/expand
+ctrl + alt + cmd - h : chunkc tiling::window --use-temporary-ratio -0.05 --adjust-window-edge west;\
+                       chunkc tiling::window --use-temporary-ratio -0.05 --adjust-window-edge east
+ctrl + alt + cmd - l : chunkc tiling::window --use-temporary-ratio  0.05 --adjust-window-edge west;\
+                       chunkc tiling::window --use-temporary-ratio  0.05 --adjust-window-edge east
+
+# Float window
+ctrl + alt + cmd - t : chunkc tiling::window --toggle float;\
+                       chunkc tiling::window --grid-layout 4:4:1:1:2:2
+
+# Push window back into tiling
+# TODO?
+
+# Switch to workspace N
+ctrl + alt + cmd - 1 : skhd -k "ctrl - 1"
+ctrl + alt + cmd - 2 : skhd -k "ctrl - 2"
+ctrl + alt + cmd - 3 : skhd -k "ctrl - 3"
+ctrl + alt + cmd - 4 : skhd -k "ctrl - 4"
+ctrl + alt + cmd - 5 : skhd -k "ctrl - 5"
+ctrl + alt + cmd - 6 : skhd -k "ctrl - 6"
+
+# Move client to workspace N
+ctrl + alt + cmd + shift - 1 : chunkc tiling::window --send-to-desktop 1
+ctrl + alt + cmd + shift - 2 : chunkc tiling::window --send-to-desktop 2
+ctrl + alt + cmd + shift - 3 : chunkc tiling::window --send-to-desktop 3
+ctrl + alt + cmd + shift - 4 : chunkc tiling::window --send-to-desktop 4
+ctrl + alt + cmd + shift - 5 : chunkc tiling::window --send-to-desktop 5
+ctrl + alt + cmd + shift - 6 : chunkc tiling::window --send-to-desktop 6
+
+# Switch to screen 1, 2, or 3
+ctrl + alt + cmd - w  : chunkc tiling::monitor -f 2
+ctrl + alt + cmd - e  : chunkc tiling::monitor -f 1
+ctrl + alt + cmd - r  : chunkc tiling::monitor -f 3
+
+# Move client to screen 1, 2, or 3
+ctrl + alt + cmd + shift - w  : chunkc tiling::window --send-to-monitor 2
+ctrl + alt + cmd + shift - e  : chunkc tiling::window --send-to-monitor 1
+ctrl + alt + cmd + shift - r  : chunkc tiling::window --send-to-monitor 3
+
+# Restart skhd
+ctrl + alt + cmd - q : brew services restart koekeishiya/formulae/skhd
+
+# Restart chunkwm
+ctrl + alt + cmd + shift - q : brew services restart koekeishiya/formulae/chunkwm
+

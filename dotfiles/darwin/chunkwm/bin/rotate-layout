@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#
+# Rotates through desired layout modes in chunkwm.
+#
+set -eu -o pipefail
+
+main() {
+    local modes=("bsp" "monocle")
+    local current_mode=$(chunkc tiling::query --desktop mode)
+
+    for i in "${!modes[@]}"; do
+        if [[ "${modes[$i]}" = "${current_mode}" ]]; then
+            break;
+        fi
+    done
+
+    local next_mode="${modes[(((i + 1) % "${#modes[@]}"))]}"
+    $(chunkc tiling::desktop --layout "${next_mode}")
+}
+
+main "$@"
