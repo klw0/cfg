@@ -1,47 +1,47 @@
 "
-" Mostly borrowed from janus and spf13
+" Originally pillaged from janus and spf13, and evolved from there.
 "
 
 " ------------------------------------------------------------------------------
 " General
 " ------------------------------------------------------------------------------
-set nocompatible                " use vim, no vi defaults
+set nocompatible                " Use vim, no vi defaults
 let mapleader="\<Space>"
-set number                      " show line numbers
-set ruler                       " show line and column number in stats line
-set history=10000               " store a ton of history (default is 20)
-syntax enable                   " syntax highlighting
+set number                      " Show line numbers
+set ruler                       " Show line and column number in stats line
+set history=10000               " Store a ton of history
+syntax enable                   " Enable syntax highlighting
 set encoding=utf-8
-set t_ti= t_te=                 " don't switch to the terminal when running cli commands
-set ttyfast                     " our terminal is fast
-set ttimeoutlen=0               " shorten key sequence timeouts (eliminates delays after pressing ESC)
+set t_ti= t_te=                 " Don't switch to the terminal when running cli commands
+set ttimeoutlen=0               " Shorten key sequence timeouts (eliminates delays after hitting ESC)
+set mouse=a                     " Enable mouse support in all modes for pane resizing
 
 
 " ------------------------------------------------------------------------------
 " Formatting
 " ------------------------------------------------------------------------------
-set nowrap                      " don't wrap lines
-set tabstop=4                   " a tab is X spaces
-set shiftwidth=4                " an autoindent (with <<) is X spaces
-set expandtab                   " use spaces, not tabs
-set list                        " show invisible characters
-set backspace=indent,eol,start  " backspace through everything in insert mode
+set nowrap                      " Don't wrap lines
+set tabstop=4                   " A tab is X spaces
+set shiftwidth=4                " An autoindent (with <<) is X spaces
+set expandtab                   " Use spaces, not tabs
+set list                        " Show invisible characters
+set backspace=indent,eol,start  " Backspace through everything in insert mode
 
 " List chars
-set listchars=""                  " reset the listchars
-set listchars=tab:\ \             " a tab should display as "  "
-set listchars+=trail:.            " show trailing spaces as periods
-set listchars+=extends:>          " the character to show in the last column when wrap is off and the line continues beyond the right of the screen
-set listchars+=precedes:<         " the character to show in the last column when wrap is off and the line continues beyond the right of the screen
+set listchars=""                " Reset the listchars
+set listchars=tab:\ \           " A tab should display as "  "
+set listchars+=trail:.          " Show trailing spaces as periods
+set listchars+=extends:>        " The character to show in the last column when wrap is off and the line continues beyond the right of the screen
+set listchars+=precedes:<       " The character to show in the last column when wrap is off and the line continues beyond the left of the screen
 
 
 " ------------------------------------------------------------------------------
 " Searching
 " ------------------------------------------------------------------------------
-set hlsearch    " highlight matches
-set incsearch   " incremental searching
-set ignorecase  " searches are case insensitive...
-set smartcase   " ... unless they contain at least one capital letter
+set hlsearch    " Highlight matches
+set incsearch   " Incremental searching
+set ignorecase  " Searches are case insensitive...
+set smartcase   " ...unless they contain at least one capital letter
 
 
 " ------------------------------------------------------------------------------
@@ -54,28 +54,11 @@ if has("statusline")
     set laststatus=2  " always show the status bar
 endif
 
-
-" ------------------------------------------------------------------------------
-" Wild settings
-" ------------------------------------------------------------------------------
-" Disable output and VCS files
-set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
-
-" Disable archive files
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-
-" Ignore bundler and sass cache
-set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
-
-" Disable temp and backup files
-set wildignore+=*.swp,*~,._*
-
-
 " ------------------------------------------------------------------------------
 " Backup and swap files
 " ------------------------------------------------------------------------------
-set backupdir=~/.vim/_backup//    " where to put backup files
-set directory=~/.vim/_temp//      " where to put swap files
+set backupdir=~/.vim/_backup//
+set directory=~/.vim/_temp//
 
 
 " ------------------------------------------------------------------------------
@@ -84,7 +67,7 @@ set directory=~/.vim/_temp//      " where to put swap files
 " Create the directory containing the file in the buffer
 nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 
-" Underline the current line with '='
+" Underline the current line with "="
 nmap <silent> <leader>ul :t.\|s/./=/g\|:nohls<cr>
 
 " set text wrapping toggles
@@ -124,10 +107,11 @@ function! ShortenPath(path)
     return shortened_path
 endfunction
 
+
 " ------------------------------------------------------------------------------
 " Plugins
 " ------------------------------------------------------------------------------
-call plug#begin('~/.vim/plugged')
+call plug#begin("~/.vim/plugged")
 
 Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
@@ -142,7 +126,7 @@ Plug 'vimwiki/vimwiki'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
-if has('nvim')
+if has("nvim")
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 endif
@@ -155,8 +139,9 @@ Plug 'chooh/brightscript.vim'
 
 call plug#end()
 
+
 " ------------------------------------------------------------------------------
-" Plugins Setup
+" Plugins Configuration
 " ------------------------------------------------------------------------------
 "
 " NerdTree
@@ -165,15 +150,15 @@ autocmd vimenter * if !argc() | NERDTree | endif
 map <leader>n :NERDTreeToggle<CR>
 
 let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.pyc', '\~$', '\.o$', '\.swo$', '\.swp$', '\.git','\.hg', '\.svn', '\.bzr']
+let NERDTreeIgnore=["\.pyc", "\~$", "\.o$", "\.swo$", "\.swp$", "\.git","\.hg", "\.svn", "\.bzr"]
 let NERDTreeChDirMode=0
 let NERDTreeQuitOnOpen=0
 let NERDTreeMouseMode=2
 let NERDTreeShowHidden=0
 
-"
+""
 " deoplete
-"
+""
 let g:deoplete#enable_at_startup = 1
 
 "
@@ -196,56 +181,56 @@ let g:ackprg = "rg --vimgrep --hidden"
 "
 set noshowmode
 let g:lightline = {}
-let g:lightline.colorscheme = 'solarized'
+let g:lightline.colorscheme = "solarized"
 let g:lightline.active = {
-    \   'left': [['mode', 'paste'],
-    \            ['readonly', 'filename'],
-    \            ['gitbranch']],
-    \   'right': [['linter_warnings', 'linter_errors', 'lineinfo'],
-    \             ['percent'],
-    \             ['filetype']]
+    \   "left": [["mode", "paste"],
+    \            ["readonly", "filename"],
+    \            ["gitbranch"]],
+    \   "right": [["linter_warnings", "linter_errors", "lineinfo"],
+    \             ["percent"],
+    \             ["filetype"]]
     \ }
 let g:lightline.tabline = {
-    \ 'left': [['tabs']],
-    \ 'right': [[]],
+    \ "left": [["tabs"]],
+    \ "right": [[]],
     \ }
 let g:lightline.component_function = {
-    \   'filename': 'LightlineFilename',
-    \   'gitbranch': 'LightlineGitbranch'
+    \   "filename": "LightlineFilename",
+    \   "gitbranch": "LightlineGitbranch"
     \ }
 let g:lightline.component_expand = {
-    \   'linter_warnings': 'LightlineLinterWarnings',
-    \   'linter_errors': 'LightlineLinterErrors'
+    \   "linter_warnings": "LightlineLinterWarnings",
+    \   "linter_errors": "LightlineLinterErrors"
     \ }
 let g:lightline.component_type = {
-    \   'linter_warnings': 'warning',
-    \   'linter_errors': 'error'
+    \   "linter_warnings": "warning",
+    \   "linter_errors": "error"
     \ }
 
 function! LightlineFilename()
-    let filename = expand('%:f') !=# '' ? ShortenPath(expand('%:P')) : '[No Name]'
-    let modified = &modified ? ' [+]' : ''
+    let filename = expand("%:f") !=# "" ? ShortenPath(expand("%:P")) : "[No Name]"
+    let modified = &modified ? " [+]" : ""
     return filename . modified
 endfunction
 
 function! LightlineGitbranch()
-    return winwidth(0) >= 80 ? fugitive#head() : ''
+    return winwidth(0) >= 80 ? fugitive#head() : ""
 endfunction
 
 " ale + lightline
 autocmd User ALELint call lightline#update()
 
 function! LightlineLinterErrors() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:counts = ale#statusline#Count(bufnr(""))
   let l:all_errors = l:counts.error + l:counts.style_error
-  return l:all_errors == 0 ? '' : printf('%d >>', all_errors)
+  return l:all_errors == 0 ? "" : printf("%d >>", all_errors)
 endfunction
 
 function! LightlineLinterWarnings() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:counts = ale#statusline#Count(bufnr(""))
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
-  return l:all_non_errors == 0 ? '' : printf('%d --', all_non_errors)
+  return l:all_non_errors == 0 ? "" : printf("%d --", all_non_errors)
 endfunction
 
 
@@ -253,6 +238,7 @@ endfunction
 " NeoSolarized
 "
 let g:neosolarized_vertSplitBgTrans = 0
+let g:neosolarized_contrast = "high"
 
 "
 " fzf
@@ -262,13 +248,13 @@ nmap <C-p> :Files<CR>
 "
 " vimwiki
 "
-let g:vimwiki_list = [{ 'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md' }]
+let g:vimwiki_list = [{ "path": "~/wiki/", "syntax": "markdown", "ext": ".md" }]
 
 
 "
 " vim-latex
 "
-let g:tex_flavor='latex'
+let g:tex_flavor="latex"
 
 "
 " markdown-preview
@@ -276,7 +262,7 @@ let g:tex_flavor='latex'
 nmap <silent> <C-m> <Plug>MarkdownPreview
 
 " ------------------------------------------------------------------------------
-" Post-bundle loading
+" Post-bundle Loading Configuration
 " ------------------------------------------------------------------------------
 filetype plugin indent on  " automatically detect file types
 colorscheme NeoSolarized
