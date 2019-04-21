@@ -69,4 +69,3 @@ ctrl + alt + cmd - q : brew services restart koekeishiya/formulae/skhd
 
 # Restart chunkwm
 ctrl + alt + cmd + shift - q : brew services restart koekeishiya/formulae/chunkwm
-
