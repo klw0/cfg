@@ -16,3 +16,5 @@ fi
 if [[ -x $(command -v rbenv) ]]; then
     eval "$(rbenv init -)"
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

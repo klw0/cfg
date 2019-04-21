@@ -126,7 +126,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
 Plug 'justinmk/vim-sneak'
 
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
 if has("nvim")
