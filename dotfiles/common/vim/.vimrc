@@ -138,6 +138,8 @@ endif
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'jcf/vim-latex'
 Plug 'chooh/brightscript.vim'
+Plug 'LnL7/vim-nix'
+Plug 'neovimhaskell/haskell-vim'
 
 call plug#end()
 
