@@ -1,0 +1,30 @@
+Config { font = "xft:cherry:pixelsize=12:antialias=false:autohint=false:scalable=false"
+       , textOffset = 12
+       , bgColor = "#002b36"
+       , fgColor = "#657b83"
+       , position = TopP 0 32
+       , pickBroadest = True
+       , commands = [ Run Memory [ "-t", "Mem: <usedratio>%" ] 100
+                    , Run Date "%a %b %d %l:%M %p" "date" 300
+                    , Run Battery [ "-t", "Batt: <acstatus>"
+                                  , "--Low", "10"   -- units: %
+                                  , "--low", "red"
+
+                                  , "--" -- battery specific options
+                                      -- discharging status
+                                      , "-o", "<left>% (<timeleft> @ <watts>W)"
+                                      -- AC "on" status
+                                      , "-O", "<fc=#daa520>Charging</fc> (<left>%)"
+                                      -- charged status
+                                      , "-i", "<fc=#006000>Charged</fc>"
+                                  ] 300
+                    , Run Wireless "wlp3s0" [ "-t", "wlp3s0: <essid>" ] 60
+                    , Run DynNetwork [ "-t", "rx <rx>kB/s tx <tx>kB/s" ] 30
+                    , Run Brightness [ "-t", "Brt: <percent>%" ] 10
+                    , Run Volume "default" "Master" [ "-t", "Vol: <volume>%" ] 10
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ %memory%   %bright%   %wlp3s0wi% (%dynnetwork%)   %default:Master%   %battery%   <fc=#93a1a1>%date%</fc>"
+       }
