@@ -15,6 +15,7 @@ set encoding=utf-8
 set t_ti= t_te=                 " Don't switch to the terminal when running cli commands
 set ttimeoutlen=0               " Shorten key sequence timeouts (eliminates delays after hitting ESC)
 set mouse=a                     " Enable mouse support in all modes for pane resizing
+set hidden                      " Allow hidden buffers
 
 
 " ------------------------------------------------------------------------------
@@ -70,7 +71,7 @@ nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 " Underline the current line with "="
 nmap <silent> <leader>ul :t.\|s/./=/g\|:nohls<cr>
 
-" set text wrapping toggles
+" Set text wrapping toggles
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 
 
@@ -114,28 +115,29 @@ endfunction
 call plug#begin("~/.vim/plugged")
 
 Plug 'scrooloose/nerdtree'
-Plug 'w0rp/ale'
 Plug 'ddollar/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'icymind/NeoSolarized'
+Plug 'robertmeta/nofrils'
 Plug 'vimwiki/vimwiki'
+Plug 'airblade/vim-gitgutter'
+Plug 'justinmk/vim-sneak'
 
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
 if has("nvim")
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
+    Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install() }}
+    Plug 'neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' }
+    Plug 'neoclide/coc-tslint-plugin', { 'do': 'yarn install --frozen-lockfile' }
 endif
 
-Plug 'leafgarland/typescript-vim'
-Plug 'juvenn/mustache.vim'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'jcf/vim-latex'
 Plug 'chooh/brightscript.vim'
-" Plug 'iamcco/markdown-preview.vim'
 
 call plug#end()
 
@@ -143,6 +145,10 @@ call plug#end()
 " ------------------------------------------------------------------------------
 " Plugins Configuration
 " ------------------------------------------------------------------------------
+
+" TODO
+let g:node_host_prog = "/Users/keith/.nvm/versions/node/v9.4.0/bin/neovim-node-host"
+
 "
 " NerdTree
 "
@@ -155,11 +161,6 @@ let NERDTreeChDirMode=0
 let NERDTreeQuitOnOpen=0
 let NERDTreeMouseMode=2
 let NERDTreeShowHidden=0
-
-""
-" deoplete
-""
-let g:deoplete#enable_at_startup = 1
 
 "
 " NerdCommenter
@@ -186,7 +187,7 @@ let g:lightline.active = {
     \   "left": [["mode", "paste"],
     \            ["readonly", "filename"],
     \            ["gitbranch"]],
-    \   "right": [["linter_warnings", "linter_errors", "lineinfo"],
+    \   "right": [["lineinfo", "cocstatus"],
     \             ["percent"],
     \             ["filetype"]]
     \ }
@@ -195,16 +196,9 @@ let g:lightline.tabline = {
     \ "right": [[]],
     \ }
 let g:lightline.component_function = {
+    \   "cocstatus": "coc#status",
     \   "filename": "LightlineFilename",
     \   "gitbranch": "LightlineGitbranch"
-    \ }
-let g:lightline.component_expand = {
-    \   "linter_warnings": "LightlineLinterWarnings",
-    \   "linter_errors": "LightlineLinterErrors"
-    \ }
-let g:lightline.component_type = {
-    \   "linter_warnings": "warning",
-    \   "linter_errors": "error"
     \ }
 
 function! LightlineFilename()
@@ -216,23 +210,6 @@ endfunction
 function! LightlineGitbranch()
     return winwidth(0) >= 80 ? fugitive#head() : ""
 endfunction
-
-" ale + lightline
-autocmd User ALELint call lightline#update()
-
-function! LightlineLinterErrors() abort
-  let l:counts = ale#statusline#Count(bufnr(""))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  return l:all_errors == 0 ? "" : printf("%d >>", all_errors)
-endfunction
-
-function! LightlineLinterWarnings() abort
-  let l:counts = ale#statusline#Count(bufnr(""))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:all_non_errors == 0 ? "" : printf("%d --", all_non_errors)
-endfunction
-
 
 "
 " NeoSolarized
@@ -250,6 +227,14 @@ nmap <C-p> :Files<CR>
 "
 let g:vimwiki_list = [{ "path": "~/wiki/", "syntax": "markdown", "ext": ".md" }]
 
+"
+" sneak.vim
+"
+let g:sneak#label = 1
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
 
 "
 " vim-latex
@@ -257,9 +242,77 @@ let g:vimwiki_list = [{ "path": "~/wiki/", "syntax": "markdown", "ext": ".md" }]
 let g:tex_flavor="latex"
 
 "
-" markdown-preview
+" coc.nvim
 "
-nmap <silent> <C-m> <Plug>MarkdownPreview
+
+" Use tab to navigate completion lists.
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Use enter to confirm completion.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+nmap <leader>rr <Plug>(coc-rename)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+vmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>f <Plug>(coc-format-selected)
+
+nmap <leader>ac <Plug>(coc-codeaction)
+nmap <leader>qf <Plug>(coc-fix-current)
+
+" Perform code action for a selected region.
+vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>CocShowDocumentation()<CR>
+
+" Use `[c` and `]c` to navigate diagnostics.
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+augroup CocGroup
+  autocmd!
+  " Setup formatexpr specified filetypes.
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+
+  " Update signature help on jump to placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" CocList
+
+" Show all diagnostics.
+nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
+
+" Show commands.
+nnoremap <silent> <space>c :<C-u>CocList commands<cr>
+
+" Show document outline.
+nnoremap <silent> <space>o :<C-u>CocList outline<cr>
+
+" Do default action for next item.
+nnoremap <silent> <space>j :<C-u>CocNext<CR>
+
+" Do default action for previous item.
+nnoremap <silent> <space>k :<C-u>CocPrev<CR>
+
+" Resume latest CocList.
+nnoremap <silent> <space>p :<C-u>CocListResume<CR>
+
+function! s:CocShowDocumentation()
+  if &filetype == "vim"
+    execute "h ".expand("<cword>")
+  else
+    call CocAction("doHover")
+  endif
+endfunction
+
 
 " ------------------------------------------------------------------------------
 " Post-bundle Loading Configuration
