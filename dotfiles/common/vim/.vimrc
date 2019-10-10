@@ -52,7 +52,7 @@ set termguicolors
 set background=dark
 
 if has("statusline")
-    set laststatus=2  " always show the status bar
+    set laststatus=2  " Always show the status bar
 endif
 
 " ------------------------------------------------------------------------------
@@ -146,9 +146,6 @@ call plug#end()
 " Plugins Configuration
 " ------------------------------------------------------------------------------
 
-" TODO
-let g:node_host_prog = "/Users/keith/.nvm/versions/node/v9.4.0/bin/neovim-node-host"
-
 "
 " NerdTree
 "
@@ -241,7 +238,7 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nmap <leader>rr <Plug>(coc-rename)
 
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gt <Plug>(coc-type-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
