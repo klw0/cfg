@@ -117,14 +117,12 @@ call plug#begin("~/.vim/plugged")
 Plug 'scrooloose/nerdtree'
 Plug 'ddollar/nerdcommenter'
 Plug 'tpope/vim-fugitive'
-Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'icymind/NeoSolarized'
 Plug 'robertmeta/nofrils'
 Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
-Plug 'justinmk/vim-sneak'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
@@ -168,11 +166,6 @@ let NERDTreeShowHidden=0
 " NerdCommenter
 "
 map <leader><leader> <plug>NERDCommenterToggle<CR>
-
-"
-" TagBar
-"
-nnoremap <silent> <leader>tt :TagbarToggle<CR>
 
 "
 " ack
@@ -228,15 +221,6 @@ nmap <C-p> :Files<CR>
 " vimwiki
 "
 let g:vimwiki_list = [{ "path": "~/wiki/", "syntax": "markdown", "ext": ".md" }]
-
-"
-" sneak.vim
-"
-let g:sneak#label = 1
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
 
 "
 " vim-latex
