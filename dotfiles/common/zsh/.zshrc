@@ -8,8 +8,8 @@ for file (~/.zsh/*.zsh(N)); do
 done
 
 # nvm
-if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
-    source "$HOME/.nvm/nvm.sh"
+if [[ -s "${NVM_DIR}/nvm.sh" ]]; then
+    source "${NVM_DIR}/nvm.sh"
 fi
 
 # rbenv
@@ -17,4 +17,5 @@ if [[ -x $(command -v rbenv) ]]; then
     eval "$(rbenv init -)"
 fi
 
+# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
