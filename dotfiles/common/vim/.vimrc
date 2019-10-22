@@ -76,17 +76,6 @@ nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 
 
 " ------------------------------------------------------------------------------
-" Filetype specific settings
-" ------------------------------------------------------------------------------
-au BufNewFile,BufRead *.asm set filetype=asm68k
-au FileType python setlocal shiftwidth=4 tabstop=4
-au FileType brs setlocal shiftwidth=4 tabstop=4
-au FileType yaml setlocal shiftwidth=2 tabstop=2
-au FileType ruby setlocal shiftwidth=2 tabstop=2
-au FileType vimwiki setlocal textwidth=120
-
-
-" ------------------------------------------------------------------------------
 " Functions
 " ------------------------------------------------------------------------------
 function! ShortenPath(path)
@@ -123,6 +112,7 @@ Plug 'icymind/NeoSolarized'
 Plug 'robertmeta/nofrils'
 Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
+Plug 'editorconfig/editorconfig-vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
