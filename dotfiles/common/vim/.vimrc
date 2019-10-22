@@ -68,9 +68,6 @@ set directory=~/.vim/_temp//
 " Create the directory containing the file in the buffer
 nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 
-" Underline the current line with "="
-nmap <silent> <leader>ul :t.\|s/./=/g\|:nohls<cr>
-
 " Set text wrapping toggles
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 
