@@ -7,6 +7,7 @@
 " ------------------------------------------------------------------------------
 set nocompatible                " Use vim, no vi defaults
 let mapleader="\<Space>"
+let maplocalleader="\<Space>"
 set number                      " Show line numbers
 set ruler                       " Show line and column number in stats line
 set history=10000               " Store a ton of history
@@ -131,7 +132,7 @@ if has("nvim")
 endif
 
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'jcf/vim-latex'
+Plug 'lervag/vimtex'
 Plug 'chooh/brightscript.vim'
 Plug 'LnL7/vim-nix'
 Plug 'neovimhaskell/haskell-vim'
@@ -215,11 +216,6 @@ nmap <C-p> :Files<CR>
 " vimwiki
 "
 let g:vimwiki_list = [{ "path": "~/wiki/", "syntax": "markdown", "ext": ".md" }]
-
-"
-" vim-latex
-"
-let g:tex_flavor="latex"
 
 "
 " coc.nvim
