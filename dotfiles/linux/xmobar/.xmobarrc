@@ -6,7 +6,7 @@ Config { font = "xft:cherry:pixelsize=12:antialias=false:autohint=false:scalable
        , pickBroadest = True
        , commands = [ Run Memory [ "-t", "Mem: <usedratio>%" ] 100
                     , Run Date "%a %b %d %l:%M %p" "date" 300
-                    , Run Battery [ "-t", "Batt: <acstatus>"
+                    , Run Battery [ "-t", "Bat: <acstatus>"
                                   , "--Low", "10"   -- units: %
                                   , "--low", "red"
 
@@ -26,5 +26,5 @@ Config { font = "xft:cherry:pixelsize=12:antialias=false:autohint=false:scalable
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %memory%   %bright%   %wlp3s0wi% (%dynnetwork%)   %default:Master%   %battery%   <fc=#93a1a1>%date%</fc>"
+       , template = "%StdinReader% }{ %memory%   %bright%   %default:Master%   %battery%   %wlp3s0wi% (%dynnetwork%)   <fc=#93a1a1>%date%</fc>"
        }
