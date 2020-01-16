@@ -15,7 +15,7 @@ export EDITOR='vim'
 export VISUAL='vim'
 export PAGER='less'
 export LESS='-F -g -i -M -R -S -w -X -z-4'
-export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export NVM_DIR="$HOME/.nvm"
 
 # Roku
