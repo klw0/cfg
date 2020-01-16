@@ -111,7 +111,7 @@ endfunction
 " ------------------------------------------------------------------------------
 call plug#begin("~/.vim/plugged")
 
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'ddollar/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'mileszs/ack.vim'
@@ -145,17 +145,12 @@ call plug#end()
 " ------------------------------------------------------------------------------
 
 "
-" NerdTree
+" NERDTree
 "
-autocmd vimenter * if !argc() | NERDTree | endif
 map <leader>n :NERDTreeToggle<CR>
 
-let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=["\.pyc", "\~$", "\.o$", "\.swo$", "\.swp$", "\.git","\.hg", "\.svn", "\.bzr"]
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=0
-let NERDTreeMouseMode=2
-let NERDTreeShowHidden=0
+let NERDTreeShowBookmarks = 1
+let NERDTreeMouseMode = 2
 
 "
 " NerdCommenter
