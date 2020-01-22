@@ -122,12 +122,9 @@ Plug 'ddollar/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'mileszs/ack.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'icymind/NeoSolarized'
-Plug 'robertmeta/nofrils'
 Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
-
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
@@ -143,11 +140,14 @@ Plug 'chooh/brightscript.vim'
 Plug 'LnL7/vim-nix'
 Plug 'neovimhaskell/haskell-vim'
 
+Plug 'icymind/NeoSolarized'
+Plug 'robertmeta/nofrils'
+
 call plug#end()
 
 
 " ------------------------------------------------------------------------------
-" Plugins Configuration
+" Plugin Configuration
 " ------------------------------------------------------------------------------
 
 "
@@ -205,7 +205,6 @@ endfunction
 "
 " NeoSolarized
 "
-let g:neosolarized_vertSplitBgTrans = 0
 let g:neosolarized_contrast = "high"
 
 "
