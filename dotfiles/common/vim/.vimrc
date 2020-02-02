@@ -24,6 +24,11 @@ augroup NumberToggle
     au BufLeave,FocusLost,InsertEnter * set norelativenumber
 augroup end
 
+augroup Prose
+    autocmd!
+    autocmd FileType markdown call Prose()
+augroup end
+
 if has("nvim")
     set inccommand=nosplit      " Show the effects of an ex command in realtime
 endif
@@ -111,6 +116,41 @@ function! ShortenPath(path)
     return shortened_path
 endfunction
 
+function! Prose()
+    " HACK(klw0): Manually load plugins and set `nowrap` since `vim-pandoc`
+    " incorrectly sets `wrap` even when configured to use hard wraps.
+    call plug#load("vim-wordy", "vim-pandoc", "vim-pandoc-syntax")
+    setlocal nowrap
+
+    setlocal spell
+    setlocal linebreak
+    setlocal textwidth=80
+
+    " Display spelling suggestions.
+    nmap <leader>s eas<C-X><C-S>
+
+    " Disable coc.nvim's completion support.
+    let b:coc_suggest_disable = 1
+
+    let g:wordy#ring = [
+        \ "weak",
+        \ ["being", "passive-voice", ],
+        \ "business-jargon",
+        \ "weasel",
+        \ "puffery",
+        \ ["problematic", "redundant", ],
+        \ ["colloquial", "idiomatic", "similies", ],
+        \ "art-jargon",
+        \ ["contractions", "opinion", "vague-time", "said-synonyms", ],
+        \ ]
+
+    noremap <silent> <leader>w :<C-u>NextWordy<cr>
+    noremap <silent> <leader>W :<C-u>PrevWordy<cr>
+
+    nmap <leader>t :TOC<CR>
+endfunction
+
+command! -nargs=0 Prose call Prose()
 
 " ------------------------------------------------------------------------------
 " Plugins
@@ -127,6 +167,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
+
+" Prevent automatic loading with 'on'.
+Plug 'vim-pandoc/vim-pandoc', { 'on': [] }
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'on': [] }
+Plug 'reedes/vim-wordy', { 'on': [] }
 
 if has("nvim")
     Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install() }}
@@ -216,6 +261,7 @@ nmap <C-p> :Files<CR>
 " vimwiki
 "
 let g:vimwiki_list = [{ "path": "~/wiki/", "syntax": "markdown", "ext": ".md" }]
+let g:vimwiki_global_ext = 0
 
 "
 " coc.nvim
@@ -288,6 +334,13 @@ function! s:CocShowDocumentation()
     call CocAction("doHover")
   endif
 endfunction
+
+"
+" vim-pandoc
+"
+let g:pandoc#modules#disabled = ["folding"]
+let g:pandoc#formatting#mode = "h"
+let g:pandoc#toc#close_after_navigating = 0
 
 
 " ------------------------------------------------------------------------------
