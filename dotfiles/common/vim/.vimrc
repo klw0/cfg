@@ -184,6 +184,7 @@ Plug 'lervag/vimtex'
 Plug 'chooh/brightscript.vim'
 Plug 'LnL7/vim-nix'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'chrisbra/csv.vim'
 
 Plug 'icymind/NeoSolarized'
 Plug 'robertmeta/nofrils'
@@ -342,6 +343,11 @@ let g:pandoc#modules#disabled = ["folding"]
 let g:pandoc#formatting#mode = "h"
 let g:pandoc#toc#close_after_navigating = 0
 
+"
+" csv.vim
+"
+let g:csv_autocmd_arrange = 1
+let g:csv_no_conceal = 1
 
 " ------------------------------------------------------------------------------
 " Post-bundle Loading Configuration
