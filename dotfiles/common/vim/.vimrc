@@ -174,9 +174,10 @@ Plug 'vim-pandoc/vim-pandoc-syntax', { 'on': [] }
 Plug 'reedes/vim-wordy', { 'on': [] }
 
 if has("nvim")
-    Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install() }}
+    Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
     Plug 'neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' }
     Plug 'neoclide/coc-tslint-plugin', { 'do': 'yarn install --frozen-lockfile' }
+    Plug 'iamcco/coc-diagnostic', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 endif
 
 Plug 'HerringtonDarkholme/yats.vim'
