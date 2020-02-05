@@ -18,6 +18,9 @@ export LESS='-F -g -i -M -R -S -w -X -z-4'
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export NVM_DIR="$HOME/.nvm"
 
+# Go
+export PATH=$PATH:$HOME/go/bin
+
 # Roku
 export ROKU_IP=172.21.155.7
 alias roku_console="telnet $ROKU_IP 8085"

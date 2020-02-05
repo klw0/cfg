@@ -186,6 +186,7 @@ Plug 'chooh/brightscript.vim'
 Plug 'LnL7/vim-nix'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'chrisbra/csv.vim'
+Plug 'sebdah/vim-delve'
 
 Plug 'icymind/NeoSolarized'
 Plug 'robertmeta/nofrils'

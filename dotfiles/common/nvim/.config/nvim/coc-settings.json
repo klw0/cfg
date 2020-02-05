@@ -1,5 +1,18 @@
 {
     "typescript.preferences.quoteStyle": "double",
+    "coc.preferences.formatOnSaveFiletypes": [
+        "go",
+    ],
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod"],
+            "filetypes": ["go"],
+            "initializationOptions": {
+                "usePlaceholder": true,
+            },
+        },
+    },
     "diagnostic-languageserver.filetypes": {
         "sh": "shellcheck",
         "vim": "vint",
