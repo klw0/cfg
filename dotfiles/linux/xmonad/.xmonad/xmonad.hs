@@ -43,7 +43,7 @@ main = do
         , ("<XF86AudioMute>", toggleMute >> return())
         , ("<XF86AudioLowerVolume>", lowerVolume 3 >> return())
         , ("<XF86AudioRaiseVolume>", raiseVolume 3 >> return())
-        , ("<XF86AudioPrev>", spawn "echo TODO:  previous track")
-        , ("<XF86AudioPlay>", spawn "echo TODO:  play/pause track")
-        , ("<XF86AudioNext>", spawn "echo TODO:  next track")
+        , ("<XF86AudioPrev>", spawn "playerctl --player=playerctld previous")
+        , ("<XF86AudioPlay>", spawn "playerctl --player=playerctld play-pause")
+        , ("<XF86AudioNext>", spawn "playerctl --player=playerctld next")
         ]
