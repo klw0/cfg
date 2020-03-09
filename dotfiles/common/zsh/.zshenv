@@ -14,8 +14,9 @@ export EDITOR="vim"
 export VISUAL="vim"
 export PAGER="less"
 export LESS="-F -g -i -M -R -S -w -X -z-4"
-export FZF_DEFAULT_COMMAND="rg --files --hidden"
+export FZF_DEFAULT_COMMAND="rg --files"
 export NVM_DIR="$HOME/.nvm"
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
 
 # Go
 export PATH=$PATH:$HOME/go/bin

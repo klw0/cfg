@@ -214,7 +214,7 @@ map <leader><leader> <plug>NERDCommenterToggle<CR>
 "
 " ack
 "
-let g:ackprg = "rg --vimgrep --hidden"
+let g:ackprg = "rg --vimgrep"
 
 "
 " lightline
