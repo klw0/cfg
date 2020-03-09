@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#
+# Prints metadata from the most recently used media player.
+#
+set -eu -o pipefail
+
+readonly PLAYER=${PLAYER:-"playerctld"}
+
+main() {
+    if [[ ! -x $(command -v playerctl) ]]; then
+        exit 1
+    fi
+
+    local artist
+    artist=$(playerctl --player="${PLAYER}" metadata artist 2> /dev/null)
+
+    local title
+    title=$(playerctl --player="${PLAYER}" metadata title 2> /dev/null)
+
+    if [[ -n "${artist}" ]]; then
+        echo "${artist} - ${title}"
+    elif [[ -n "${title}" ]]; then
+        echo "${title}"
+    else
+        echo
+    fi
+}
+
+main "$@"
