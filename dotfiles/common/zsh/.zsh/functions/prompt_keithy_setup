@@ -25,7 +25,7 @@ function prompt_keithy_setup {
 
   # Define prompts.
   PROMPT='${SSH_TTY:+"%F{red}%n%f@%F{yellow}%m%f "}%F{cyan}%c%f%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
-  RPROMPT='${editor_info[overwrite]}%(?:: %F{red}⏎%f)${VIM:+" %B%F{green}V%f%b"}${vcs_info_msg_0_}'
+  RPROMPT='${editor_info[overwrite]}%(?:: %F{red}↵ [%?]%f)${VIM:+" %B%F{green}V%f%b"} ${vcs_info_msg_0_}'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
 
