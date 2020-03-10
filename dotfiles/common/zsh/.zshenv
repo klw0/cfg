@@ -10,8 +10,8 @@ fi
 
 alias vim="nvim"
 
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="${aliases[vim]}"
+export VISUAL="${aliases[vim]}"
 export PAGER="less"
 export LESS="-F -g -i -M -R -S -w -X -z-4"
 export FZF_DEFAULT_COMMAND="rg --files"
