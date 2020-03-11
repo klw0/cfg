@@ -152,7 +152,7 @@ command! -nargs=0 Prose call Prose()
 call plug#begin("~/.vim/plugged")
 
 Plug 'preservim/nerdtree'
-Plug 'ddollar/nerdcommenter'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'mileszs/ack.vim'
 Plug 'itchyny/lightline.vim'
@@ -201,9 +201,12 @@ let NERDTreeShowBookmarks = 1
 let NERDTreeMouseMode = 2
 
 "
-" NerdCommenter
+" vim-commentary
 "
-map <leader><leader> <plug>NERDCommenterToggle<CR>
+xmap <leader><leader> <plug>Commentary
+nmap <leader><leader> <plug>Commentary
+omap <leader><leader> <plug>Commentary
+nmap <leader><leader> <plug>CommentaryLine
 
 "
 " ack
