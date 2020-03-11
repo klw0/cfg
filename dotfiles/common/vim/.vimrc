@@ -18,12 +18,6 @@ set ttimeoutlen=0               " Shorten key sequence timeouts (eliminates dela
 set mouse=a                     " Enable mouse support in all modes for pane resizing
 set hidden                      " Allow hidden buffers
 
-augroup NumberToggle
-    autocmd!
-    au BufEnter,FocusGained,InsertLeave * set relativenumber
-    au BufLeave,FocusLost,InsertEnter * set norelativenumber
-augroup end
-
 augroup Prose
     autocmd!
     autocmd FileType markdown call Prose()
