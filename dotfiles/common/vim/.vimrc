@@ -89,7 +89,7 @@ au FileType gitcommit setlocal spell
 
 
 " ------------------------------------------------------------------------------
-" Functions
+" Custom Functionality
 " ------------------------------------------------------------------------------
 function! ShortenPath(path)
     if empty(a:path) | return | endif
@@ -146,6 +146,21 @@ endfunction
 
 command! -nargs=0 Prose call Prose()
 
+if executable('rg')
+    set grepprg=rg\ --vimgrep
+endif
+
+command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args>
+command! -nargs=+ -complete=file_in_path -bar LGrep silent! lgrep! <args>
+
+augroup quickfix
+    autocmd!
+    autocmd QuickFixCmdPost grep botright cwindow
+    autocmd QuickFixCmdPost lgrep botright lwindow
+augroup END
+
+nnoremap <leader>g :Grep<Space>
+
 " ------------------------------------------------------------------------------
 " Plugins
 " ------------------------------------------------------------------------------
@@ -154,7 +169,6 @@ call plug#begin("~/.vim/plugged")
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-Plug 'mileszs/ack.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
@@ -207,11 +221,6 @@ xmap <leader><leader> <plug>Commentary
 nmap <leader><leader> <plug>Commentary
 omap <leader><leader> <plug>Commentary
 nmap <leader><leader> <plug>CommentaryLine
-
-"
-" ack
-"
-let g:ackprg = "rg --vimgrep"
 
 "
 " lightline
