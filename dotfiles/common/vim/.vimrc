@@ -81,6 +81,20 @@ nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 " Set text wrapping toggles
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 
+nnoremap ]b :bnext<CR>
+nnoremap [b :bprev<CR>
+nnoremap ]B :blast<CR>
+nnoremap [B :bfirst<CR>
+
+nnoremap ]l :lnext<CR>
+nnoremap [l :lprev<CR>
+nnoremap ]L :llast<CR>
+nnoremap [L :lfirst<CR>
+
+nnoremap ]q :cnext<CR>
+nnoremap [q :cprev<CR>
+nnoremap ]Q :clast<CR>
+nnoremap [Q :cfirst<CR>
 
 " ------------------------------------------------------------------------------
 " Filetype-specific settings
