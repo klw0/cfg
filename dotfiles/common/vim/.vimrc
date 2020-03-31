@@ -81,6 +81,9 @@ nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 " Set text wrapping toggles
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 
+iabbrev TODO: TODO(klw0):
+nmap <leader>td <S-o>TODO: <Esc><Plug>Commentary $a
+
 nnoremap ]b :bnext<CR>
 nnoremap [b :bprev<CR>
 nnoremap ]B :blast<CR>
