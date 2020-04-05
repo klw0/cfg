@@ -108,25 +108,6 @@ au FileType gitcommit setlocal spell
 " ------------------------------------------------------------------------------
 " Custom Functionality
 " ------------------------------------------------------------------------------
-function! ShortenPath(path)
-    if empty(a:path) | return | endif
-
-    let num_ignore_segments = 2
-    let separator = "/"
-    let segments = split(a:path, separator)
-
-    let shortened_path = a:path
-    if len(segments) > 1
-        let shortened_segments = map(segments[0:-(num_ignore_segments + 1)], "v:val[0]")
-        let ignored_segments = segments[-num_ignore_segments:-1]
-
-        let prefix = a:path[0] == separator ? a:path[0] : ""
-        let shortened_path = prefix . join(shortened_segments + ignored_segments, separator)
-    endif
-
-    return shortened_path
-endfunction
-
 function! Prose()
     " HACK(klw0): Manually load plugins and set `nowrap` since `vim-pandoc`
     " incorrectly sets `wrap` even when configured to use hard wraps.
@@ -186,7 +167,6 @@ call plug#begin("~/.vim/plugged")
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-Plug 'itchyny/lightline.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
@@ -241,40 +221,6 @@ xmap <leader><leader> <plug>Commentary
 nmap <leader><leader> <plug>Commentary
 omap <leader><leader> <plug>Commentary
 nmap <leader><leader> <plug>CommentaryLine
-
-"
-" lightline
-"
-set noshowmode
-let g:lightline = {}
-let g:lightline.colorscheme = "solarized"
-let g:lightline.active = {
-    \   "left": [["mode", "paste"],
-    \            ["readonly", "filename"],
-    \            ["gitbranch"]],
-    \   "right": [["lineinfo", "cocstatus"],
-    \             ["percent"],
-    \             ["filetype"]]
-    \ }
-let g:lightline.tabline = {
-    \ "left": [["tabs"]],
-    \ "right": [[]],
-    \ }
-let g:lightline.component_function = {
-    \   "cocstatus": "coc#status",
-    \   "filename": "LightlineFilename",
-    \   "gitbranch": "LightlineGitbranch"
-    \ }
-
-function! LightlineFilename()
-    let filename = expand("%:f") !=# "" ? ShortenPath(expand("%:P")) : "[No Name]"
-    let modified = &modified ? " [+]" : ""
-    return filename . modified
-endfunction
-
-function! LightlineGitbranch()
-    return winwidth(0) >= 80 ? fugitive#head() : ""
-endfunction
 
 "
 " NeoSolarized
