@@ -3,6 +3,8 @@
     email = keithwhitney0@gmail.com
 [color]
     diff = true
+[diff]
+    algorithm = histogram
 [merge]
     tool = vimdiff
     conflictstyle = diff3

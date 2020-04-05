@@ -17,6 +17,7 @@ set t_ti= t_te=                 " Don't switch to the terminal when running cli 
 set ttimeoutlen=0               " Shorten key sequence timeouts (eliminates delays after hitting ESC)
 set mouse=a                     " Enable mouse support in all modes for pane resizing
 set hidden                      " Allow hidden buffers
+set diffopt+=algorithm:histogram
 
 augroup Prose
     autocmd!
