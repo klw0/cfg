@@ -5,10 +5,10 @@
     helper = osxkeychain
 [color]
     diff = true
-[diff]
-    tool = vimdiff
 [merge]
     tool = vimdiff
     conflictstyle = diff3
 [mergetool]
     prompt = false
+[mergetool "vimdiff"]
+    path = nvim
