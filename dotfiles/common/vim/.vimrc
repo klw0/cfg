@@ -212,10 +212,10 @@ let NERDTreeMouseMode = 2
 "
 " vim-commentary
 "
-xmap <leader><leader> <plug>Commentary
-nmap <leader><leader> <plug>Commentary
-omap <leader><leader> <plug>Commentary
-nmap <leader><leader> <plug>CommentaryLine
+xmap <leader><leader> <Plug>Commentary<CR>
+nmap <leader><leader> <Plug>Commentary<CR>
+omap <leader><leader> <Plug>Commentary
+nmap <leader><leader> <Plug>CommentaryLine<CR>
 
 "
 " NeoSolarized
