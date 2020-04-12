@@ -18,6 +18,7 @@ set ttimeoutlen=0               " Shorten key sequence timeouts (eliminates dela
 set mouse=a                     " Enable mouse support in all modes for pane resizing
 set hidden                      " Allow hidden buffers
 set noshowmode
+set splitright
 set diffopt+=algorithm:histogram
 
 augroup Prose
