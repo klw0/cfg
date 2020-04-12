@@ -110,7 +110,7 @@ nnoremap [Q :cfirst<CR>
 function! Prose()
     " HACK(klw0): Manually load plugins and set `nowrap` since `vim-pandoc`
     " incorrectly sets `wrap` even when configured to use hard wraps.
-    call plug#load("vim-wordy", "vim-pandoc", "vim-pandoc-syntax")
+    call plug#load("vim-pandoc", "vim-pandoc-syntax")
     setlocal nowrap
 
     setlocal spell
@@ -122,21 +122,6 @@ function! Prose()
 
     " Disable coc.nvim's completion support.
     let b:coc_suggest_disable = 1
-
-    let g:wordy#ring = [
-        \ "weak",
-        \ ["being", "passive-voice", ],
-        \ "business-jargon",
-        \ "weasel",
-        \ "puffery",
-        \ ["problematic", "redundant", ],
-        \ ["colloquial", "idiomatic", "similies", ],
-        \ "art-jargon",
-        \ ["contractions", "opinion", "vague-time", "said-synonyms", ],
-        \ ]
-
-    noremap <silent> <leader>w :<C-u>NextWordy<cr>
-    noremap <silent> <leader>W :<C-u>PrevWordy<cr>
 
     nmap <leader>t :TOC<CR>
 endfunction
@@ -175,7 +160,6 @@ Plug 'junegunn/fzf.vim'
 " Prevent automatic loading with 'on'.
 Plug 'vim-pandoc/vim-pandoc', { 'on': [] }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'on': [] }
-Plug 'reedes/vim-wordy', { 'on': [] }
 
 if has("nvim")
     Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
