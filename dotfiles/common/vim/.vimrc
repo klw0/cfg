@@ -21,11 +21,6 @@ set noshowmode
 set splitright
 set diffopt+=algorithm:histogram
 
-augroup Prose
-    autocmd!
-    autocmd FileType markdown call Prose()
-augroup end
-
 if has("nvim")
     set inccommand=nosplit      " Show the effects of an ex command in realtime
 endif
@@ -107,27 +102,6 @@ nnoremap [Q :cfirst<CR>
 " ------------------------------------------------------------------------------
 " Custom Functionality
 " ------------------------------------------------------------------------------
-function! Prose()
-    " HACK(klw0): Manually load plugins and set `nowrap` since `vim-pandoc`
-    " incorrectly sets `wrap` even when configured to use hard wraps.
-    call plug#load("vim-pandoc", "vim-pandoc-syntax")
-    setlocal nowrap
-
-    setlocal spell
-    setlocal linebreak
-    setlocal textwidth=80
-
-    " Display spelling suggestions.
-    nmap <leader>s eas<C-X><C-S>
-
-    " Disable coc.nvim's completion support.
-    let b:coc_suggest_disable = 1
-
-    nmap <leader>t :TOC<CR>
-endfunction
-
-command! -nargs=0 Prose call Prose()
-
 if executable('rg')
     set grepprg=rg\ --vimgrep
 endif
@@ -157,9 +131,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
-" Prevent automatic loading with 'on'.
-Plug 'vim-pandoc/vim-pandoc', { 'on': [] }
-Plug 'vim-pandoc/vim-pandoc-syntax', { 'on': [] }
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 if has("nvim")
     Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
