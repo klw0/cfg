@@ -82,7 +82,9 @@ nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 iabbrev TODO: TODO(klw0):
 nmap <leader>td <S-o>TODO: <Esc><Plug>Commentary $a
 
-nnoremap <silent> <C-L> :nohlsearch<CR>
+" Clear search highlighting, update the current diff if there is one, and
+" clear the screen/redraw.
+nnoremap <silent><expr> <C-L> ':nohlsearch' . (&diff ? '\| diffupdate' : '') . '<CR><C-L>'
 
 nnoremap ]b :bnext<CR>
 nnoremap [b :bprev<CR>
