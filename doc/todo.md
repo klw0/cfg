@@ -1,6 +1,5 @@
 # To-Do
 - [vim] Drop NERDTree for (not) netrw
-- [vim] Disable/redefine `vim-gitgutter` mappings
 - [vim] Fix style
     - Use single quotes
     - Update editorconfig for vimscript to use two spaces for indents

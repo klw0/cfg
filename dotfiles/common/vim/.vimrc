@@ -217,6 +217,15 @@ let g:vimwiki_list = [{ "path": "~/wiki/", "syntax": "markdown", "ext": ".md" }]
 let g:vimwiki_global_ext = 0
 
 "
+" vim-gitgutter
+"
+let g:gitgutter_map_keys = 0
+
+nmap <leader>hp <Plug>(GitGutterPreviewHunk)
+nmap [c <Plug>(GitGutterPrevHunk)
+nmap ]c <Plug>(GitGutterNextHunk)
+
+"
 " coc.nvim
 "
 
