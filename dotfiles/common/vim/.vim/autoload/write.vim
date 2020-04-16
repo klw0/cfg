@@ -7,10 +7,6 @@ function! write#Enable() abort
 
     nnoremap <buffer> <leader>s ea<C-X><C-S><C-P>
     let b:[s:undo_key] .= '| nunmap <buffer> <leader>s'
-
-    " Disable coc.nvim's completion support.
-    let b:coc_suggest_disable = v:true
-    let b:[s:undo_key] .= '| unlet b:coc_suggest_disable'
 endfunction
 
 " Disables write mode.

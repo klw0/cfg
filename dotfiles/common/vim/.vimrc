@@ -19,6 +19,9 @@ set mouse=a                     " Enable mouse support in all modes for pane res
 set hidden                      " Allow hidden buffers
 set noshowmode
 set splitright
+set shortmess+=c
+set completeopt+=longest,menuone
+set completeopt-=preview
 set diffopt+=algorithm:histogram
 
 if has("nvim")
@@ -86,6 +89,10 @@ nmap <leader>td <S-o>TODO: <Esc><Plug>Commentary $a
 " clear the screen/redraw.
 nnoremap <silent><expr> <C-L> ':nohlsearch' . (&diff ? '\| diffupdate' : '') . '<CR><C-L>'
 
+inoremap <expr> <Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-P>" : "\<S-Tab>"
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<C-G>u\<CR>"
+
 nnoremap ]b :bnext<CR>
 nnoremap [b :bprev<CR>
 nnoremap ]B :blast<CR>
@@ -100,6 +107,19 @@ nnoremap ]q :cnext<CR>
 nnoremap [q :cprev<CR>
 nnoremap ]Q :clast<CR>
 nnoremap [Q :cfirst<CR>
+
+" ------------------------------------------------------------------------------
+" Colors
+" ------------------------------------------------------------------------------
+highlight! link LspDiagnosticsError Error
+highlight! link LspDiagnosticsWarning WarningMsg
+highlight! link LspDiagnosticsInformation WarningMsg
+highlight! link LspDiagnosticsHint WarningMsg
+
+highlight! link LspDiagnosticsUnderlineError SpellBad
+highlight! link LspDiagnosticsUnderlineWarning SpellBad
+highlight! link LspDiagnosticsUnderlineHint SpellBad
+highlight! link LspDiagnosticsUnderlineInformation SpellBad
 
 " ------------------------------------------------------------------------------
 " Custom Functionality
@@ -137,10 +157,7 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
 if has("nvim")
-    Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
-    Plug 'neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' }
-    Plug 'neoclide/coc-tslint-plugin', { 'do': 'yarn install --frozen-lockfile' }
-    Plug 'iamcco/coc-diagnostic', { 'do': 'yarn install --frozen-lockfile && yarn build' }
+    Plug 'neovim/nvim-lsp'
 endif
 
 Plug 'HerringtonDarkholme/yats.vim'
@@ -163,6 +180,16 @@ call plug#end()
 
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
+
+"
+" nvim-lsp
+"
+lua << EOF
+nvim_lsp = require'nvim_lsp'
+
+nvim_lsp.gopls.setup{}
+nvim_lsp.vimls.setup{}
+EOF
 
 "
 " NERDTree
@@ -226,78 +253,6 @@ let g:gitgutter_map_keys = 0
 nmap <leader>hp <Plug>(GitGutterPreviewHunk)
 nmap [c <Plug>(GitGutterPrevHunk)
 nmap ]c <Plug>(GitGutterNextHunk)
-
-"
-" coc.nvim
-"
-
-" Use tab to navigate completion lists.
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Use enter to confirm completion.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-nmap <leader>rr <Plug>(coc-rename)
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-vmap <leader>f <Plug>(coc-format-selected)
-nmap <leader>f <Plug>(coc-format-selected)
-
-nmap <leader>ac <Plug>(coc-codeaction)
-nmap <leader>qf <Plug>(coc-fix-current)
-
-" Perform code action for a selected region.
-vmap <leader>a <Plug>(coc-codeaction-selected)
-nmap <leader>a <Plug>(coc-codeaction-selected)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>CocShowDocumentation()<CR>
-
-" Use `[c` and `]c` to navigate diagnostics.
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-augroup CocGroup
-  autocmd!
-  " Setup formatexpr specified filetypes.
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-
-  " Update signature help on jump to placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" CocList
-
-" Show all diagnostics.
-nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
-
-" Show commands.
-nnoremap <silent> <space>c :<C-u>CocList commands<cr>
-
-" Show document outline.
-nnoremap <silent> <space>o :<C-u>CocList outline<cr>
-
-" Do default action for next item.
-nnoremap <silent> <space>j :<C-u>CocNext<CR>
-
-" Do default action for previous item.
-nnoremap <silent> <space>k :<C-u>CocPrev<CR>
-
-" Resume latest CocList.
-nnoremap <silent> <space>p :<C-u>CocListResume<CR>
-
-function! s:CocShowDocumentation()
-  if &filetype == "vim"
-    execute "h ".expand("<cword>")
-  else
-    call CocAction("doHover")
-  endif
-endfunction
 
 "
 " vim-pandoc

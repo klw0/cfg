@@ -111,9 +111,9 @@ function stabusline#Tabline() abort
         let l:tabline .= getbufvar(l:active_buffer, '&modified') ? ' [+]' : ''
 
         if len(l:buffers) > 1
-            " TODO(klw0): This is intended to filter out coc.nvim floating
-            " windows, but it may filter out buffers that should be included.
-            " Find a better way to do this.
+            " TODO(klw0): This is intended to filter out floating windows, but
+            " it may filter out buffers that should be included.  Find a
+            " better way to do this.
             let l:valid_buffers = filter(l:buffers, { _, b -> getbufvar(b, '&bufhidden') !=# 'hide' })
             let l:tabline .= (l:is_tab_active ? '%#StabuslinePrimaryInfo#' : '%#StabuslineDefaultInfo#') . ' ' . len(l:valid_buffers)
 
@@ -185,15 +185,13 @@ function! stabusline#GitBranch()
 endfunction
 
 function! stabusline#DiagnosticErrors() abort
-    let l:diagnostics = get(b:, 'coc_diagnostic_info', {})
-    let l:errors = get(l:diagnostics, 'error', 0)
+    let l:errors = luaeval('vim.lsp.util.buf_diagnostics_count("Error")')
 
     return l:errors ? 'E' . l:errors : ''
 endfunction
 
 function! stabusline#DiagnosticWarnings() abort
-    let l:diagnostics = get(b:, 'coc_diagnostic_info', {})
-    let l:warnings = get(l:diagnostics, 'warning', 0)
+    let l:warnings = luaeval('vim.lsp.util.buf_diagnostics_count("Warning")')
 
     return l:warnings ? 'W' . l:warnings : ''
 endfunction
