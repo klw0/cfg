@@ -215,7 +215,7 @@ let g:neosolarized_contrast = "high"
 "
 " fzf
 "
-nmap <C-p> :Files<CR>
+nmap <leader>e :Files<CR>
 nmap <leader>b :Buffers<CR>
 
 let g:fzf_action = {
