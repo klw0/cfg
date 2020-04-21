@@ -188,6 +188,7 @@ lua << EOF
 nvim_lsp = require'nvim_lsp'
 
 nvim_lsp.gopls.setup{}
+nvim_lsp.jsonls.setup{}
 nvim_lsp.vimls.setup{}
 EOF
 
