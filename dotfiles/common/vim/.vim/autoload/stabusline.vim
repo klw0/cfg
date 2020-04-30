@@ -88,6 +88,7 @@ function! stabusline#Statusline(is_active) abort
     else
         let l:statusline .= ' %(%R | %)%{stabusline#BufferName(bufnr())}%( %m%)'
         let l:statusline .= '%='
+        let l:statusline .= ' %{&ft !=# "" ? &ft : "no ft"} '
         let l:statusline .= ' %<%3p%% '
         let l:statusline .= ' %3l:%-2v '
     endif
