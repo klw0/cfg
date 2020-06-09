@@ -60,6 +60,9 @@ fi
 
 alias ls="${aliases[ls]:-ls} ${color_flag}"
 
+function t {
+    cd $(mktemp -d ~/tmp/"${1:-tmp}".XXXXXXXXXX)
+}
 
 # # Finds files and executes a command on them.
 # function find-exec {
