@@ -34,7 +34,7 @@ main = do
         , borderWidth = 1
         , terminal = "st"
         , normalBorderColor = Solarized.base02
-        , focusedBorderColor = Solarized.blue
+        , focusedBorderColor = Solarized.cyan
         , modMask = mod4Mask    -- Super
         } `additionalKeysP`
         [ ("M-p", spawn "dmenu_run -fn cherry:pixelsize=13")
