@@ -7,6 +7,5 @@
     - Use noremap map commands where possible
     - vint configuration?
 - [vim] Try out `vim-rhubarb`
-- [vim] Use `write-good` for prose linting
 - [vim] Explore `vim-polyglot`
 - [linux] Brightness control script for internal and external monitor

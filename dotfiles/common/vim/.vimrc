@@ -175,7 +175,7 @@ lua << EOF
 nvim_lsp = require'nvim_lsp'
 
 nvim_lsp.efm.setup{
-    filetypes = { "sh" }
+    filetypes = { "pandoc", "sh" }
 }
 nvim_lsp.bashls.setup{}
 nvim_lsp.gopls.setup{}
