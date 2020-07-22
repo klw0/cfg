@@ -3,6 +3,13 @@ if exists('g:loaded_lsp')
 endif
 let g:loaded_lsp = v:true
 
+" TODO(klw0): Hacky, but currently there is no option to disable virtual text.
+lua vim.lsp.util.buf_diagnostics_virtual_text = function() end
+
+augroup lsp
+  autocmd!
+  autocmd User LspDiagnosticsChanged lua require('lsp').show_buffer_diagnostics()
+augroup END
 
 highlight! link LspDiagnosticsError Error
 highlight! link LspDiagnosticsWarning WarningMsg

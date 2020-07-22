@@ -31,6 +31,9 @@ function! lsp#ConfigureBuffer() abort
 
     nnoremap <buffer><silent> rn :lua vim.lsp.buf.rename()<CR>
     let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> rn'
+
+    autocmd CursorMoved,CursorHold <buffer> lua vim.lsp.util.show_line_diagnostics()
+    let b:[s:undo_configure_key] .= '| autocmd! CursorMoved,CursorHold <buffer>'
 endfunction
 
 " Reverses configuration changes made by `lsp#ConfigureBuffer()`.
