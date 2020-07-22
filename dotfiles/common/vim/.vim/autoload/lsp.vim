@@ -5,6 +5,15 @@ function! lsp#ConfigureBuffer() abort
     setlocal omnifunc=v:lua.vim.lsp.omnifunc
     let b:[s:undo_configure_key] = '| setlocal omnifunc<'
 
+    nnoremap <buffer> <leader>d :lwindow<CR><C-W>p
+    let b:[s:undo_configure_key] .= '| nunmap <buffer> <leader>d'
+
+    nnoremap <buffer> ]d :lbelow<CR>
+    let b:[s:undo_configure_key] .= '| nunmap <buffer> ]d'
+
+    nnoremap <buffer> [d :labove<CR>
+    let b:[s:undo_configure_key] .= '| nunmap <buffer> [d'
+
     nnoremap <buffer><silent> gd :lua vim.lsp.buf.declaration()<CR>
     let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> gd'
 
