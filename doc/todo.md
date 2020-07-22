@@ -1,5 +1,4 @@
 # To-Do
-- [vim] Reintegrate shellcheck (via efm-langserver?)
 - [vim] Reintegrate vint (via efm-langserver?)
 - [vim] Drop NERDTree for (not) netrw
 - [vim] Fix style

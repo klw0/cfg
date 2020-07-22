@@ -174,6 +174,9 @@ let g:loaded_netrwPlugin = 1
 lua << EOF
 nvim_lsp = require'nvim_lsp'
 
+nvim_lsp.efm.setup{
+    filetypes = { "sh" }
+}
 nvim_lsp.bashls.setup{}
 nvim_lsp.gopls.setup{}
 nvim_lsp.jsonls.setup{}
