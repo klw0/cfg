@@ -174,6 +174,7 @@ let g:loaded_netrwPlugin = 1
 lua << EOF
 nvim_lsp = require'nvim_lsp'
 
+nvim_lsp.bashls.setup{}
 nvim_lsp.gopls.setup{}
 nvim_lsp.jsonls.setup{}
 nvim_lsp.sumneko_lua.setup{}
