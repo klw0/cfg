@@ -21,7 +21,7 @@ set hidden                      " Allow hidden buffers
 set noshowmode
 set splitright
 set shortmess+=c
-set completeopt+=longest,menuone
+set completeopt+=longest,menuone,noselect
 set completeopt-=preview
 set complete+=kspell
 set diffopt+=algorithm:histogram
