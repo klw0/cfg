@@ -15,6 +15,7 @@ syntax enable                   " Enable syntax highlighting
 set encoding=utf-8
 set t_ti= t_te=                 " Don't switch to the terminal when running cli commands
 set ttimeoutlen=0               " Shorten key sequence timeouts (eliminates delays after hitting ESC)
+set updatetime=125
 set mouse=a                     " Enable mouse support in all modes for pane resizing
 set hidden                      " Allow hidden buffers
 set noshowmode
