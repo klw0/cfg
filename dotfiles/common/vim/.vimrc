@@ -25,6 +25,7 @@ set completeopt+=longest,menuone
 set completeopt-=preview
 set complete+=kspell
 set diffopt+=algorithm:histogram
+set undofile
 
 if has("nvim")
     set inccommand=nosplit      " Show the effects of an ex command in realtime
