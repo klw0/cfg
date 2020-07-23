@@ -23,6 +23,7 @@ set splitright
 set shortmess+=c
 set completeopt+=longest,menuone
 set completeopt-=preview
+set complete+=kspell
 set diffopt+=algorithm:histogram
 
 if has("nvim")
