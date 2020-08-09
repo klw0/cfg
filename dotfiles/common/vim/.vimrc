@@ -135,6 +135,7 @@ nnoremap <leader>g :Grep<Space>
 " ------------------------------------------------------------------------------
 " Personal
 packadd stabusline
+packadd lsp
 
 " Vendor
 packadd vim-plug
