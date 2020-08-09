@@ -37,6 +37,7 @@ endif
 " ------------------------------------------------------------------------------
 set nowrap                      " Don't wrap lines
 set tabstop=4                   " A tab is X spaces
+set softtabstop=4
 set shiftwidth=4                " An autoindent (with <<) is X spaces
 set expandtab                   " Use spaces, not tabs
 set list                        " Show invisible characters
