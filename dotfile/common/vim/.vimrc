@@ -235,6 +235,9 @@ let g:pandoc#formatting#mode = 'h'
 let g:pandoc#toc#close_after_navigating = 0
 let g:pandoc#keyboard#use_default_mappings = 0
 
+" vimtex
+let g:tex_flavor = 'latex'
+
 " csv.vim
 let g:csv_autocmd_arrange = 1
 let g:csv_no_conceal = 1
