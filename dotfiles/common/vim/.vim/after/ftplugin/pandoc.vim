@@ -11,33 +11,33 @@ setlocal nowrap
 let b:undo_ftplugin .= '| setlocal nowrap<'
 
 if exists('*pandoc#toc#Show')
-    " Always open Pandoc's table of contents to the left.
-    nnoremap <buffer><expr><silent> <leader>t &splitright
-        \ ? ':setlocal nosplitright \| call pandoc#toc#Show() \| setlocal splitright<CR>'
-        \ : ':call pandoc#toc#Show()<CR>'
-    let b:undo_ftplugin .= '| nunmap <buffer> <leader>t'
+  " Always open Pandoc's table of contents to the left.
+  nnoremap <buffer><expr><silent> <leader>t &splitright
+      \ ? ':setlocal nosplitright \| call pandoc#toc#Show() \| setlocal splitright<CR>'
+      \ : ':call pandoc#toc#Show()<CR>'
+  let b:undo_ftplugin .= '| nunmap <buffer> <leader>t'
 endif
 
 if exists('*pandoc#keyboard#sections#ForwardHeader')
-    nnoremap <buffer> ]] :<C-U>call pandoc#keyboard#sections#ForwardHeader(v:count1)<CR>
-    let b:undo_ftplugin .= '| nunmap <buffer> ]]'
+  nnoremap <buffer> ]] :<C-U>call pandoc#keyboard#sections#ForwardHeader(v:count1)<CR>
+  let b:undo_ftplugin .= '| nunmap <buffer> ]]'
 endif
 
 if exists('*pandoc#keyboard#sections#BackwardHeader')
-    nnoremap <buffer> [[ :<C-U>call pandoc#keyboard#sections#BackwardHeader(v:count1)<CR>
-    let b:undo_ftplugin .= '| nunmap <buffer> [['
+  nnoremap <buffer> [[ :<C-U>call pandoc#keyboard#sections#BackwardHeader(v:count1)<CR>
+  let b:undo_ftplugin .= '| nunmap <buffer> [['
 endif
 
 if exists('*pandoc#keyboard#sections#SelectSection')
-    vnoremap <buffer> aS :<C-U>call pandoc#keyboard#sections#SelectSection('inclusive')<CR>
-    let b:undo_ftplugin .= '| vunmap <buffer> aS'
+  vnoremap <buffer> aS :<C-U>call pandoc#keyboard#sections#SelectSection('inclusive')<CR>
+  let b:undo_ftplugin .= '| vunmap <buffer> aS'
 
-    onoremap <buffer> aS :normal VaS<CR>
-    let b:undo_ftplugin .= '| ounmap <buffer> aS'
+  onoremap <buffer> aS :normal VaS<CR>
+  let b:undo_ftplugin .= '| ounmap <buffer> aS'
 
-    vnoremap <buffer> iS :<C-U>call pandoc#keyboard#sections#SelectSection('exclusive')<CR>
-    let b:undo_ftplugin .= '| vunmap <buffer> iS'
+  vnoremap <buffer> iS :<C-U>call pandoc#keyboard#sections#SelectSection('exclusive')<CR>
+  let b:undo_ftplugin .= '| vunmap <buffer> iS'
 
-    onoremap <buffer> iS :normal ViS<CR>
-    let b:undo_ftplugin .= '| ounmap <buffer> iS'
+  onoremap <buffer> iS :normal ViS<CR>
+  let b:undo_ftplugin .= '| ounmap <buffer> iS'
 endif

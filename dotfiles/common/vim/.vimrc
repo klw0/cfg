@@ -15,7 +15,7 @@ set ttimeoutlen=0     " Shorten key sequence timeouts (eliminate delays after hi
 set updatetime=125
 
 if has('nvim')
-    set inccommand=nosplit  " Show the effects of an Ex command in realtime
+  set inccommand=nosplit  " Show the effects of an Ex command in realtime
 endif
 
 set backspace=indent,eol,start
@@ -94,16 +94,16 @@ nnoremap [Q :cfirst<CR>
 " ------------------------------------------------------------------------------
 
 if executable('rg')
-    set grepprg=rg\ --vimgrep
+  set grepprg=rg\ --vimgrep
 endif
 
 command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args>
 command! -nargs=+ -complete=file_in_path -bar LGrep silent! lgrep! <args>
 
 augroup quickfix
-    autocmd!
-    autocmd QuickFixCmdPost grep botright cwindow
-    autocmd QuickFixCmdPost lgrep botright lwindow
+  autocmd!
+  autocmd QuickFixCmdPost grep botright cwindow
+  autocmd QuickFixCmdPost lgrep botright lwindow
 augroup END
 
 nnoremap <leader>g :Grep<Space>
@@ -139,7 +139,7 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
 if has('nvim')
-    Plug 'neovim/nvim-lsp'
+  Plug 'neovim/nvim-lsp'
 endif
 
 Plug 'HerringtonDarkholme/yats.vim'
@@ -167,7 +167,7 @@ lua << EOF
 nvim_lsp = require'nvim_lsp'
 
 nvim_lsp.efm.setup{
-    filetypes = { 'pandoc', 'sh' }
+  filetypes = { 'pandoc', 'sh' }
 }
 nvim_lsp.bashls.setup{}
 nvim_lsp.gopls.setup{}

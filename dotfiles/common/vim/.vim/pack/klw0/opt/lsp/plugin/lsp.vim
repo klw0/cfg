@@ -1,5 +1,5 @@
 if exists('g:loaded_lsp')
-    finish
+  finish
 endif
 let g:loaded_lsp = v:true
 
