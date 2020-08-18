@@ -11,3 +11,12 @@ insert_final_newline = true
 
 [Makefile]
 indent_style = tab
+
+[*.lua]
+indent_size = 2
+
+[*.yaml]
+indent_size = 2
+
+[{.vimrc,*.vim}]
+indent_size = 2
