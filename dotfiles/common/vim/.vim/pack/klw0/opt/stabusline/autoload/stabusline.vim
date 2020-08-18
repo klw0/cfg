@@ -201,7 +201,6 @@ function! stabusline#Truncate(string) abort
     return winwidth(0) >= 80 ? a:string : ''
 endfunction
 
-
 augroup stabusline_dev
     autocmd!
 

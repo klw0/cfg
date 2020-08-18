@@ -13,8 +13,8 @@ let b:undo_ftplugin .= '| setlocal nowrap<'
 if exists('*pandoc#toc#Show')
     " Always open Pandoc's table of contents to the left.
     nnoremap <buffer><expr><silent> <leader>t &splitright
-        \ ? ":setlocal nosplitright \| call pandoc#toc#Show() \| setlocal splitright<CR>"
-        \ : ":call pandoc#toc#Show()<CR>"
+        \ ? ':setlocal nosplitright \| call pandoc#toc#Show() \| setlocal splitright<CR>'
+        \ : ':call pandoc#toc#Show()<CR>'
     let b:undo_ftplugin .= '| nunmap <buffer> <leader>t'
 endif
 

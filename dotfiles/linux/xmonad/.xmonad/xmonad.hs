@@ -10,9 +10,6 @@ import XMonad.Util.Run(spawnPipe)
 import System.IO
 import Solarized
 
-{- TODO-}
-{- - Lock screen with control-shift-backspace-}
-
 myManageHook = composeAll
     [ className =? "Dialog" --> doFloat
     , className =? ".blueman-manager-wrapped" --> doCenterFloat
