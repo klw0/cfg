@@ -10,6 +10,7 @@ fi
 
 alias vim="nvim"
 
+export LC_ALL=en_US.UTF-8
 export EDITOR="${aliases[vim]}"
 export VISUAL="${aliases[vim]}"
 export PAGER="less"
