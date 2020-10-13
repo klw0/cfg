@@ -1,3 +1,16 @@
+function shorten_path() {
+    local path=$1
+
+    local short_path=""
+    local elements=("${(s:/:)path}")
+    for e in "${elements[@]:0:-1}"; do
+        short_path+="${e:0:1}/"
+    done
+    short_path+="${elements[@]: -1}"
+
+    echo "${short_path}"
+}
+
 function prompt_keithy_setup {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
@@ -24,7 +37,7 @@ function prompt_keithy_setup {
   zstyle ':prezto:module:editor:info:keymap:alternate' format ' %B%F{green}❮%f%b'
 
   # Define prompts.
-  PROMPT='${SSH_TTY:+"%F{red}%n%f@%F{yellow}%m%f "}%F{cyan}%c%f%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
+  PROMPT='${SSH_TTY:+"%F{red}%n%f@%F{yellow}%m%f "}%F{cyan}$(shorten_path "$(print -P %~)")%f%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
   RPROMPT='${editor_info[overwrite]}%(?:: %F{red}↵ [%?]%f)${VIM:+" %B%F{green}V%f%b"} ${vcs_info_msg_0_}'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
