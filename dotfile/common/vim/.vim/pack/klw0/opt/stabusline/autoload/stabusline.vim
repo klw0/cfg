@@ -186,13 +186,13 @@ function! stabusline#GitBranch()
 endfunction
 
 function! stabusline#DiagnosticErrors() abort
-  let l:errors = luaeval('vim.lsp.util.buf_diagnostics_count("Error")')
+  let l:errors = luaeval('vim.lsp.diagnostic.get_count(vim.fn.bufnr(), "Error")')
 
   return l:errors ? 'E' . l:errors : ''
 endfunction
 
 function! stabusline#DiagnosticWarnings() abort
-  let l:warnings = luaeval('vim.lsp.util.buf_diagnostics_count("Warning")')
+  let l:warnings = luaeval('vim.lsp.diagnostic.get_count(vim.fn.bufnr(), "Warning")')
 
   return l:warnings ? 'W' . l:warnings : ''
 endfunction

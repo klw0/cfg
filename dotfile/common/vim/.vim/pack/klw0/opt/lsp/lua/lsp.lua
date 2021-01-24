@@ -2,8 +2,16 @@ local vim = vim
 
 local M = {}
 
+function M.init()
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = false,
+    }
+  )
+end
+
 function M.show_buffer_diagnostics()
-  local diagnostics = vim.lsp.util.diagnostics_by_buf[vim.fn.bufnr()]
+  local diagnostics = vim.lsp.diagnostic.get(vim.fn.bufnr())
   if not diagnostics then return end
 
   local items = {}
