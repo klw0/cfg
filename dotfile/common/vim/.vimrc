@@ -139,7 +139,7 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
 if has('nvim')
-  Plug 'neovim/nvim-lsp'
+  Plug 'neovim/nvim-lspconfig'
 endif
 
 Plug 'HerringtonDarkholme/yats.vim'
@@ -162,18 +162,18 @@ call plug#end()
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
 
-" nvim-lsp
+" nvim-lspconfig
 lua << EOF
-nvim_lsp = require'nvim_lsp'
+lspconfig = require'lspconfig'
 
-nvim_lsp.efm.setup{
+lspconfig.efm.setup{
   filetypes = { 'pandoc', 'sh' }
 }
-nvim_lsp.bashls.setup{}
-nvim_lsp.gopls.setup{}
-nvim_lsp.jsonls.setup{}
-nvim_lsp.sumneko_lua.setup{}
-nvim_lsp.vimls.setup{}
+lspconfig.bashls.setup{}
+lspconfig.gopls.setup{}
+lspconfig.jsonls.setup{}
+lspconfig.sumneko_lua.setup{}
+lspconfig.vimls.setup{}
 EOF
 
 " NERDTree
