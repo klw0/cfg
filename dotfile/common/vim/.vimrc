@@ -194,6 +194,7 @@ let g:neosolarized_contrast = 'high'
 nmap <leader>e :Files<CR>
 nmap <leader>b :Buffers<CR>
 
+let g:fzf_layout = { 'down': '40%' }
 let g:fzf_preview_window = ''
 
 let g:fzf_action = {
