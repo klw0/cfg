@@ -61,7 +61,7 @@ fi
 alias ls="${aliases[ls]:-ls} ${color_flag}"
 
 function t {
-    cd $(mktemp -d ~/tmp/"${1:-tmp}".XXXXXXXXXX)
+    cd $(TMPDIR=~/tmp mktemp -d -t "${1:-tmp}")
 }
 
 # # Finds files and executes a command on them.
