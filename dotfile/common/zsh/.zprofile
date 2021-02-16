@@ -1,5 +1,5 @@
 #
-# Executes commands at login pre-zshrc.
+# Executes commands in login shells, before executing zshrc.
 #
 
 # Ensure path arrays do not contain duplicates.

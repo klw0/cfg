@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Prints metadata from the most recently used media player.
+# Prints metadata from the most recently used MPRIS media player.
 #
 set -eu
 

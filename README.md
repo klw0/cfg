@@ -1,5 +1,5 @@
 # cfg
-Configuration files for macOS and Linux, including dot and other supporting files.
+Configuration files for Unix-like systems, including dot and other supporting files.
 
 ## Prerequisites
 - [GNU Stow](https://www.gnu.org/software/stow/stow.html)
