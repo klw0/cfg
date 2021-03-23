@@ -9,6 +9,7 @@ if [[ -x /usr/libexec/path_helper ]]; then
 fi
 
 alias vim="nvim"
+alias xclip="xclip -selection clipboard"
 
 export LC_ALL=en_US.UTF-8
 export EDITOR="${aliases[vim]}"
