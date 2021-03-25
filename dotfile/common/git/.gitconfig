@@ -1,8 +1,11 @@
 [user]
     name = Keith Whitney
     email = keithwhitney0@gmail.com
+    signingKey = 4E4FBB266D877C76D7A23A7D4907DA854EDD24D8!
 [color]
     diff = true
+[commit]
+    gpgSign = true
 [diff]
     algorithm = histogram
 [merge]
@@ -12,3 +15,5 @@
     prompt = false
 [mergetool "vimdiff"]
     path = nvim
+[tag]
+    gpgSign = true
