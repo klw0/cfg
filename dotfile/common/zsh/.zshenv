@@ -20,6 +20,8 @@ export FZF_DEFAULT_COMMAND="rg --files"
 export NVM_DIR="$HOME/.nvm"
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
 export GPG_TTY=$(tty)
+# TODO(klw0): Make this portable.
+export MANSECT="0p:1:1p:8:2:3:3p:n:4:5:6:7:9:l"
 
 # Go
 export PATH=$PATH:$HOME/go/bin

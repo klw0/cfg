@@ -1,6 +1,5 @@
 # To-Do
 
-- man: Add support for local/POSIX man pages
 - man: Update manpage colors, via termcap
 - vim: Open help/Man in vertical windows if > 80 columns are available
 - bin: Add hex2rgb and rgb2hex scripts
