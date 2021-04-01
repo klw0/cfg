@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -eu
+
+if [ -d /usr/local/etc/X11/xinit/xinitrc.d ]; then
+    for f in /usr/local/etc/X11/xinit/xinitrc.d/?*.sh; do
+        # shellcheck disable=SC1090
+        [ -x "${f}" ] && . "${f}"
+    done
+    unset f
+fi
+
+setxkbmap -model "AT keyboard" -option "ctrl:nocaps,ctrl:swap_lalt_lctl_lwin"
