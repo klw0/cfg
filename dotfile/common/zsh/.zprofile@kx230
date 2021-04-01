@@ -1,0 +1,8 @@
+if [ $(tty) = "/dev/ttyv1" ]; then
+    # Start and disown, so we can later logout while syncthing is exiting.
+    syncthing --no-browser &!
+    syncthing_pid="$!"
+    startx
+    kill "${syncthing_pid}"
+    logout
+fi
