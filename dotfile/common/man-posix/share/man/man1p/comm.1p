@@ -1,0 +1,386 @@
+'\" et
+.TH COMM "1P" 2017 "IEEE/The Open Group" "POSIX Programmer's Manual"
+.\"
+.SH PROLOG
+This manual page is part of the POSIX Programmer's Manual.
+The Linux implementation of this interface may differ (consult
+the corresponding Linux manual page for details of Linux behavior),
+or the interface may not be implemented on Linux.
+.\"
+.SH NAME
+comm
+\(em select or reject lines common to two files
+.SH SYNOPSIS
+.LP
+.nf
+comm \fB[\fR-123\fB] \fIfile1 file2\fR
+.fi
+.SH DESCRIPTION
+The
+.IR comm
+utility shall read
+.IR file1
+and
+.IR file2 ,
+which should be ordered in the current collating sequence, and produce
+three text columns as output: lines only in
+.IR file1 ,
+lines only in
+.IR file2 ,
+and lines in both files.
+.P
+If the lines in both files are not ordered according to the collating
+sequence of the current locale, the results are unspecified.
+.P
+If the collating sequence of the current locale does not have a total
+ordering of all characters (see the Base Definitions volume of POSIX.1\(hy2017,
+.IR "Section 7.3.2" ", " "LC_COLLATE")
+and any lines from the input files collate equally but are not identical,
+.IR comm
+should treat them as different lines but may treat them as being the
+same. If it treats them as different,
+.IR comm
+should expect them to be ordered according to a further byte-by-byte
+comparison using the collating sequence for the POSIX locale and if
+they are not ordered in this way, the output of
+.IR comm
+can identify such lines as being both unique to
+.IR file1
+and unique to
+.IR file2
+instead of being in both files.
+.SH OPTIONS
+The
+.IR comm
+utility shall conform to the Base Definitions volume of POSIX.1\(hy2017,
+.IR "Section 12.2" ", " "Utility Syntax Guidelines".
+.P
+The following options shall be supported:
+.IP "\fB\-1\fP" 10
+Suppress the output column of lines unique to
+.IR file1 .
+.IP "\fB\-2\fP" 10
+Suppress the output column of lines unique to
+.IR file2 .
+.IP "\fB\-3\fP" 10
+Suppress the output column of lines duplicated in
+.IR file1
+and
+.IR file2 .
+.SH OPERANDS
+The following operands shall be supported:
+.IP "\fIfile1\fR" 10
+A pathname of the first file to be compared. If
+.IR file1
+is
+.BR '\-' ,
+the standard input shall be used.
+.IP "\fIfile2\fR" 10
+A pathname of the second file to be compared. If
+.IR file2
+is
+.BR '\-' ,
+the standard input shall be used.
+.P
+If both
+.IR file1
+and
+.IR file2
+refer to standard input or to the same FIFO special, block special, or
+character special file, the results are undefined.
+.SH STDIN
+The standard input shall be used only if one of the
+.IR file1
+or
+.IR file2
+operands refers to standard input. See the INPUT FILES section.
+.SH "INPUT FILES"
+The input files shall be text files.
+.SH "ENVIRONMENT VARIABLES"
+The following environment variables shall affect the execution of
+.IR comm :
+.IP "\fILANG\fP" 10
+Provide a default value for the internationalization variables that are
+unset or null. (See the Base Definitions volume of POSIX.1\(hy2017,
+.IR "Section 8.2" ", " "Internationalization Variables"
+for the precedence of internationalization variables used to determine
+the values of locale categories.)
+.IP "\fILC_ALL\fP" 10
+If set to a non-empty string value, override the values of all the
+other internationalization variables.
+.IP "\fILC_COLLATE\fP" 10
+.br
+Determine the locale for the collating sequence
+.IR comm
+expects to have been used when the input files were sorted.
+.IP "\fILC_CTYPE\fP" 10
+Determine the locale for the interpretation of sequences of bytes of
+text data as characters (for example, single-byte as opposed to
+multi-byte characters in arguments and input files).
+.IP "\fILC_MESSAGES\fP" 10
+.br
+Determine the locale that should be used to affect the format and
+contents of diagnostic messages written to standard error.
+.IP "\fINLSPATH\fP" 10
+Determine the location of message catalogs for the processing of
+.IR LC_MESSAGES .
+.SH "ASYNCHRONOUS EVENTS"
+Default.
+.SH STDOUT
+The
+.IR comm
+utility shall produce output depending on the options selected. If the
+.BR \-1 ,
+.BR \-2 ,
+and
+.BR \-3
+options are all selected,
+.IR comm
+shall write nothing to standard output.
+.P
+If the
+.BR \-1
+option is not selected, lines contained only in
+.IR file1
+shall be written using the format:
+.sp
+.RS 4
+.nf
+
+"%s\en", <\fIline in file1\fR>
+.fi
+.P
+.RE
+.P
+If the
+.BR \-2
+option is not selected, lines contained only in
+.IR file2
+are written using the format:
+.sp
+.RS 4
+.nf
+
+"%s%s\en", <\fIlead\fR>, <\fIline in file2\fR>
+.fi
+.P
+.RE
+.P
+where the string <\fIlead\fP> is as follows:
+.IP <tab> 10
+The
+.BR \-1
+option is not selected.
+.IP "null\ string" 10
+The
+.BR \-1
+option is selected.
+.P
+If the
+.BR \-3
+option is not selected, lines contained in both files shall be written
+using the format:
+.sp
+.RS 4
+.nf
+
+"%s%s\en", <\fIlead\fR>, <\fIline in both\fR>
+.fi
+.P
+.RE
+.P
+where the string <\fIlead\fP> is as follows:
+.IP <tab><tab> 10
+Neither the
+.BR \-1
+nor the
+.BR \-2
+option is selected.
+.IP <tab> 10
+Exactly one of the
+.BR \-1
+and
+.BR \-2
+options is selected.
+.IP "null\ string" 10
+Both the
+.BR \-1
+and
+.BR \-2
+options are selected.
+.P
+If the input files were ordered according to the collating sequence of
+the current locale, the lines written shall be in the collating
+sequence of the current locale. If the input files contained any
+lines that collated equally but were not identical and within each
+file those lines were ordered according to a further byte-by-byte
+comparison using the collating sequence for the POSIX locale, and
+.IR comm
+treated them as different lines, then lines written that collate
+equally but are not identical should be ordered according to a further
+byte-by-byte comparison using the collating sequence for the POSIX
+locale.
+.SH STDERR
+The standard error shall be used only for diagnostic messages.
+.SH "OUTPUT FILES"
+None.
+.SH "EXTENDED DESCRIPTION"
+None.
+.SH "EXIT STATUS"
+The following exit values shall be returned:
+.IP "\00" 6
+All input files were successfully output as specified.
+.IP >0 6
+An error occurred.
+.SH "CONSEQUENCES OF ERRORS"
+Default.
+.LP
+.IR "The following sections are informative."
+.SH "APPLICATION USAGE"
+If the input files are not properly presorted, the output of
+.IR comm
+might not be useful.
+.P
+When using
+.IR comm
+to process pathnames, it is recommended that LC_ALL, or at least
+LC_CTYPE and LC_COLLATE, are set to POSIX or C in the environment,
+since pathnames can contain byte sequences that do not form valid
+characters in some locales, in which case the utility's behavior would
+be undefined. In the POSIX locale each byte is a valid single-byte
+character, and therefore this problem is avoided.
+.P
+If the collating sequence of the current locale does not have a total
+ordering of all characters, this can affect the behavior of
+.IR comm
+in the following ways:
+.IP " *" 4
+If
+.IR comm
+treats lines as being the same only if they are identical, some lines
+can be misleadingly identified as being both unique to
+.IR file1
+and unique to
+.IR file2 .
+.IP " *" 4
+If
+.IR comm
+treats lines as being the same if they collate equally and a line from
+.IR file1
+collates equally with a line from
+.IR file2
+but is not identical to it, one of the lines is misleadingly
+identified as being in both files and the other is not written to the
+output at all.
+.P
+Such problems can be avoided by forcing the use of the POSIX locale;
+for example, the following identifies lines in both
+.IR file1
+and
+.IR file2 :
+.sp
+.RS 4
+.nf
+
+LC_ALL=POSIX sort file1 > file1.posix
+LC_ALL=POSIX sort file2 > file2.posix
+LC_ALL=POSIX comm -12 file1.posix file2.posix | sort
+.fi
+.P
+.RE
+.P
+The final
+.IR sort
+re-sorts the output of
+.IR comm
+according to the collating sequence of the original locale. Doing
+this might be difficult if more than one column is output and leading
+<blank>s
+cannot be ignored.
+.SH EXAMPLES
+If a file named
+.BR xcu
+contains a sorted list of the utilities in this volume of POSIX.1\(hy2017, a file named
+.BR xpg3
+contains a sorted list of the utilities specified in the X/Open
+Portability Guide, Issue 3, and a file named
+.BR svid89
+contains a sorted list of the utilities in the System V Interface
+Definition Third Edition:
+.sp
+.RS 4
+.nf
+
+comm -23 xcu xpg3 | comm -23 - svid89
+.fi
+.P
+.RE
+.P
+would print a list of utilities in this volume of POSIX.1\(hy2017 not specified by either of the
+other documents:
+.sp
+.RS 4
+.nf
+
+comm -12 xcu xpg3 | comm -12 - svid89
+.fi
+.P
+.RE
+.P
+would print a list of utilities specified by all three documents, and:
+.sp
+.RS 4
+.nf
+
+comm -12 xpg3 svid89 | comm -23 - xcu
+.fi
+.P
+.RE
+.P
+would print a list of utilities specified by both XPG3 and the SVID,
+but not specified in this volume of POSIX.1\(hy2017.
+.SH RATIONALE
+None.
+.SH "FUTURE DIRECTIONS"
+A future version of this standard may require that if any lines from
+the input files collate equally but are not identical, then
+.IR comm
+treats them as different lines and expects them to be ordered
+according to a further byte-by-byte comparison using the collating
+sequence for the POSIX locale.
+.P
+A future version of this standard may require that if the input files
+contained any lines that collated equally but were not identical and
+within each file those lines were ordered according to a further
+byte-by-byte comparison using the collating sequence for the POSIX
+locale, then lines written that collate equally but are not identical
+are ordered according to a further byte-by-byte comparison using the
+collating sequence for the POSIX locale.
+.SH "SEE ALSO"
+.IR "\fIcmp\fR\^",
+.IR "\fIdiff\fR\^",
+.IR "\fIsort\fR\^",
+.IR "\fIuniq\fR\^"
+.P
+The Base Definitions volume of POSIX.1\(hy2017,
+.IR "Section 7.3.2" ", " "LC_COLLATE",
+.IR "Chapter 8" ", " "Environment Variables",
+.IR "Section 12.2" ", " "Utility Syntax Guidelines"
+.\"
+.SH COPYRIGHT
+Portions of this text are reprinted and reproduced in electronic form
+from IEEE Std 1003.1-2017, Standard for Information Technology
+-- Portable Operating System Interface (POSIX), The Open Group Base
+Specifications Issue 7, 2018 Edition,
+Copyright (C) 2018 by the Institute of
+Electrical and Electronics Engineers, Inc and The Open Group.
+In the event of any discrepancy between this version and the original IEEE and
+The Open Group Standard, the original IEEE and The Open Group Standard
+is the referee document. The original Standard can be obtained online at
+http://www.opengroup.org/unix/online.html .
+.PP
+Any typographical or formatting errors that appear
+in this page are most likely
+to have been introduced during the conversion of the source files to
+man page format. To report such errors, see
+https://www.kernel.org/doc/man-pages/reporting_bugs.html .
