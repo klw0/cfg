@@ -2,12 +2,6 @@
 # Defines environment variables.
 #
 
-# Set up the path
-if [[ -x /usr/libexec/path_helper ]]; then
-    PATH=""
-    eval $(/usr/libexec/path_helper -s)
-fi
-
 alias vim="nvim"
 alias xclip="xclip -selection clipboard"
 
@@ -22,9 +16,6 @@ export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
 export GPG_TTY=$(tty)
 # TODO(klw0): Make this portable.
 export MANSECT="0p:1:1p:8:2:3:3p:n:4:5:6:7:9:l"
-
-# Go
-export PATH=$PATH:$HOME/go/bin
 
 # Roku
 # export ROKU_IP=172.21.155.7

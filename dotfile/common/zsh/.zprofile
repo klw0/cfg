@@ -5,10 +5,15 @@
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
 
-# Set the list of directories that Zsh searches for programs.
+if [[ -x /usr/libexec/path_helper ]]; then
+    PATH=""
+    eval $(/usr/libexec/path_helper -s)
+fi
+
 path=(
-  /usr/local/{bin,sbin}
-  $path
+    $HOME/bin
+    $path
+    $HOME/go/bin
 )
 
 host_include=~/.zprofile@$(hostname -s)
