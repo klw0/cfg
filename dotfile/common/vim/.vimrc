@@ -116,6 +116,7 @@ nnoremap <leader>g :Grep<Space>
 packadd stabusline
 packadd lsp
 packadd write
+packadd minsolarized
 
 " Vendor
 packadd vim-plug
@@ -150,7 +151,6 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'chrisbra/csv.vim'
 Plug 'sebdah/vim-delve'
 
-Plug 'icymind/NeoSolarized'
 Plug 'robertmeta/nofrils'
 
 call plug#end()
@@ -186,9 +186,6 @@ xmap <leader><leader> <Plug>Commentary<CR>
 nmap <leader><leader> <Plug>Commentary<CR>
 omap <leader><leader> <Plug>Commentary
 nmap <leader><leader> <Plug>CommentaryLine<CR>
-
-" NeoSolarized
-let g:neosolarized_contrast = 'high'
 
 " fzf
 nmap <leader>e :Files<CR>
@@ -247,4 +244,4 @@ let g:csv_no_conceal = 1
 " Post-plugin configuration
 " ------------------------------------------------------------------------------
 
-colorscheme NeoSolarized
+colorscheme minsolarized
