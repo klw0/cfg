@@ -47,6 +47,9 @@ export LESS_TERMCAP_so=$"\e[00;47;30m"   # Begins standout-mode.
 export LESS_TERMCAP_ue=$"\e[0m"          # Ends underline.
 export LESS_TERMCAP_us=$"\e[01;32m"      # Begins underline.
 
+hash -d src=~/src
+hash -d cfg=~/src/klw0/cfg
+
 function t() {
     cd $(TMPDIR=~/tmp mktemp -d -t "${1:-tmp}")
 }
