@@ -143,11 +143,8 @@ if has('nvim')
   Plug 'neovim/nvim-lspconfig'
 endif
 
-Plug 'HerringtonDarkholme/yats.vim'
 Plug 'lervag/vimtex'
 Plug 'chooh/brightscript.vim'
-Plug 'LnL7/vim-nix'
-Plug 'neovimhaskell/haskell-vim'
 Plug 'chrisbra/csv.vim'
 Plug 'sebdah/vim-delve'
 
