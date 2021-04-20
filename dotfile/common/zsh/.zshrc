@@ -131,6 +131,7 @@ compinit -i
 
 zstyle ":completion:*" menu select
 zstyle ":completion:*" group-name ""
+zstyle ":completion:*" special-dirs true
 zstyle ":completion:*" squeeze-slashes true
 zstyle ":completion:*" verbose yes
 zstyle ":completion:*:functions" ignored-patterns "(_*|pre(cmd|exec))"
