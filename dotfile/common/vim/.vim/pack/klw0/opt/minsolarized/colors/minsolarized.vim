@@ -147,7 +147,7 @@ call minsolarized#SetHighlightGroup('StatusLineNC', 'base00', 'base02', 'reverse
 call minsolarized#SetHighlightGroup('TabLine', 'base0', 'base02')
 call minsolarized#SetHighlightGroup('TabLineFill', 'base0', 'base02')
 call minsolarized#SetHighlightGroup('TabLineSel', 'base01', 'base2', 'reverse')
-call minsolarized#SetHighlightGroup('Title', 'orange', 'none', 'bold')
+call minsolarized#SetHighlightGroup('Title', 'none', 'none', 'bold')
 call minsolarized#SetHighlightGroup('VertSplit', 'base00', 'none')
 call minsolarized#SetHighlightGroup('Visual', 'base01', 'base03', 'reverse')
 call minsolarized#SetHighlightGroup('VisualNOS', 'none', 'base02', 'standout')
