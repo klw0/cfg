@@ -14,7 +14,7 @@ function shorten_path() {
 function prompt_keithy_setup {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
-  prompt_opts=(cr percent subst)
+  prompt_opts=(cr sp percent subst)
 
   # Load required functions.
   autoload -Uz add-zsh-hook
