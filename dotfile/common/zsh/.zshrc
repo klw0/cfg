@@ -18,7 +18,10 @@ alias xclip="xclip -selection clipboard"
 
 if [[ "${OSTYPE}" == "openbsd"* ]]; then
     alias man="man -m ~/share/man"
+elif [[ "${OSTYPE}" == "freebsd"* ]]; then
+    alias man="man -S 0p:1:1p:8:2:3:3p:n:4:5:6:7:9:l"
 fi
+
 export LC_ALL=en_US.UTF-8
 export EDITOR="${aliases[vim]}"
 export VISUAL="${aliases[vim]}"
@@ -27,7 +30,6 @@ export LESS="-g -i -M -R -S -w -X -z-4 -j4 -c"
 export GPG_TTY=$(tty)
 export FZF_DEFAULT_COMMAND="rg --files"
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
-export MANSECT="0p:1:1p:8:2:3:3p:n:4:5:6:7:9:l"     # TODO(klw0): Make this portable.
 
 export LESS_TERMCAP_mb=$"\e[01;31m"      # Begins blinking.
 export LESS_TERMCAP_md=$"\e[01;31m"      # Begins bold.
