@@ -7,6 +7,7 @@ alias dirs="dirs -v"
 alias find="noglob find"
 alias history="noglob history"
 alias ln="ln -i"
+alias ls="ls -F"
 alias mv="mv -i"
 alias rm="rm -i"
 alias rsync="noglob rsync"
@@ -14,16 +15,6 @@ alias scp="noglob scp"
 alias sftp="noglob sftp"
 alias vim="nvim"
 alias xclip="xclip -selection clipboard"
-
-color_flag=""
-if [[ "${OSTYPE}" == "linux"* ]]; then
-    color_flag="--color"
-elif [[ "${OSTYPE}" == "darwin"* || "${OSTYPE}" == *"bsd"* ]]; then
-    color_flag="-G"
-fi
-
-alias ls="ls ${color_flag}"
-unset color_flag
 
 export LC_ALL=en_US.UTF-8
 export EDITOR="${aliases[vim]}"
@@ -34,8 +25,6 @@ export GPG_TTY=$(tty)
 export FZF_DEFAULT_COMMAND="rg --files"
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
 export MANSECT="0p:1:1p:8:2:3:3p:n:4:5:6:7:9:l"     # TODO(klw0): Make this portable.
-export LSCOLORS="exfxcxdxbxGxDxabagacad"
-export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:"
 
 export LESS_TERMCAP_mb=$"\e[01;31m"      # Begins blinking.
 export LESS_TERMCAP_md=$"\e[01;31m"      # Begins bold.
@@ -145,7 +134,6 @@ zstyle ":completion:*" matcher-list "m:{a-zA-Z}={A-Za-z}" "r:|[._-]=* r:|=*" "l:
 zstyle ":completion:*" completer _complete _match _approximate
 zstyle ":completion:*:match:*" original only
 
-zstyle ":completion:*:default" list-colors ${(s.:.)LS_COLORS}
 zstyle ":completion:*:default" list-prompt "%S%M matches%s"
 zstyle ":completion:*" format " %F{yellow}── %d ──%f"
 zstyle ":completion:*:corrections" format " %F{green}── %d (errors: %e) ──%f"
