@@ -3,9 +3,7 @@
 #
 
 alias cp="cp -i"
-alias df="df -kh"
 alias dirs="dirs -v"
-alias du="du -kh"
 alias find="noglob find"
 alias history="noglob history"
 alias ln="ln -i"
