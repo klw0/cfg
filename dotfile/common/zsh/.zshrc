@@ -16,6 +16,9 @@ alias sftp="noglob sftp"
 alias vim="nvim"
 alias xclip="xclip -selection clipboard"
 
+if [[ "${OSTYPE}" == "openbsd"* ]]; then
+    alias man="man -m ~/share/man"
+fi
 export LC_ALL=en_US.UTF-8
 export EDITOR="${aliases[vim]}"
 export VISUAL="${aliases[vim]}"
