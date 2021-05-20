@@ -44,7 +44,7 @@ hash -d src=~/src
 hash -d cfg=~/src/klw0/cfg
 
 function t() {
-    cd $(mktemp -d -t "${1:-tmp}")
+    cd $(mktemp -d -t "${1:-tmp}".XXXXXXXXXX)
 }
 
 # -----------------------------------------------------------------------------
