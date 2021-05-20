@@ -45,6 +45,13 @@ export LESS_TERMCAP_so=$"\e[00;47;30m"   # Begins standout-mode.
 export LESS_TERMCAP_ue=$"\e[0m"          # Ends underline.
 export LESS_TERMCAP_us=$"\e[01;32m"      # Begins underline.
 
+typeset -gU path
+path=(
+    $HOME/bin
+    $path
+    $HOME/go/bin
+)
+
 hash -d src=~/src
 hash -d cfg=~/src/klw0/cfg
 
@@ -143,6 +150,7 @@ zstyle ":completion:*:warnings" format " %F{red}── no matches found ──%f
 # zsh: Prompt
 # -----------------------------------------------------------------------------
 
+typeset -gU fpath
 fpath=("${ZDOTDIR:-$HOME/.zsh}/functions" $fpath)
 
 autoload -Uz promptinit
