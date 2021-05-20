@@ -22,6 +22,7 @@ elif [[ "${OSTYPE}" == "freebsd"* ]]; then
     alias man="man -S 0p:1:1p:8:2:3:3p:n:4:5:6:7:9:l"
 fi
 
+export PREFIX=~
 export LC_ALL=en_US.UTF-8
 export EDITOR="${aliases[vim]}"
 export VISUAL="${aliases[vim]}"
