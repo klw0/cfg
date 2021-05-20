@@ -49,7 +49,11 @@ set completeopt+=longest,menuone,noselect
 set completeopt-=preview
 set shortmess+=c
 
-set backupdir-=.
+" thanks arp242
+set backupdir=~/.local/share/vim/backup | call mkdir(&backupdir, 'p', 0700)
+set directory=~/.local/share/vim/swap | call mkdir(&directory, 'p', 0700)
+set undodir=~/.local/share/vim/undo | call mkdir(&undodir, 'p', 0700)
+set viewdir=~/.local/share/vim/view | call mkdir(&viewdir, 'p', 0700)
 set history=10000
 set undofile
 
