@@ -22,8 +22,8 @@ set backspace=indent,eol,start
 set expandtab
 set formatoptions+=j  " Remove a comment leader when joining lines
 set nowrap
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=0
+set softtabstop=-1
 set tabstop=4
 set textwidth=80
 
