@@ -37,6 +37,7 @@ set smartcase
 
 set background=dark
 set laststatus=2
+set nofoldenable
 set noshowmode
 set number
 set ruler
