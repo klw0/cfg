@@ -99,16 +99,8 @@ setopt SHARE_HISTORY
 
 source "${ZDOTDIR:-$HOME/.zsh}/vendor/zsh-history-substring-search/zsh-history-substring-search.zsh" || return 1
 
-if [[ -n "$key_info" ]]; then
-  bindkey -M vicmd "k" history-substring-search-up
-  bindkey -M vicmd "j" history-substring-search-down
-
-  for keymap in "emacs" "viins"; do
-    bindkey -M "$keymap" "$key_info[Up]" history-substring-search-up
-    bindkey -M "$keymap" "$key_info[Down]" history-substring-search-down
-  done
-  unset keymap
-fi
+bindkey -M vicmd "k" history-substring-search-up
+bindkey -M vicmd "j" history-substring-search-down
 
 # -----------------------------------------------------------------------------
 # zsh: Completion
