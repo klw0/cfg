@@ -23,3 +23,6 @@ install:
 uninstall:
 	cd $(common_dotfile_dir) && $(unstow) *
 	test -d $(os_dotfile_dir) && cd $(os_dotfile_dir) && $(unstow) * || true
+
+.PHONY: reinstall
+reinstall: uninstall install
