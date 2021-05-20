@@ -63,8 +63,9 @@ nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 " Set text wrapping toggles
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 
-iabbrev TODO: TODO(klw0):
-nmap <leader>td <S-O>TODO: <Esc><Plug>Commentary $a
+let g:todo_string = 'TODO(klw0):'
+iabbrev <expr> TODO: get(g:, 'todo_string')
+nnoremap <silent> <leader>td :call todo#Add(g:todo_string)<CR>a
 
 " Clear search highlighting, update the current diff if there is one, and
 " clear the screen/redraw.
@@ -117,6 +118,7 @@ packadd stabusline
 packadd lsp
 packadd write
 packadd minsolarized
+packadd todo
 
 " Vendor
 packadd vim-plug
