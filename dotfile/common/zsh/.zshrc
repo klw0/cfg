@@ -16,6 +16,11 @@ alias sftp="noglob sftp"
 alias vim="nvim"
 alias xclip="xclip -selection clipboard"
 
+# Add `help` alias for help with builtins.
+unalias run-help
+autoload -Uz run-help
+alias help="run-help"
+
 if [[ "${OSTYPE}" == "openbsd"* ]]; then
     alias man="man -m ~/share/man"
 elif [[ "${OSTYPE}" == "freebsd"* ]]; then
