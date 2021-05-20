@@ -30,14 +30,8 @@ function prompt_keithy_setup {
   zstyle ':vcs_info:*:*' actionformats "%F{blue}%s%f:%F{green}%b%f %u%c %F{yellow}%B(%a)%b%f"
   zstyle ':vcs_info:*:*' formats "%F{blue}%s%f:%F{green}%b%f %u%c"
 
-  # Set editor-info parameters.
-  zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
-  zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%F{green}❯%f%b'
-  zstyle ':prezto:module:editor:info:keymap:primary:overwrite' format ' %F{red}♺%f'
-  zstyle ':prezto:module:editor:info:keymap:alternate' format ' %B%F{green}❮%f%b'
-
   # Define prompts.
-  PROMPT='${SSH_TTY:+"%F{red}%n%f@%F{yellow}%m%f "}%F{cyan}$(shorten_path "$(print -P %~)")%f%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
+  PROMPT='${SSH_TTY:+"%F{red}%n%f@%F{yellow}%m%f "}%F{cyan}$(shorten_path "$(print -P %~)")%f%(!. %B%F{red}#%f%b.) %B${${${KEYMAP:-main}/vicmd/❮}/[^❮]*/❯}%b '
   RPROMPT='${editor_info[overwrite]}%(?:: %F{red}↵ [%?]%f)${VIM:+" %B%F{green}V%f%b"} ${vcs_info_msg_0_}'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }

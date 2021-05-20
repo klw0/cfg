@@ -51,11 +51,6 @@ function t() {
 # zsh: General
 # -----------------------------------------------------------------------------
 
-# Load other configuration files.
-for file (~/.zsh/*.zsh(N)); do
-    source "${file}"
-done
-
 setopt AUTO_PUSHD
 setopt AUTO_RESUME
 setopt CDABLE_VARS
@@ -149,3 +144,26 @@ autoload -Uz promptinit
 promptinit
 
 prompt keithy
+
+# -----------------------------------------------------------------------------
+# zsh: Line Editing
+# -----------------------------------------------------------------------------
+
+KEYTIMEOUT=10
+
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd "^v" edit-command-line
+
+zmodload zsh/terminfo
+bindkey -M viins "${terminfo[kcbt]}" reverse-menu-complete
+# Use vim-style backspace behavior, not the default vi-style which disallows
+# backspacing over the start of insert.
+bindkey -M viins "${terminfo[kbs]}" backward-delete-char
+
+autoload -Uz add-zle-hook-widget
+
+add-zle-hook-widget keymap-select reset-prompt
+# Give the mode indicator a chance to reset before committing the command to the
+# buffer history. This isn't strictly necessary, but is a nice UX improvement.
+add-zle-hook-widget line-finish reset-prompt
