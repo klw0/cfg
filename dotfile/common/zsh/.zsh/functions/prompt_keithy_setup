@@ -25,15 +25,13 @@ function prompt_keithy_setup {
 
   zstyle ':vcs_info:*' enable git
   zstyle ':vcs_info:*:*' check-for-changes true
-  zstyle ':vcs_info:*:*' unstagedstr '%F{magenta}%B!%b%f'
-  zstyle ':vcs_info:*:*' stagedstr '%F{green}%B+%b%f'
-  zstyle ':vcs_info:*:*' actionformats "%F{blue}%s%f:%F{green}%b%f %u%c %F{yellow}%B(%a)%b%f"
-  zstyle ':vcs_info:*:*' formats "%F{blue}%s%f:%F{green}%b%f %u%c"
+  zstyle ':vcs_info:*:*' unstagedstr "%B!%b"
+  zstyle ':vcs_info:*:*' stagedstr "%B+%b"
+  zstyle ':vcs_info:*:*' actionformats "%s:%b %u%c (%a)"
+  zstyle ':vcs_info:*:*' formats "%s:%b %u%c"
 
-  # Define prompts.
-  PROMPT='${SSH_TTY:+"%F{red}%n%f@%F{yellow}%m%f "}%F{cyan}$(shorten_path "$(print -P %~)")%f%(!. %B%F{red}#%f%b.) %B${${${KEYMAP:-main}/vicmd/❮}/[^❮]*/❯}%b '
-  RPROMPT='${editor_info[overwrite]}%(?:: %F{red}↵ [%?]%f)${VIM:+" %B%F{green}V%f%b"} ${vcs_info_msg_0_}'
-  SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
+  PROMPT='%F{cyan}${SSH_TTY:+"%m:"}$(shorten_path "$(print -P %~)")%(!.#. %B${${${KEYMAP:-main}/vicmd/❮}/[^❮]*/❯}%b) %f'
+  RPROMPT='%(?.. %F{red}↵ [%?]%f) ${vcs_info_msg_0_}'
 }
 
 prompt_keithy_setup "$@"
