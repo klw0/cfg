@@ -51,7 +51,9 @@ set backupdir-=.
 set history=10000
 set undofile
 
-set diffopt+=algorithm:histogram
+" XXX: Setting context is a kludge to prevent folding in diff mode (how is
+" there not a proper option for this!?).
+set diffopt+=algorithm:histogram,context:2147483647,foldcolumn:1
 
 " ------------------------------------------------------------------------------
 " Mappings
