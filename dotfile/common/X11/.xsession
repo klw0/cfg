@@ -2,6 +2,9 @@
 
 set -eu
 
+syncthing --no-browser &
+trap "kill $!" EXIT
+
 xset r rate 300 28
 xset b off
 
