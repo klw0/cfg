@@ -79,6 +79,8 @@ nnoremap <silent> <leader>td :call todo#Add(g:todo_string)<CR>a
 " clear the screen/redraw.
 nnoremap <silent><expr> <C-L> ':nohlsearch' . (&diff ? '\| diffupdate' : '') . '<CR><C-L>'
 
+nnoremap <silent><expr> <leader>hc ':let g:minsolarized_highcontrast=' . !get(g:, 'minsolarized_highcontrast') . ' \| colorscheme minsolarized<CR>'
+
 inoremap <expr> <Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-P>" : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<C-G>u\<CR>"
