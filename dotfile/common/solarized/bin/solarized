@@ -1,0 +1,116 @@
+#!/bin/sh
+#
+# Lookup utility for the Solarized [1] color palette.
+#
+# [1] https://ethanschoonover.com/solarized/
+#
+
+set -eu
+
+readonly data="\
+name     ansi8  ansi16  termcol    ansi256  lab         rgb          hex      hsb
+base03   4      8       brblack    234      15,-12,-12  0,43,54      #002b36  193,100,21
+base02   4      0       black      235      20,-12,-12  7,54,66      #073642  192,90,26
+base01   7      10      brgreen    240      45,-07,-07  88,110,117   #586e75  194,25,46
+base00   7      11      bryellow   241      50,-07,-07  101,123,131  #657b83  195,23,51
+base0    6      12      brblue     244      60,-06,-03  131,148,150  #839496  186,13,59
+base1    4      14      brcyan     245      65,-05,-02  147,161,161  #93a1a1  180,9,63
+base2    7      7       white      254      92,-00,10   238,232,213  #eee8d5  44,11,93
+base3    7      15      brwhite    230      97,00,10    253,246,227  #fdf6e3  44,10,99
+yellow   3      3       yellow     136      60,10,65    181,137,0    #b58900  45,100,71
+orange   3      9       brred      166      50,50,55    203,75,22    #cb4b16  18,89,80
+red      1      1       red        160      50,65,45    220,50,47    #dc322f  1,79,86
+magenta  5      5       magenta    125      50,65,-05   211,54,130   #d33682  331,74,83
+violet   5      13      brmagenta  61       50,15,-45   108,113,196  #6c71c4  237,45,77
+blue     4      4       blue       33       55,-10,-45  38,139,210   #268bd2  205,82,82
+cyan     6      6       cyan       37       60,-35,-05  42,161,152   #2aa198  175,74,63
+green    2      2       green      64       60,-20,65   133,153,0    #859900  68,100,60"
+
+# @global {string} data
+usage() {
+    models=$(echo "${data}" | head -n 1 | sed "s/  */, /g; s/name, //g")
+
+    cat >&2 << EOF
+usage: ${0##*/} [[-m model] -n name]
+
+       -m  Color model, one of: ${models}
+       -n  Color name
+EOF
+}
+
+# Lookup and print colors.
+#
+# @global {string} data
+# @param {string} [model]
+# @param {string} [name]
+color() {
+    local model="$1"
+    local name="$2"
+
+    echo "${data}" | awk -v model="${model}" -v name="${name}" '
+        function die(msg) {
+            printf("error: %s\n", msg) > "/dev/stderr"
+            exit 1
+        }
+
+        BEGIN {
+            list_mode = !model
+            # XXX(klw0): Kind of nasty with model being being repurposed like this...
+            model = model ? model : "rgb"
+            name_re = name ? sprintf("^%s$", name) : ".*"
+        }
+        NR == 1 {
+            for (i = 2; i <= NF; i++) {
+                if ($i == model) {
+                    model_field = i
+                    break
+                }
+            }
+
+            if (list_mode) {
+                print toupper("color   " $0)
+            }
+        }
+        model_field && NR > 1 && $1 ~ name_re {
+            color_value = $model_field
+
+            if (list_mode) {
+                gsub(",", ";", color_value)
+                printf("\033[48;2;%sm      \033[0m  %s\n", color_value, $0)
+            } else {
+                print color_value
+            }
+        }
+        END {
+            if (!model_field) {
+                die("invalid color model " model)
+            }
+
+            if (!color_value) {
+                die("invalid color name " name)
+            }
+        }
+    '
+}
+
+main() {
+    local model=
+    local name=
+    while getopts "m:n:h" opt; do
+        case "${opt}" in
+            m) model="${OPTARG}" ;;
+            n) name="${OPTARG}" ;;
+            h|?) usage && exit 1 ;;
+        esac
+    done
+    shift $(($OPTIND - 1))
+
+    if [ -n "${model}" ] && [ -z "${name}" ]; then
+        usage
+        exit 1
+    fi
+
+    color "${model}" "${name}"
+}
+
+main "$@"
