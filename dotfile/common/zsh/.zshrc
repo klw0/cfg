@@ -36,13 +36,19 @@ export GPG_TTY=$(tty)
 export FZF_DEFAULT_COMMAND="rg --files"
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
 
-export LESS_TERMCAP_mb=$"\e[01;31m"      # Begins blinking.
-export LESS_TERMCAP_md=$"\e[01;31m"      # Begins bold.
-export LESS_TERMCAP_me=$"\e[0m"          # Ends mode.
-export LESS_TERMCAP_se=$"\e[0m"          # Ends standout-mode.
-export LESS_TERMCAP_so=$"\e[00;47;30m"   # Begins standout-mode.
-export LESS_TERMCAP_ue=$"\e[0m"          # Ends underline.
-export LESS_TERMCAP_us=$"\e[01;32m"      # Begins underline.
+solarized_base1=$(~/bin/solarized -m rgb -n base1 | tr "," ";")
+solarized_base00=$(~/bin/solarized -m rgb -n base00 | tr "," ";")
+solarized_base03=$(~/bin/solarized -m rgb -n base03 | tr "," ";")
+export LESS_TERMCAP_mb=$'\e[01;39m'                                                     # Begins blinking.
+export LESS_TERMCAP_md=$(echo "\e[01;38;2;${solarized_base1}m")                         # Begins bold.
+export LESS_TERMCAP_me=$'\e[0m'                                                         # Turns off all attributes.
+export LESS_TERMCAP_so=$(echo "\e[48;2;${solarized_base00};38;2;${solarized_base03}m")  # Begins standout.
+export LESS_TERMCAP_se=$'\e[0m'                                                         # Ends standout.
+export LESS_TERMCAP_us=$'\e[04;39m'                                                     # Begins underline.
+export LESS_TERMCAP_ue=$'\e[0m'                                                         # Ends underline.
+unset solarized_base1
+unset solarized_base00
+unset solarized_base03
 
 typeset -gU path
 path=(
