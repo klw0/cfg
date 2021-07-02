@@ -161,6 +161,7 @@ zstyle ":completion::complete:*" use-cache on
 zstyle ":completion:*" matcher-list "m:{a-zA-Z}={A-Za-z}" "r:|[._-]=* r:|=*" "l:|=* r:|=*"
 zstyle ":completion:*" completer _complete _match _approximate
 zstyle ":completion:*:match:*" original only
+zstyle ":completion:*" users ""
 
 zstyle ":completion:*:default" list-prompt "%S%M matches%s"
 zstyle ":completion:*" format " %F{yellow}── %d ──%f"
