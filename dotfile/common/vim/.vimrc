@@ -173,16 +173,38 @@ let g:loaded_netrwPlugin = 1
 
 " nvim-lspconfig
 lua << EOF
-lspconfig = require'lspconfig'
+local lspconfig = require('lspconfig')
 
-lspconfig.efm.setup{
-  filetypes = { 'pandoc', 'sh' }
+local on_attach = function(client)
+  vim.fn["lsp#ConfigureBuffer"](client.resolved_capabilities)
+end
+
+local servers = {
+  bashls = {},
+  efm = {
+    filetypes = { "pandoc", "sh" },
+  },
+  gopls = {},
+  jsonls = {},
+  sumneko_lua = {},
+  vimls = {
+    on_attach = function(client, bufnr)
+      on_attach(client)
+
+      -- Remove mappings that are better handled by vim than vim-language-server.
+      vim.api.nvim_buf_del_keymap(bufnr, "n", "K")
+      vim.api.nvim_buf_del_keymap(bufnr, "n", "gD")
+      vim.api.nvim_buf_del_keymap(bufnr, "n", "1gD")
+    end
+  },
 }
-lspconfig.bashls.setup{}
-lspconfig.gopls.setup{}
-lspconfig.jsonls.setup{}
-lspconfig.sumneko_lua.setup{}
-lspconfig.vimls.setup{}
+
+for server, config in pairs(servers) do
+  lspconfig[server].setup(vim.tbl_extend("keep", config, {
+    on_attach = on_attach,
+    on_exit = vim.call("lsp#UnconfigureBuffer"),
+  }))
+end
 EOF
 
 " NERDTree

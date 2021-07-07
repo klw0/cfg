@@ -1,10 +1,7 @@
 let s:undo_configure_key = 'undo_lsp_configure_buffer'
 
 " Configure the buffer with common LSP options and mappings.
-function! lsp#ConfigureBuffer() abort
-  setlocal omnifunc=v:lua.vim.lsp.omnifunc
-  let b:[s:undo_configure_key] = '| setlocal omnifunc<'
-
+function! lsp#ConfigureBuffer(client_capabilities) abort
   setlocal omnifunc=v:lua.vim.lsp.omnifunc
   let b:[s:undo_configure_key] = '| setlocal omnifunc<'
 
@@ -50,6 +47,12 @@ function! lsp#ConfigureBuffer() abort
   " autocmd CompleteChanged <buffer> call lsp#ShowCompleteSignature()
   autocmd CompleteChanged <buffer> lua require('lsp').show_complete_signature()
   let b:[s:undo_configure_key] .= '| autocmd! CompleteChanged <buffer>'
+
+  if a:client_capabilities.document_formatting
+    " Format on write.
+    autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+    let b:[s:undo_configure_key] .= '| autocmd! BufWritePre <buffer>'
+  endif
 endfunction
 
 " Reverses configuration changes made by `lsp#ConfigureBuffer()`.
