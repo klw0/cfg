@@ -1,7 +1,6 @@
 # To-Do
 
 - man: Update manpage colors, via termcap
-- vim: Open help/Man in vertical windows if > 80 columns are available
 - bin: Add hex2rgb and rgb2hex scripts
 - bin: Add terminal true color test script
 - vim: Drop NERDTree for (not) netrw
