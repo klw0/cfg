@@ -45,7 +45,7 @@ set splitright
 set termguicolors
 
 set complete+=kspell
-set completeopt+=longest,menuone,noselect
+set completeopt+=longest,menuone,noselect,noinsert
 set completeopt-=preview
 set shortmess+=c
 
@@ -140,6 +140,20 @@ augroup quickfix
 augroup END
 
 nnoremap <leader>g :Grep<Space>
+
+augroup autocomplete
+  autocmd!
+  autocmd InsertCharPre * call AutoComplete()
+augroup END
+
+function! AutoComplete() abort
+  if pumvisible() | return | endif
+  if &omnifunc ==# '' | return | endif
+
+  if match(v:char, '[A-z]') != -1
+    call feedkeys("\<C-X>\<C-O>", 'nti')
+  endif
+endfunction
 
 " ------------------------------------------------------------------------------
 " Packages
