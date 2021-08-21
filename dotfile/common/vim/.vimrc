@@ -73,7 +73,7 @@ nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 
 let g:todo_string = 'TODO(klw0):'
 iabbrev <expr> TODO: get(g:, 'todo_string')
-nnoremap <silent> <leader>td :call todo#Add(g:todo_string)<CR>a
+nnoremap <silent> <leader>td :call attn#Add(g:todo_string)<CR>a
 
 " Clear search highlighting, update the current diff if there is one, and
 " clear the screen/redraw.
@@ -128,7 +128,7 @@ packadd stabusline
 packadd lsp
 packadd write
 packadd minsolarized
-packadd todo
+packadd attn
 
 " Vendor
 packadd vim-plug
