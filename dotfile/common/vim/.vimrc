@@ -71,10 +71,6 @@ nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 " Set text wrapping toggles
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 
-let g:todo_string = 'TODO(klw0):'
-iabbrev <expr> TODO: get(g:, 'todo_string')
-nnoremap <silent> <leader>td :call attn#Add(g:todo_string)<CR>a
-
 " Clear search highlighting, update the current diff if there is one, and
 " clear the screen/redraw.
 nnoremap <silent><expr> <C-L> ':nohlsearch' . (&diff ? '\| diffupdate' : '') . '<CR><C-L>'
@@ -99,6 +95,32 @@ nnoremap ]q :cnext<CR>
 nnoremap [q :cprev<CR>
 nnoremap ]Q :clast<CR>
 nnoremap [Q :cfirst<CR>
+
+let g:attn_strings = {
+  \ 'TODO': 'td',
+  \ 'FIXME': 'fm',
+  \ 'XXX': 'xx',
+  \ }
+
+for [g:attn_string, g:attn_map_seq] in items(g:attn_strings)
+  let g:attn_id_string = g:attn_string . '(klw0):'
+
+  execute printf('iabbrev %s: %s', g:attn_string, g:attn_id_string)
+  execute printf('nnoremap <silent> <leader>%s :call attn#Add("%s", "n")<CR>a',
+    \ g:attn_map_seq,
+    \ g:attn_id_string,
+    \ )
+  execute printf('nnoremap <silent> <leader>%s :call attn#Add("%s", "s")<CR>a',
+    \ strpart(g:attn_map_seq, 0, 1) . toupper(strpart(g:attn_map_seq, 1)),
+    \ g:attn_id_string,
+    \ )
+  execute printf('nnoremap <silent> <leader>%s :call attn#Add("%s", "w")<CR>a',
+    \ toupper(g:attn_map_seq),
+    \ g:attn_id_string,
+    \ )
+endfor
+
+unlet g:attn_strings g:attn_string g:attn_map_seq g:attn_id_string
 
 " ------------------------------------------------------------------------------
 " Custom Functionality
