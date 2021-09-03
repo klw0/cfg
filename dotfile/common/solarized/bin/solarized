@@ -44,8 +44,8 @@ EOF
 # @param {string} [model]
 # @param {string} [name]
 color() {
-    local model="$1"
-    local name="$2"
+    model="$1"
+    name="$2"
 
     echo "${data}" | awk -v model="${model}" -v name="${name}" '
         function die(msg) {
@@ -94,8 +94,8 @@ color() {
 }
 
 main() {
-    local model=
-    local name=
+    model=
+    name=
     while getopts "m:n:h" opt; do
         case "${opt}" in
             m) model="${OPTARG}" ;;
@@ -103,7 +103,7 @@ main() {
             h|?) usage && exit 1 ;;
         esac
     done
-    shift $(($OPTIND - 1))
+    shift $((OPTIND - 1))
 
     if [ -n "${model}" ] && [ -z "${name}" ]; then
         usage
