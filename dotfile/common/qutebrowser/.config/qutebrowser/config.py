@@ -22,6 +22,7 @@ c.editor.command = [f"{home}/bin/st", '-e', f"{home}/bin/nvim", '{}']
 c.messages.timeout = 5000
 c.scrolling.bar = 'always'
 c.tabs.last_close = 'close'
+c.tabs.select_on_remove = 'last-used'
 
 config.unbind('J', mode='normal')     # tab-next
 config.unbind('K', mode='normal')     # tab-prev
