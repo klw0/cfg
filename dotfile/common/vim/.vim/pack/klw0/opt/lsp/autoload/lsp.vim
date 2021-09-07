@@ -44,10 +44,6 @@ function! lsp#ConfigureBuffer(client_capabilities) abort
   autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()
   let b:[s:undo_configure_key] .= '| autocmd! CursorMoved,CursorHold <buffer>'
 
-  " autocmd CompleteChanged <buffer> call lsp#ShowCompleteSignature()
-  autocmd CompleteChanged <buffer> lua require('lsp').show_complete_signature()
-  let b:[s:undo_configure_key] .= '| autocmd! CompleteChanged <buffer>'
-
   if a:client_capabilities.document_formatting
     " Format on write.
     autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
