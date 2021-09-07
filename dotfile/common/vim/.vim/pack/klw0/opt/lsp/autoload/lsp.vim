@@ -38,8 +38,8 @@ function! lsp#ConfigureBuffer(client_capabilities) abort
   nnoremap <buffer><silent> g0 :lua vim.lsp.buf.document_symbol()<CR>
   let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> g0'
 
-  nnoremap <buffer><silent> rn :lua vim.lsp.buf.rename()<CR>
-  let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> rn'
+  nnoremap <buffer><silent> <leader>rn :lua vim.lsp.buf.rename()<CR>
+  let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> <leader>rn'
 
   autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()
   let b:[s:undo_configure_key] .= '| autocmd! CursorMoved,CursorHold <buffer>'
