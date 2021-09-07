@@ -34,7 +34,7 @@ let s:colors = {
   \ 'none': { 'gui': 'NONE', 'cterm': 'NONE' },
   \ }
 
-if (&background ==# 'light')
+if &background ==# 'light'
   let s:colors = extend(s:colors, {
     \ 'base03': get(s:colors, 'base3'),
     \ 'base02': get(s:colors, 'base2'),
@@ -47,7 +47,7 @@ if (&background ==# 'light')
     \ })
 endif
 
-if (g:minsolarized_highcontrast == v:true)
+if g:minsolarized_highcontrast == v:true
   let s:colors = extend(s:colors, {
     \ 'base01': get(s:colors, 'base00'),
     \ 'base00': get(s:colors, 'base0'),
