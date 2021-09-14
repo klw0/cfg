@@ -35,6 +35,7 @@ config.bind('X', 'undo')
 config.bind('zi', 'zoom-in')
 config.bind('zo', 'zoom-out')
 config.bind('z0', 'zoom')
+config.bind('<Ctrl-L>', 'search;; clear-messages')
 
 c.tabs.padding = {'top': 0, 'bottom': 0, 'left': 0, 'right': 4}
 c.tabs.indicator.padding = {'top': 0, 'bottom': 0, 'left': 0, 'right': 4}
