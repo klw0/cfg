@@ -42,7 +42,6 @@ set noshowmode
 set number
 set ruler
 set splitright
-set termguicolors
 
 set complete+=kspell
 set completeopt+=longest,menuone,noselect,noinsert
