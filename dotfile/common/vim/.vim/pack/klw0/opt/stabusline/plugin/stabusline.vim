@@ -1,6 +1,6 @@
 " stabusline: A status and tab line.
 "
-" Inspired by lightline.vim.
+" Requires klw0/minsolarized.vim.
 
 if exists('g:loaded_stabusline')
   finish

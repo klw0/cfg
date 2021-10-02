@@ -1,35 +1,5 @@
 " TODO(klw0): Non-script local functions should have docblocks. Use vimdoc?
 
-let s:solarized_dark = {
-  \ 'base03': '#002b36',
-  \ 'base02': '#073642',
-  \ 'base01': '#586e75',
-  \ 'base00': '#657b83',
-  \ 'base0': '#839496',
-  \ 'base1': '#93a1a1',
-  \ 'base2': '#eee8d5',
-  \ 'base3': '#fdf6e3',
-  \ 'yellow': '#b58900',
-  \ 'orange': '#cb4b16',
-  \ 'red': '#dc322f',
-  \ 'magenta': '#d33682',
-  \ 'violet': '#6c71c4',
-  \ 'blue': '#268bd2',
-  \ 'cyan': '#2aa198',
-  \ 'green': '#859900',
-  \ }
-
-let s:solarized_light = extend(copy(s:solarized_dark), {
-  \ 'base03': get(s:solarized_dark, 'base3'),
-  \ 'base02': get(s:solarized_dark, 'base2'),
-  \ 'base01': get(s:solarized_dark, 'base1'),
-  \ 'base00': get(s:solarized_dark, 'base0'),
-  \ 'base0': get(s:solarized_dark, 'base00'),
-  \ 'base1': get(s:solarized_dark, 'base01'),
-  \ 'base2': get(s:solarized_dark, 'base02'),
-  \ 'base3': get(s:solarized_dark, 'base03'),
-  \ })
-
 let s:modes = {
   \ 'n': ['NORMAL', 'normal'],
   \ 'i': ['INSERT', 'insert'],
@@ -56,18 +26,10 @@ let s:mode_category_colors = {
   \ 'terminal': 'cyan',
   \ }
 
-function! s:SetHighlightGroup(name, bg_color, fg_color, ...) abort
-  let l:attr_list = a:0 ? a:1 : []
-  let l:colors = &background ==# 'dark' ? s:solarized_dark : s:solarized_light
-  let l:broken_color = '#ff00ff'  " Pepto-bismol!
-
-  execute printf(
-    \ 'highlight %s gui=NONE,%s guifg=%s guibg=%s',
-    \ a:name,
-    \ join(l:attr_list, ','),
-    \ get(l:colors, a:fg_color, l:broken_color),
-    \ get(l:colors, a:bg_color, l:broken_color),
-    \ )
+function! s:SetHighlightGroup(...) abort
+  if exists('*minsolarized#SetHighlightGroup')
+    call call('minsolarized#SetHighlightGroup', a:000)
+  endif
 endfunction
 
 function! stabusline#Statusline(is_active) abort
@@ -141,20 +103,20 @@ function! stabusline#Tabline() abort
 endfunction
 
 function! stabusline#UpdateHighlightGroups() abort
-  call s:SetHighlightGroup('StabuslineDefault', 'base02', 'base0')
-  call s:SetHighlightGroup('StabuslineDefaultInfo', 'base02', 'base00')
-  call s:SetHighlightGroup('StabuslinePrimary', 'base00', 'base03')
-  call s:SetHighlightGroup('StabuslinePrimaryInfo', 'base00', 'base2')
-  call s:SetHighlightGroup('StabuslineSecondary', 'base01', 'base03')
-  call s:SetHighlightGroup('StabuslineError', 'red', 'base03')
-  call s:SetHighlightGroup('StabuslineWarning', 'yellow', 'base03')
+  call s:SetHighlightGroup('StabuslineDefault', 'base0', 'base02')
+  call s:SetHighlightGroup('StabuslineDefaultInfo', 'base00', 'base02')
+  call s:SetHighlightGroup('StabuslinePrimary', 'base03', 'base00')
+  call s:SetHighlightGroup('StabuslinePrimaryInfo', 'base2', 'base00')
+  call s:SetHighlightGroup('StabuslineSecondary', 'base03', 'base01')
+  call s:SetHighlightGroup('StabuslineError', 'base03', 'red')
+  call s:SetHighlightGroup('StabuslineWarning', 'base03', 'yellow')
   call s:SetHighlightGroup('StabuslineTabSeparator', 'base03', 'base03')
 
   for [l:mode_category, l:mode_category_color] in items(s:mode_category_colors)
-    call s:SetHighlightGroup('StabuslineMode_' . l:mode_category, l:mode_category_color, 'base03')
+    call s:SetHighlightGroup('StabuslineMode_' . l:mode_category, 'base03', l:mode_category_color)
   endfor
 
-  call s:SetHighlightGroup('StabuslineMode_unknown', 'yellow', 'base03')
+  call s:SetHighlightGroup('StabuslineMode_unknown', 'base03', 'yellow')
 endfunction
 
 " ----------------------------------------------------------------------------
