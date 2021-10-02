@@ -50,24 +50,6 @@ unset solarized_base1
 unset solarized_base00
 unset solarized_base03
 
-# TODO(klw0): Figure out a way to move this into .tmux.conf.
-export SOLARIZED_HEX_BASE03=$(~/bin/solarized -m hex -n base03)
-export SOLARIZED_HEX_BASE02=$(~/bin/solarized -m hex -n base02)
-export SOLARIZED_HEX_BASE01=$(~/bin/solarized -m hex -n base01)
-export SOLARIZED_HEX_BASE00=$(~/bin/solarized -m hex -n base00)
-export SOLARIZED_HEX_BASE0=$(~/bin/solarized -m hex -n base0)
-export SOLARIZED_HEX_BASE1=$(~/bin/solarized -m hex -n base1)
-export SOLARIZED_HEX_BASE2=$(~/bin/solarized -m hex -n base2)
-export SOLARIZED_HEX_BASE3=$(~/bin/solarized -m hex -n base3)
-export SOLARIZED_HEX_YELLOW=$(~/bin/solarized -m hex -n yellow)
-export SOLARIZED_HEX_ORANGE=$(~/bin/solarized -m hex -n orange)
-export SOLARIZED_HEX_RED=$(~/bin/solarized -m hex -n red)
-export SOLARIZED_HEX_MAGENTA=$(~/bin/solarized -m hex -n magenta)
-export SOLARIZED_HEX_VIOLET=$(~/bin/solarized -m hex -n violet)
-export SOLARIZED_HEX_BLUE=$(~/bin/solarized -m hex -n blue)
-export SOLARIZED_HEX_CYAN=$(~/bin/solarized -m hex -n cyan)
-export SOLARIZED_HEX_GREEN=$(~/bin/solarized -m hex -n green)
-
 typeset -gU path
 path=(
     $HOME/bin
