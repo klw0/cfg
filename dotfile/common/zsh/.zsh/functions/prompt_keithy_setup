@@ -1,3 +1,5 @@
+MAX_VCS_DELAY=250
+
 shorten_path() {
     local path=$1
 
@@ -16,12 +18,14 @@ prompt_keithy_setup() {
   unsetopt XTRACE KSH_ARRAYS
   prompt_opts=(cr sp percent subst)
 
-  # Load required functions.
   autoload -Uz add-zsh-hook
   autoload -Uz vcs_info
+  autoload -Uz vcs_info_hookadd
+  zmodload zsh/datetime
 
-  # Add hook for calling vcs_info before each command.
   add-zsh-hook precmd vcs_info
+  vcs_info_hookadd pre-get-data pre_get_data
+  vcs_info_hookadd post-backend post_backend
 
   zstyle ":vcs_info:*" enable git
   zstyle ":vcs_info:*:*" check-for-changes true
@@ -32,6 +36,18 @@ prompt_keithy_setup() {
 
   PROMPT='%F{cyan}${SSH_TTY:+"%m:"}$(shorten_path "$(print -P %~)")%(!.#. %B${${${KEYMAP:-main}/vicmd/❮}/[^❮]*/❯}%b) %f'
   RPROMPT='%(?.. %F{red}↵ [%?]%f) ${vcs_info_msg_0_}'
+}
+
++vi-pre_get_data() {
+    user_data[start_time]=$EPOCHREALTIME
+}
+
++vi-post_backend() {
+    local duration=$(( (${EPOCHREALTIME} - ${user_data[start_time]}) * 1000 ))
+    if [[ "${duration}" -gt "${MAX_VCS_DELAY}" ]]; then
+        # XXX(klw0): This can clobber for repos with the same name.
+        zstyle ":vcs_info:*:*:${context##*:}" check-for-changes false
+    fi
 }
 
 prompt_keithy_setup "$@"
