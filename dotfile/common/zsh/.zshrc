@@ -13,6 +13,7 @@ alias rsync="noglob rsync"
 alias scp="noglob scp"
 alias sftp="noglob sftp"
 alias vim="nvim"
+alias wiki="vim +VimwikiIndex"
 alias xclip="xclip -selection clipboard"
 
 # Add `help` alias for help with builtins.
