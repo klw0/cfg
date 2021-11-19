@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+# Proxy for my remote's git shell commands.
+
+set -eu
+
+DEST="git@git.ksrv.home"
+
+usage() {
+    die "usage: ${0##*/} desc|help|list|info|init [arg ...]"
+}
+
+die() {
+    message="$1"
+
+    echo "${message}" 1>&2
+    exit 1
+}
+
+main() {
+    if [ "$#" -lt 1 ]; then
+        usage
+    fi
+
+    command="$1"
+    case "${command}" in
+        desc | help | list | info | init) shift ;;
+        *) usage ;;
+    esac
+
+    # Requote remaining arguments since ssh will "flatten" command and arguments
+    # before sending to the server.
+    args=
+    for arg in "$@"; do
+        args="${args} '${arg}'"
+    done
+
+    ssh "${DEST}" -- "${command}" "${args}"
+}
+
+main "$@"
