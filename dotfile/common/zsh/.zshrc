@@ -36,6 +36,7 @@ export LESS="-g -i -M -R -S -w -X -z-4 -j10 -c"
 export GPG_TTY=$(tty)
 export FZF_DEFAULT_COMMAND="rg --files"
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
+export GIT_MYREMOTE_ADDR="git@git.ksrv.home"
 
 solarized_base1=$(~/bin/solarized -m rgb -n base1 | tr "," ";")
 solarized_base00=$(~/bin/solarized -m rgb -n base00 | tr "," ";")
