@@ -1,0 +1,73 @@
+#!/bin/sh
+#
+# Use my remote's push and fetch URLs for the named remote, demoting other
+# existing URLs for the remote to push only.
+set -eu
+
+usage() {
+    die "usage: ${0##*/} [-a remote_address] [-n remote_name]"
+}
+
+die() {
+    message="$1"
+
+    echo "${message}" 1>&2
+    exit 1
+}
+
+remote_head() {
+    name="$1"
+
+    # Some transports support directly peeking at where HEAD points.
+    head_ref=$(git symbolic-ref refs/remotes/"${name}"/HEAD 2>/dev/null || true)
+    if [ -z "${head_ref}" ]; then
+        head_commit=$(git ls-remote "${name}" | grep HEAD | cut -f 1)
+        head_ref=$(git ls-remote --refs "${name}" | grep "${head_commit}" | cut -f 2)
+    fi
+
+    echo "${head_ref##*/}"
+}
+
+main() {
+    addr="${GIT_MYREMOTE_ADDR:-}"
+    name="origin"
+    while getopts "a:n:h" opt; do
+        case "${opt}" in
+            a) addr="${OPTARG}" ;;
+            n) name="${OPTARG}" ;;
+            h | ?) usage ;;
+        esac
+    done
+    shift $((OPTIND - 1))
+
+    if [ -z "${addr}" ]; then
+        echo "Set environment variable GIT_MYREMOTE_ADDR or use \
+'-a address' option to set the remote address." 1>&2
+        die "error: addr not set"
+    fi
+
+    # Assume the local directory structure matches the remote's.
+    repo_dir="$(pwd | awk 'BEGIN { FS="/" }{ printf("%s/%s", $(NF - 1), $NF)}')"
+    url="${addr}:${repo_dir}.git"
+
+    has_remote=false
+    if git remote show "${name}" >/dev/null 2>&1; then
+        has_remote=true
+    fi
+
+    push_urls=
+    if [ "${has_remote}" ]; then
+        push_urls=$(git remote get-url --all --push "${name}" | grep -v "${url}" || true)
+        git remote remove "${name}"
+    fi
+
+    git remote add "${name}" "${url}"
+
+    for pu in ${push_urls}; do
+        git remote set-url --add "${name}" "${pu}"
+    done
+
+    git push --set-upstream "${name}" "$(remote_head "${name}")"
+}
+
+main "$@"
