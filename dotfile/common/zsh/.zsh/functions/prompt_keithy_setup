@@ -29,6 +29,7 @@ prompt_keithy_setup() {
 
     zstyle ":vcs_info:*" enable git cvs
     zstyle ":vcs_info:*:*" check-for-changes true
+    zstyle ":vcs_info:*:*" disable-patterns "*.git*"
     zstyle ":vcs_info:*:*" unstagedstr "%B!%b"
     zstyle ":vcs_info:*:*" stagedstr "%B+%b"
     zstyle ":vcs_info:*:*" actionformats "%s:%b %u%c (%a)"
