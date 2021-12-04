@@ -183,10 +183,3 @@ bindkey -M viins "${terminfo[kcbt]}" reverse-menu-complete
 # Use vim-style backspace behavior, not the default vi-style which disallows
 # backspacing over the start of insert.
 bindkey -M viins "^?" backward-delete-char
-
-autoload -Uz add-zle-hook-widget
-
-add-zle-hook-widget keymap-select reset-prompt
-# Give the mode indicator a chance to reset before committing the command to the
-# buffer history. This isn't strictly necessary, but is a nice UX improvement.
-add-zle-hook-widget line-finish reset-prompt

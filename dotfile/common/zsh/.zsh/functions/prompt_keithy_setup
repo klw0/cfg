@@ -35,7 +35,7 @@ prompt_keithy_setup() {
     zstyle ":vcs_info:*:*" actionformats "%s:%b %u%c (%a)"
     zstyle ":vcs_info:*:*" formats "%s:%b %u%c"
 
-    PROMPT='%F{cyan}${SSH_TTY:+"%m:"}$(shorten_path "$(print -P %~)")%(!.#. %B${${${KEYMAP:-main}/vicmd/❮}/[^❮]*/❯}%b) %f'
+    PROMPT='${SSH_TTY:+"%m:"}$(shorten_path "$(print -P %~)") %(!.#.$) '
     RPROMPT='%(?.. %F{red}↵ [%?]%f) ${vcs_info_msg_0_}'
 }
 
