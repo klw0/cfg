@@ -1,24 +1,24 @@
 " TODO(klw0): Non-script local functions should have docblocks. Use vimdoc?
 
 let s:modes = {
-  \ 'n': 'NORMAL',
-  \ 'i': 'INSERT',
-  \ 'R': 'REPLACE',
-  \ 'v': 'VISUAL',
-  \ 'V': 'V-LINE',
-  \ "\<C-v>": 'V-BLOCK',
-  \ 'c': 'COMMAND',
-  \ 's': 'SELECT',
-  \ 'S': 'S-LINE',
-  \ "\<C-s>": 'S-BLOCK',
-  \ 'r': 'PROMPT',
-  \ 't': 'TERMINAL',
+  \ 'n': 'N',
+  \ 'i': 'I',
+  \ 'R': 'R',
+  \ 'v': 'V',
+  \ 'V': 'V-L',
+  \ "\<C-v>": 'V-B',
+  \ 'c': 'C',
+  \ 's': 'S',
+  \ 'S': 'S-L',
+  \ "\<C-s>": 'S-B',
+  \ 'r': 'P',
+  \ 't': 'T',
   \ }
 
 function! stabusline#Statusline(is_active) abort
   if (a:is_active)
     let l:statusline = '%#StatusLine#'
-    let l:statusline .= ' ' . get(s:modes, mode(), '?') . '%( | %{&paste ? "PASTE" : ""}%)'
+    let l:statusline .= ' %-3(' . get(s:modes, mode(), '?') . '%)%( | %{&paste ? "PASTE" : ""}%)'
     let l:statusline .= ' %(%R | %)%{stabusline#BufferName(bufnr())}%( %m%) '
     let l:statusline .= ' %<%{stabusline#Truncate(stabusline#GitBranch())} '
     let l:statusline .= '%='
