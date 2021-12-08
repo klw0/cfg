@@ -20,7 +20,6 @@ function! stabusline#Statusline(is_active) abort
     let l:statusline = '%#StatusLine#'
     let l:statusline .= ' %-3(' . get(s:modes, mode(), '?') . '%)%( | %{&paste ? "PASTE" : ""}%)'
     let l:statusline .= ' %(%R | %)%{stabusline#BufferName(bufnr())}%( %m%) '
-    let l:statusline .= ' %<%{stabusline#Truncate(stabusline#GitBranch())} '
     let l:statusline .= '%='
     let l:statusline .= ' %<%{&ft !=# "" ? &ft : "no ft"} '
     let l:statusline .= ' %3p%% '
@@ -107,10 +106,6 @@ function! stabusline#BufferName(bufnr) abort
   endif
 endfunction
 
-function! stabusline#GitBranch()
-  return exists('*FugitiveHead') ? FugitiveHead() : ''
-endfunction
-
 function! stabusline#DiagnosticErrors() abort
   let l:errors = luaeval('vim.lsp.diagnostic.get_count(vim.fn.bufnr(), "Error")')
 
@@ -121,10 +116,6 @@ function! stabusline#DiagnosticWarnings() abort
   let l:warnings = luaeval('vim.lsp.diagnostic.get_count(vim.fn.bufnr(), "Warning")')
 
   return l:warnings ? 'W' . l:warnings : ''
-endfunction
-
-function! stabusline#Truncate(string) abort
-  return winwidth(0) >= 80 ? a:string : ''
 endfunction
 
 augroup stabusline_dev
