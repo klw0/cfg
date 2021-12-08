@@ -1,53 +1,34 @@
 " TODO(klw0): Non-script local functions should have docblocks. Use vimdoc?
 
 let s:modes = {
-  \ 'n': ['NORMAL', 'normal'],
-  \ 'i': ['INSERT', 'insert'],
-  \ 'R': ['REPLACE', 'replace'],
-  \ 'v': ['VISUAL', 'visual'],
-  \ 'V': ['V-LINE', 'visual'],
-  \ "\<C-v>": ['V-BLOCK', 'visual'],
-  \ 'c': ['COMMAND', 'command'],
-  \ 's': ['SELECT', 'select'],
-  \ 'S': ['S-LINE', 'select'],
-  \ "\<C-s>": ['S-BLOCK', 'select'],
-  \ 'r': ['PROMPT', 'prompt'],
-  \ 't': ['TERMINAL', 'terminal'],
+  \ 'n': 'NORMAL',
+  \ 'i': 'INSERT',
+  \ 'R': 'REPLACE',
+  \ 'v': 'VISUAL',
+  \ 'V': 'V-LINE',
+  \ "\<C-v>": 'V-BLOCK',
+  \ 'c': 'COMMAND',
+  \ 's': 'SELECT',
+  \ 'S': 'S-LINE',
+  \ "\<C-s>": 'S-BLOCK',
+  \ 'r': 'PROMPT',
+  \ 't': 'TERMINAL',
   \ }
-
-let s:mode_category_colors = {
-  \ 'normal': 'blue',
-  \ 'insert': 'green',
-  \ 'replace': 'red',
-  \ 'visual': 'magenta',
-  \ 'command': 'blue',
-  \ 'select': 'magenta',
-  \ 'prompt': 'base3',
-  \ 'terminal': 'cyan',
-  \ }
-
-function! s:SetHighlightGroup(...) abort
-  if exists('*minsolarized#SetHighlightGroup')
-    call call('minsolarized#SetHighlightGroup', a:000)
-  endif
-endfunction
 
 function! stabusline#Statusline(is_active) abort
-  let l:statusline = '%#StabuslineDefault#'
-
   if (a:is_active)
-    let [l:mode_name, l:mode_category] = get(s:modes, mode(), ['UNKNOWN', 'unknown'])
-
-    let l:statusline .= '%#StabuslineMode_' . l:mode_category . '# ' . l:mode_name . '%( | %{&paste ? "PASTE" : ""}%) '
-    let l:statusline .= '%#StabuslinePrimary# %(%R | %)%{stabusline#BufferName(bufnr())}%( %m%) '
-    let l:statusline .= '%#StabuslineDefault# %<%{stabusline#Truncate(stabusline#GitBranch())} '
+    let l:statusline = '%#StatusLine#'
+    let l:statusline .= ' ' . get(s:modes, mode(), '?') . '%( | %{&paste ? "PASTE" : ""}%)'
+    let l:statusline .= ' %(%R | %)%{stabusline#BufferName(bufnr())}%( %m%) '
+    let l:statusline .= ' %<%{stabusline#Truncate(stabusline#GitBranch())} '
     let l:statusline .= '%='
-    let l:statusline .= ' %{&ft !=# "" ? &ft : "no ft"} '
-    let l:statusline .= '%#StabuslinePrimary# %3p%% '
-    let l:statusline .= '%#StabuslineSecondary# %3l:%-2v '
-    let l:statusline .= '%#StabuslineWarning#%( %{stabusline#DiagnosticWarnings()} %)'
-    let l:statusline .= '%#StabuslineError#%( %{stabusline#DiagnosticErrors()} %)'
+    let l:statusline .= ' %<%{&ft !=# "" ? &ft : "no ft"} '
+    let l:statusline .= ' %3p%% '
+    let l:statusline .= ' %3l:%-2v '
+    let l:statusline .= '%#WarningMsg#%( %{stabusline#DiagnosticWarnings()} %)'
+    let l:statusline .= '%#ErrorMsg#%( %{stabusline#DiagnosticErrors()} %)'
   else
+    let l:statusline = '%#StatusLineNC#'
     let l:statusline .= ' %(%R | %)%{stabusline#BufferName(bufnr())}%( %m%)'
     let l:statusline .= '%='
     let l:statusline .= ' %{&ft !=# "" ? &ft : "no ft"} '
@@ -69,7 +50,7 @@ function! stabusline#Tabline() abort
 
     " Start the tab page label, for mouse click support.
     let l:tabline .= '%' . l:tab . 'T'
-    let l:tabline .= (l:is_tab_active ? '%#StabuslinePrimary#' : '%#StabuslineDefault#') . ' ' . l:tab . ' '
+    let l:tabline .= (l:is_tab_active ? '%#TabLineSel#' : '%#TabLine#') . ' ' . l:tab . ' '
     let l:tabline .= stabusline#BufferName(l:active_buffer)
     let l:tabline .= getbufvar(l:active_buffer, '&modified') ? ' [+]' : ''
 
@@ -78,7 +59,7 @@ function! stabusline#Tabline() abort
       " it may filter out buffers that should be included.  Find a
       " better way to do this.
       let l:valid_buffers = filter(l:buffers, { _, b -> getbufvar(b, '&bufhidden') !=# 'hide' })
-      let l:tabline .= (l:is_tab_active ? '%#StabuslinePrimaryInfo#' : '%#StabuslineDefaultInfo#') . ' ' . len(l:valid_buffers)
+      let l:tabline .= (l:is_tab_active ? '%#TabLineSel#' : '%#TabLine#') . ' ' . len(l:valid_buffers)
 
       let l:has_inactive_modified_buffers = v:false
       for l:valid_buffer in l:valid_buffers
@@ -93,30 +74,13 @@ function! stabusline#Tabline() abort
       let l:tabline .= l:has_inactive_modified_buffers ? '+' : ''
     endif
 
-    let l:tabline .= ' %#StabuslineTabSeparator# '
+    let l:tabline .= ' %#Normal# '
   endfor
 
   " End the tab page label.
-  let l:tabline .= '%#StabuslineDefault#%T'
+  let l:tabline .= '%#TabLine#%T'
 
   return l:tabline
-endfunction
-
-function! stabusline#UpdateHighlightGroups() abort
-  call s:SetHighlightGroup('StabuslineDefault', 'base0', 'base02')
-  call s:SetHighlightGroup('StabuslineDefaultInfo', 'base00', 'base02')
-  call s:SetHighlightGroup('StabuslinePrimary', 'base03', 'base00')
-  call s:SetHighlightGroup('StabuslinePrimaryInfo', 'base2', 'base00')
-  call s:SetHighlightGroup('StabuslineSecondary', 'base03', 'base01')
-  call s:SetHighlightGroup('StabuslineError', 'base03', 'red')
-  call s:SetHighlightGroup('StabuslineWarning', 'base03', 'yellow')
-  call s:SetHighlightGroup('StabuslineTabSeparator', 'base03', 'base03')
-
-  for [l:mode_category, l:mode_category_color] in items(s:mode_category_colors)
-    call s:SetHighlightGroup('StabuslineMode_' . l:mode_category, 'base03', l:mode_category_color)
-  endfor
-
-  call s:SetHighlightGroup('StabuslineMode_unknown', 'base03', 'yellow')
 endfunction
 
 " ----------------------------------------------------------------------------
@@ -167,5 +131,5 @@ augroup stabusline_dev
   autocmd!
 
   " Automatically apply color changes after writing this file.
-  autocmd BufWritePost stabusline.vim so <sfile> | call stabusline#UpdateHighlightGroups()
+  autocmd BufWritePost stabusline.vim so <sfile>
 augroup END
