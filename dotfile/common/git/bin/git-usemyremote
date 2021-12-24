@@ -56,7 +56,7 @@ main() {
     fi
 
     push_urls=
-    if [ "${has_remote}" ]; then
+    if "${has_remote}"; then
         push_urls=$(git remote get-url --all --push "${name}" | grep -v "${url}" || true)
         git remote remove "${name}"
     fi
