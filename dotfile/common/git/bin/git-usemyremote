@@ -67,7 +67,10 @@ main() {
         git remote set-url --add "${name}" "${pu}"
     done
 
-    git push --set-upstream "${name}" "$(remote_head "${name}")"
+    rhead="$(remote_head "${name}")"
+    if [ -n "${rhead}" ]; then
+        git push --set-upstream "${name}" "${rhead}"
+    fi
 }
 
 main "$@"
