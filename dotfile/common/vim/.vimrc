@@ -74,8 +74,6 @@ nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 " clear the screen/redraw.
 nnoremap <silent><expr> <C-L> ':nohlsearch' . (&diff ? '\| diffupdate' : '') . '<CR><C-L>'
 
-nnoremap <silent><expr> <leader>hc ':let g:minsolarized_highcontrast=' . !get(g:, 'minsolarized_highcontrast') . ' \| colorscheme minsolarized<CR>'
-
 inoremap <expr> <Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-P>" : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<C-G>u\<CR>"
@@ -162,7 +160,7 @@ endfunction
 packadd stabusline
 packadd lsp
 packadd write
-packadd minsolarized
+packadd colors
 packadd attn
 
 " Vendor
@@ -310,4 +308,4 @@ let g:csv_no_conceal = 1
 " Post-plugin configuration
 " ------------------------------------------------------------------------------
 
-colorscheme minsolarized
+colorscheme klw0
