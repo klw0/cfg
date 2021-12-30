@@ -24,10 +24,10 @@ c.scrolling.bar = 'always'
 c.tabs.last_close = 'close'
 c.tabs.select_on_remove = 'last-used'
 
-config.unbind('J', mode='normal')     # tab-next
-config.unbind('K', mode='normal')     # tab-prev
-config.unbind('d', mode='normal')     # tab-close
-config.unbind('D', mode='normal')     # tab-close -o
+config.unbind('J', mode='normal')   # tab-next
+config.unbind('K', mode='normal')   # tab-prev
+config.unbind('d', mode='normal')   # tab-close
+config.unbind('D', mode='normal')   # tab-close -o
 config.bind('gt', 'tab-focus --no-last')
 config.bind('gT', 'tab-prev')
 config.bind('x', 'tab-close')

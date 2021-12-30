@@ -1,11 +1,3 @@
 # To-Do
 
-- man: Update manpage colors, via termcap
-- bin: Add hex2rgb and rgb2hex scripts
-- bin: Add terminal true color test script
-- vim: Drop NERDTree for (not) netrw
-- vim: Reintegrate vint (via efm-langserver?)
-- vim: Try out `vim-rhubarb`
-- vim: Explore `vim-polyglot`
-- linux/freebsd: Brightness control program for internal and external monitor
-- plumb: Add Plan 9 style plumb program
+- plumb: Use plan9port's plumb
