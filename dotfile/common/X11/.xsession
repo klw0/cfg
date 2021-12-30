@@ -12,7 +12,8 @@ xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation" 1
 xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Button" 2
 xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Axes" 6 7 4 5
 
-feh --bg-scale .local/share/wallpaper/elvish-falls-twilight.jpg &
+xsetroot -solid "#777777"
+
 xbanish &
 xidle -ne -program "$(which slock)" -timeout 600 &
 ~/bin/slstatus &
