@@ -107,13 +107,19 @@ function! stabusline#BufferName(bufnr) abort
 endfunction
 
 function! stabusline#DiagnosticErrors() abort
-  let l:errors = luaeval('vim.lsp.diagnostic.get_count(vim.fn.bufnr(), "Error")')
+  let l:errors = v:null
+  if has('nvim')
+    let l:errors = luaeval('vim.lsp.diagnostic.get_count(vim.fn.bufnr(), "Error")')
+  endif
 
   return l:errors ? 'E' . l:errors : ''
 endfunction
 
 function! stabusline#DiagnosticWarnings() abort
-  let l:warnings = luaeval('vim.lsp.diagnostic.get_count(vim.fn.bufnr(), "Warning")')
+  let l:warnings = v:null
+  if has('nvim')
+    let l:warnings = luaeval('vim.lsp.diagnostic.get_count(vim.fn.bufnr(), "Warning")')
+  endif
 
   return l:warnings ? 'W' . l:warnings : ''
 endfunction
