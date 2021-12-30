@@ -1,0 +1,23 @@
+set my_orig_folder = $folder
+
+set folder = "~/mail/$my_tech_user"
+set spoolfile = +INBOX
+set record = +Sent
+set postponed = +Drafts
+set trash = +Trash
+set from=$my_tech_user
+
+mailboxes $my_tech_user
+mailboxes !
+mailboxes +Sent
+mailboxes +Drafts
+mailboxes +Junk
+mailboxes +Trash
+mailboxes +Archive
+
+set folder = $my_orig_folder
+unset my_orig_folder
+
+set smtp_url = "smtps://$my_tech_user@smtp.migadu.com"
+set smtp_pass = $my_tech_pass
+set ssl_force_tls = yes

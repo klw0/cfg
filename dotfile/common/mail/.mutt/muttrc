@@ -1,0 +1,139 @@
+set alias_file = ~/.mutt/muttrc.aliases
+set charset = utf8
+set edit_headers = yes
+set fast_reply = yes
+set folder = ~/mail
+set forward_format = "Fwd: %s"
+set header_cache = ~/.cache/mutt
+set help = no
+set include = yes
+set mail_check = 90
+set mail_check_stats = yes
+set mark_old = no
+set markers = no
+set menu_context = 10
+set mbox_type = Maildir
+set message_cachedir = ~/.cache/mutt
+set move = no
+set narrow_tree = yes
+set pager_context = 3
+set pager_index_lines = 20
+set pager_stop = yes
+# Reduce valid quoting characters to fix patch coloring.
+set quote_regexp = "^([ \t]*>)+"
+set realname = "Keith Whitney"
+set reply_to = yes
+set sendmail_wait = -1
+set search_context = 10
+set sidebar_delim_chars = "/"
+set sidebar_divider_char = " │ "
+set sidebar_folder_indent = yes
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set sidebar_indent_string = "  "
+set sidebar_short_path = yes
+set sidebar_visible = yes
+set sidebar_width = 30
+set sleep_time = 0
+set sort = threads
+# Speed up body searches et al. on large mailboxes.
+set thorough_search = no
+set tilde = yes
+set timeout = 5
+set use_envelope_from = yes
+set wait_key = no
+
+set index_format = "%2C [%Z] %{%D} %-25.25F %s"
+set pager_format = "[%C/%m] %f: %s %> (%P)   "
+set status_format = "── %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?B? Back:%B?%?l? %l?] %>─ (%P) ──"
+
+bind generic l select-entry
+bind index G last-entry
+bind index L limit
+bind index gg first-entry
+bind index h noop
+bind index l display-message
+bind index,pager <space>n sidebar-toggle-visible
+bind index,pager \CD half-down
+bind index,pager \CU half-up
+bind pager <backspace> exit
+bind pager G bottom
+bind pager gg top
+bind pager h exit
+bind pager j next-line
+bind pager k previous-line
+macro index K "<enter-command>set sidebar_visible<enter><sidebar-prev><sidebar-open>"
+macro index J "<enter-command>set sidebar_visible<enter><sidebar-next><sidebar-open>"
+macro index \CP "<enter-command>set sidebar_visible<enter><sidebar-prev><sidebar-open>"
+macro index \CN "<enter-command>set sidebar_visible<enter><sidebar-next><sidebar-open>"
+macro index,generic <space>r "<enter-command>source ~/.mutt/muttrc<enter><enter-command>echo 'muttrc reloaded'<enter>"
+macro index <space>a "<save-message>+Archive<enter><enter-command>echo 'Saved to archive'<enter>"
+macro index,pager <space>$ '<shell-escape>mbsync -a<enter>'
+
+ignore *
+unignore from: to: cc: date: subject:
+
+color normal default default
+color body underline blue default "[a-z][a-z0-9+.-]+://[^[:space:]]+"
+color tilde color8 default          # gray
+color index bold default default "~U"
+color index color8 default "~D"     # gray
+color index yellow default "~F"
+color quoted cyan default
+color quoted1 green default
+color quoted2 yellow default
+color quoted3 white default
+color quoted4 bold cyan default
+color quoted5 bold green default
+color quoted6 bold yellow default
+color quoted7 bold white default
+color sidebar_highlight reverse default default
+color status default black
+
+# Colorize patches.
+color body bold default default "^diff \-.*"
+color body bold default default "^index [a-f0-9].*"
+color body bold default default "^[\-]{3} .*"
+color body bold default default "^[\+]{3} .*"
+color body green default "^[\+][^\+]+.*"
+color body red default "^\-[^\-]+.*"
+color body cyan default "^@@ .* @@"
+
+set my_personal_user = "keith@klw0.org"
+set my_personal_pass = "`pass show keith@klw0.org`"
+source ~/.mutt/muttrc.personal
+folder-hook +$my_personal_user "source ~/.mutt/muttrc.personal"
+
+set my_tech_user = "klw0@klw0.org"
+set my_tech_pass = "`pass show klw0@klw0.org`"
+source ~/.mutt/muttrc.tech
+folder-hook +($my_tech_user|lists) "source ~/.mutt/muttrc.tech"
+
+mailboxes +lists
+mailboxes +lists/openbsd
+mailboxes +lists/openbsd/tech
+mailboxes +lists/openbsd/bugs
+mailboxes +lists/openbsd/ports
+mailboxes +lists/openbsd/misc
+mailboxes +lists/openbsd/source-changes
+mailboxes +lists/openbsd/ports-changes
+mailboxes +lists/tuhs
+
+subscribe tech@openbsd.org
+subscribe bugs@openbsd.org
+subscribe misc@openbsd.org
+subscribe ports@openbsd.org
+subscribe source-changes@openbsd.org
+subscribe ports-changes@openbsd.org
+subscribe tuhs@tuhs.org
+
+folder-hook . set \
+    strict_threads = yes \
+    text_flowed = yes
+folder-hook .*lists.* set \
+    strict_threads = no \
+    text_flowed = no
+
+auto_view text/html
+alternative_order text/plain text/html
+
+source $alias_file

@@ -1,0 +1,56 @@
+SyncState *
+
+# -----------------------------------------------------------------------------
+# keith@klw0.org
+# -----------------------------------------------------------------------------
+
+IMAPStore keith@klw0.org-remote
+Host imap.migadu.com
+User keith@klw0.org
+PassCmd "pass show keith@klw0.org"
+SSLType IMAPS
+
+MaildirStore keith@klw0.org-local
+Path ~/mail/keith@klw0.org/
+Inbox ~/mail/keith@klw0.org/INBOX
+Subfolders Verbatim
+
+Channel keith@klw0.org
+Far :keith@klw0.org-remote:
+Near :keith@klw0.org-local:
+Patterns *
+Create Both
+Expunge Both
+
+# -----------------------------------------------------------------------------
+# klw0@klw0.org
+# -----------------------------------------------------------------------------
+
+IMAPStore klw0@klw0.org-remote
+Host imap.migadu.com
+User klw0@klw0.org
+PassCmd "pass show klw0@klw0.org"
+SSLType IMAPS
+
+MaildirStore klw0@klw0.org-local
+Path ~/mail/klw0@klw0.org/
+Inbox ~/mail/klw0@klw0.org/INBOX
+Subfolders Verbatim
+
+MaildirStore lists
+Path ~/mail/lists/
+Subfolders Verbatim
+
+Channel klw0@klw0.org
+Far :klw0@klw0.org-remote:
+Near :klw0@klw0.org-local:
+Patterns * !lists*
+Create Both
+Expunge Both
+
+Channel lists
+Far :klw0@klw0.org-remote:lists/
+Near :lists:
+Patterns *
+Create Both
+Expunge Both
