@@ -17,7 +17,7 @@ config.load_autoconfig()
 c.auto_save.session = True
 c.completion.height = '30%'
 c.content.autoplay = False
-c.content.notifications = False
+c.content.notifications.enabled = False
 c.editor.command = [f"{home}/bin/st", '-e', f"{home}/bin/nvim", '{}']
 c.messages.timeout = 5000
 c.scrolling.bar = 'always'
