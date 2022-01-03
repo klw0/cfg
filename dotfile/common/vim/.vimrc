@@ -215,6 +215,7 @@ end
 
 local servers = {
   bashls = {},
+  clangd = {},
   efm = {
     filetypes = { "pandoc", "sh" },
   },
