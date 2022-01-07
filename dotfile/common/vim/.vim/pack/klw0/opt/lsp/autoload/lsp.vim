@@ -8,10 +8,10 @@ function! lsp#ConfigureBuffer(client_capabilities) abort
   nnoremap <buffer> <leader>d :lwindow<CR><C-W>p
   let b:[s:undo_configure_key] .= '| nunmap <buffer> <leader>d'
 
-  nnoremap <buffer> ]d :lbelow<CR>
+  nnoremap <buffer> ]d :lafter<CR>
   let b:[s:undo_configure_key] .= '| nunmap <buffer> ]d'
 
-  nnoremap <buffer> [d :labove<CR>
+  nnoremap <buffer> [d :lbefore<CR>
   let b:[s:undo_configure_key] .= '| nunmap <buffer> [d'
 
   nnoremap <buffer><silent> gd :lua vim.lsp.buf.declaration()<CR>

@@ -83,13 +83,13 @@ nnoremap [b :bprev<CR>
 nnoremap ]B :blast<CR>
 nnoremap [B :bfirst<CR>
 
-nnoremap ]l :lnext<CR>
-nnoremap [l :lprev<CR>
+nnoremap ]l :lafter<CR>
+nnoremap [l :lbefore<CR>
 nnoremap ]L :llast<CR>
 nnoremap [L :lfirst<CR>
 
-nnoremap ]q :cnext<CR>
-nnoremap [q :cprev<CR>
+nnoremap ]q :cafter<CR>
+nnoremap [q :cbefore<CR>
 nnoremap ]Q :clast<CR>
 nnoremap [Q :cfirst<CR>
 
