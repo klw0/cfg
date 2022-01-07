@@ -109,7 +109,7 @@ endfunction
 function! stabusline#DiagnosticErrors() abort
   let l:errors = v:null
   if has('nvim')
-    let l:errors = luaeval('vim.lsp.diagnostic.get_count(vim.fn.bufnr(), "Error")')
+    let l:errors = luaeval('#vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })')
   endif
 
   return l:errors ? 'E' . l:errors : ''
@@ -118,7 +118,7 @@ endfunction
 function! stabusline#DiagnosticWarnings() abort
   let l:warnings = v:null
   if has('nvim')
-    let l:warnings = luaeval('vim.lsp.diagnostic.get_count(vim.fn.bufnr(), "Warning")')
+    let l:warnings = luaeval('#vim.diagnostic.get(0, { severity = { max = vim.diagnostic.severity.WARN } })')
   endif
 
   return l:warnings ? 'W' . l:warnings : ''

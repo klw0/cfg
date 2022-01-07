@@ -7,19 +7,29 @@ if exists('g:loaded_lsp')
 endif
 let g:loaded_lsp = v:true
 
-lua require('lsp').init()
+lua vim.diagnostic.config({ virtual_text = false })
 
 augroup lsp
   autocmd!
-  autocmd User LspDiagnosticsChanged lua require('lsp').show_buffer_diagnostics()
+  autocmd DiagnosticChanged * call s:DiagnosticChanged()
 augroup END
 
-highlight! link LspDiagnosticsDefaultError Error
-highlight! link LspDiagnosticsDefaultWarning WarningMsg
-highlight! link LspDiagnosticsDefaultInformation WarningMsg
-highlight! link LspDiagnosticsDefaultHint WarningMsg
+function! s:DiagnosticChanged() abort
+lua << EOF
+vim.diagnostic.setloclist({ open = false })
 
-highlight! link LspDiagnosticsUnderlineError SpellBad
-highlight! link LspDiagnosticsUnderlineWarning SpellBad
-highlight! link LspDiagnosticsUnderlineHint SpellBad
-highlight! link LspDiagnosticsUnderlineInformation SpellBad
+if #vim.diagnostic.get(0) == 0 then
+  vim.api.nvim_command('lclose')
+end
+EOF
+endfunction
+
+highlight! link DiagnosticError Error
+highlight! link DiagnosticWarn WarningMsg
+highlight! link DiagnosticInfo WarningMsg
+highlight! link DiagnosticHint WarningMsg
+
+highlight! link DiagnosticFloatingError Normal
+highlight! link DiagnosticFloatingWarn Normal
+highlight! link DiagnosticFloatingInfo Normal
+highlight! link DiagnosticFloatingHint Normal
