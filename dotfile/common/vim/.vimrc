@@ -78,6 +78,8 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-P>" : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<C-G>u\<CR>"
 
+nnoremap <leader>b :buffer <C-Z>
+
 nnoremap ]b :bnext<CR>
 nnoremap [b :bprev<CR>
 nnoremap ]B :blast<CR>
@@ -256,7 +258,6 @@ nmap <leader><leader> <Plug>CommentaryLine<CR>
 
 " fzf
 nmap <leader>e :Files<CR>
-nmap <leader>b :Buffers<CR>
 
 let g:fzf_layout = { 'down': '40%' }
 let g:fzf_preview_window = ''
