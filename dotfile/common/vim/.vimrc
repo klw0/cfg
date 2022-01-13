@@ -50,6 +50,7 @@ set ruler
 set showcmd
 set splitright
 set wildmenu
+set wildmode=longest:full,full
 
 set complete+=kspell
 set completeopt+=menuone,noselect,noinsert
