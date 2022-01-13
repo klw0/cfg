@@ -52,7 +52,7 @@ set splitright
 set wildmenu
 
 set complete+=kspell
-set completeopt+=longest,menuone,noselect,noinsert
+set completeopt+=menuone,noselect,noinsert
 set completeopt-=preview
 set shortmess+=cF
 set shortmess-=S
