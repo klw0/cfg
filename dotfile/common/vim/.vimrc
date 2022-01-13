@@ -70,9 +70,7 @@ nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 " Set text wrapping toggles
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 
-" Clear search highlighting, update the current diff if there is one, and
-" clear the screen/redraw.
-nnoremap <silent><expr> <C-L> ':nohlsearch' . (&diff ? '\| diffupdate' : '') . '<CR><C-L>'
+nnoremap <C-L> <Cmd>nohlsearch<Bar>diffupdate<CR><C-L>
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-P>" : "\<S-Tab>"
