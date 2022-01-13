@@ -8,21 +8,26 @@ let maplocalleader="\<Space>"
 filetype plugin indent on
 syntax enable
 
+set autoread
 set encoding=utf-8
 set hidden
 set mouse=a
 set ttimeoutlen=0     " Shorten key sequence timeouts (eliminate delays after hitting ESC)
+set ttyfast
 set updatetime=125
 
 if has('nvim')
   set inccommand=nosplit  " Show the effects of an Ex command in realtime
 endif
 
+set autoindent
 set backspace=indent,eol,start
 set expandtab
 set formatoptions+=j  " Remove a comment leader when joining lines
+set nostartofline
 set nowrap
 set shiftwidth=0
+set smarttab
 set softtabstop=-1
 set tabstop=4
 set textwidth=80
@@ -36,17 +41,21 @@ set incsearch
 set smartcase
 
 set background=dark
+set fillchars+=vert:│
 set laststatus=2
 set nofoldenable
 set noshowmode
 set number
 set ruler
+set showcmd
 set splitright
+set wildmenu
 
 set complete+=kspell
 set completeopt+=longest,menuone,noselect,noinsert
 set completeopt-=preview
-set shortmess+=c
+set shortmess+=cF
+set shortmess-=S
 
 " thanks arp242
 set backupdir=~/.local/share/vim/backup | call mkdir(&backupdir, 'p', 0700)
