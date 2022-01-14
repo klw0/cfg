@@ -103,6 +103,9 @@ nnoremap [q :cbefore<CR>
 nnoremap ]Q :clast<CR>
 nnoremap [Q :cfirst<CR>
 
+noremap <leader>dg :diffget<CR>
+noremap <leader>dp :diffput<CR>
+
 nnoremap <leader>n :Lexplore<CR>
 
 let g:attn_strings = {
