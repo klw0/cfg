@@ -142,16 +142,25 @@ if executable('rg')
   set grepprg=rg\ --vimgrep
 endif
 
-command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args>
-command! -nargs=+ -complete=file_in_path -bar LGrep silent! lgrep! <args>
+function! s:AbbreviateCommand(cmd, abbrev) abort
+  execute printf(
+    \ 'cnoreabbrev <expr> %s (getcmdtype() ==# ":" && getcmdline() =~# "^%s")  ? "%s" : "%s"',
+    \ a:cmd,
+    \ a:cmd,
+    \ a:abbrev,
+    \ a:cmd)
+endfunction
+
+call s:AbbreviateCommand('grep', 'silent! grep!')
+nnoremap <leader>g :grep<C-]><Space>
+call s:AbbreviateCommand('lgrep', 'silent! lgrep!')
+nnoremap <leader>lg :lgrep<C-]><Space>
 
 augroup quickfix
   autocmd!
   autocmd QuickFixCmdPost grep botright cwindow
   autocmd QuickFixCmdPost lgrep botright lwindow
 augroup END
-
-nnoremap <leader>g :Grep<Space>
 
 augroup autocomplete
   autocmd!
