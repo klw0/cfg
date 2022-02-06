@@ -51,6 +51,7 @@ set showcmd
 set splitright
 set wildmenu
 set wildmode=longest:full,full
+set wildignore+=.git/*
 
 set complete+=kspell
 set completeopt+=menuone,noselect,noinsert
@@ -86,6 +87,7 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-P>" : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<C-G>u\<CR>"
 
+nnoremap <leader>e :FuzzyEdit<Space>
 nnoremap <leader>b :buffer <C-Z>
 
 nnoremap ]b :bnext<CR>
@@ -189,6 +191,7 @@ packadd lsp
 packadd write
 packadd colors
 packadd attn
+packadd fuzzy
 
 " Vendor
 packadd vim-plug
@@ -204,8 +207,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
 
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -277,34 +278,6 @@ xmap <leader><leader> <Plug>Commentary<CR>
 nmap <leader><leader> <Plug>Commentary<CR>
 omap <leader><leader> <Plug>Commentary
 nmap <leader><leader> <Plug>CommentaryLine<CR>
-
-" fzf
-nmap <leader>e :Files<CR>
-
-let g:fzf_layout = { 'down': '40%' }
-let g:fzf_preview_window = ''
-
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit',
-  \ }
-
-let g:fzf_colors = {
-  \ 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'],
-  \ }
 
 " vimwiki
 let g:vimwiki_list = [{ 'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md' }]
