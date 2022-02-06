@@ -134,6 +134,9 @@ endfor
 
 unlet g:attn_strings g:attn_string g:attn_map_seq g:attn_id_string
 
+cnoremap <expr> <C-N> wildmenumode() ? "\<C-N>" : "\<Down>"
+cnoremap <expr> <C-P> wildmenumode() ? "\<C-P>" : "\<Up>"
+
 " ------------------------------------------------------------------------------
 " Custom Functionality
 " ------------------------------------------------------------------------------
