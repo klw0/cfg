@@ -1,4 +1,5 @@
 let s:escape_chars = '.~^\'
+let s:cache = {}
 
 " Returns a list of possible matches to the query.
 "
@@ -38,11 +39,31 @@ function! fuzzy#CheapMatchFuzzy(items, query) abort
 endfunction
 
 function! fuzzy#EditCompleter(argLead, cmdLine, cursorPos) abort
-  let l:cmd = 'find . -type f'
-  for l:p in split(&wildignore, ',')
-    let l:cmd .= printf(' -not -path "./%s"', l:p)
-  endfor
-  let l:files = systemlist(l:cmd)
+  let l:cache_key = expand('<sfile>')
+  let l:cache = {}
+  if has_key(s:cache, l:cache_key)
+    let l:cache = s:cache[l:cache_key]
+  else
+    let s:cache[l:cache_key] = l:cache
+
+    augroup fuzzy_editcompleter
+      autocmd!
+      " Runs in script context, so l:cache_key can't be used.
+      autocmd CmdlineLeave * ++once call remove(s:cache, expand('<sfile>'))
+    augroup END
+  endif
+
+  if has_key(l:cache, 'files')
+    let l:files = l:cache['files']
+  else
+    let l:cmd = 'find . -type f'
+    for l:p in split(&wildignore, ',')
+      let l:cmd .= printf(' -not -path "./%s"', l:p)
+    endfor
+
+    let l:files = systemlist(l:cmd)
+    let l:cache['files'] = l:files
+  endif
 
   if len(a:argLead) > 0
     let l:Matcher = exists('*matchfuzzy') ? function('matchfuzzy') : function('fuzzy#CheapMatchFuzzy')
