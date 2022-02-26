@@ -53,6 +53,9 @@ function! fuzzy#EditCompleter(argLead, cmdLine, cursorPos) abort
     augroup END
   endif
 
+  let l:cache_key_matches = 'matches.' . a:argLead
+  if has_key(l:cache, l:cache_key_matches) | return l:cache[l:cache_key_matches] | endif
+
   if has_key(l:cache, 'files')
     let l:files = l:cache['files']
   else
@@ -67,7 +70,9 @@ function! fuzzy#EditCompleter(argLead, cmdLine, cursorPos) abort
 
   if len(a:argLead) > 0
     let l:Matcher = exists('*matchfuzzy') ? function('matchfuzzy') : function('fuzzy#CheapMatchFuzzy')
-    return l:Matcher(l:files, a:argLead)
+    let l:matches = l:Matcher(l:files, a:argLead)
+    let l:cache[l:cache_key_matches] = l:matches
+    return l:matches
   else
     return l:files
   endif
