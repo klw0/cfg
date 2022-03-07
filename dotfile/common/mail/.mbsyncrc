@@ -54,3 +54,25 @@ Near :lists:
 Patterns *
 Create Both
 Expunge Both
+
+# -----------------------------------------------------------------------------
+# keith@whitneylabs.com
+# -----------------------------------------------------------------------------
+
+IMAPStore keith@whitneylabs.com-remote
+Host imap.migadu.com
+User keith@whitneylabs.com
+PassCmd "pass show whitneylabs/keith@whitneylabs.com"
+SSLType IMAPS
+
+MaildirStore keith@whitneylabs.com-local
+Path ~/mail/keith@whitneylabs.com/
+Inbox ~/mail/keith@whitneylabs.com/INBOX
+Subfolders Verbatim
+
+Channel keith@whitneylabs.com
+Far :keith@whitneylabs.com-remote:
+Near :keith@whitneylabs.com-local:
+Patterns *
+Create Both
+Expunge Both

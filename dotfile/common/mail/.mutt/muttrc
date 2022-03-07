@@ -108,6 +108,11 @@ set my_tech_pass = "`pass show klw0@klw0.org`"
 source ~/.mutt/muttrc.tech
 folder-hook +($my_tech_user|lists) "source ~/.mutt/muttrc.tech"
 
+set my_whitneylabs_user = "keith@whitneylabs.com"
+set my_whitneylabs_pass = "`pass show whitneylabs/keith@whitneylabs.com`"
+source ~/.mutt/muttrc.whitneylabs
+folder-hook +$my_whitneylabs "source ~/.mutt/muttrc.whitneylabs"
+
 mailboxes +lists
 mailboxes +lists/openbsd
 mailboxes +lists/openbsd/tech
