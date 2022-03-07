@@ -107,21 +107,13 @@ function! stabusline#BufferName(bufnr) abort
 endfunction
 
 function! stabusline#DiagnosticErrors() abort
-  let l:errors = v:null
-  if has('nvim')
-    let l:errors = luaeval('#vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })')
-  endif
-
-  return l:errors ? 'E' . l:errors : ''
+  let l:errors = diagnostic#Errors()
+  return empty(l:errors) ? '' : 'E' . len(l:errors)
 endfunction
 
 function! stabusline#DiagnosticWarnings() abort
-  let l:warnings = v:null
-  if has('nvim')
-    let l:warnings = luaeval('#vim.diagnostic.get(0, { severity = { max = vim.diagnostic.severity.WARN } })')
-  endif
-
-  return l:warnings ? 'W' . l:warnings : ''
+  let l:warnings = diagnostic#Warnings()
+  return empty(l:warnings) ? '' : 'E' . len(l:warnings)
 endfunction
 
 augroup stabusline_dev

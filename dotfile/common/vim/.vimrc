@@ -95,6 +95,12 @@ nnoremap [b :bprev<CR>
 nnoremap ]B :blast<CR>
 nnoremap [B :bfirst<CR>
 
+nnoremap <leader>d :lwindow<CR><C-W>p
+nnoremap ]d :lafter<CR>
+nnoremap [d :lbefore<CR>
+nnoremap ]D :llast<CR>
+nnoremap [D :lfirst<CR>
+
 nnoremap ]l :lafter<CR>
 nnoremap [l :lbefore<CR>
 nnoremap ]L :llast<CR>
@@ -188,6 +194,7 @@ endfunction
 " Personal
 packadd stabusline
 packadd lsp
+packadd diagnostic
 packadd write
 packadd colors
 packadd attn

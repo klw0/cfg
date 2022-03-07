@@ -5,15 +5,6 @@ function! lsp#ConfigureBuffer(client_capabilities) abort
   setlocal omnifunc=v:lua.vim.lsp.omnifunc
   let b:[s:undo_configure_key] = '| setlocal omnifunc<'
 
-  nnoremap <buffer> <leader>d :lwindow<CR><C-W>p
-  let b:[s:undo_configure_key] .= '| nunmap <buffer> <leader>d'
-
-  nnoremap <buffer> ]d :lafter<CR>
-  let b:[s:undo_configure_key] .= '| nunmap <buffer> ]d'
-
-  nnoremap <buffer> [d :lbefore<CR>
-  let b:[s:undo_configure_key] .= '| nunmap <buffer> [d'
-
   nnoremap <buffer><silent> gd :lua vim.lsp.buf.declaration()<CR>
   let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> gd'
 
@@ -41,9 +32,7 @@ function! lsp#ConfigureBuffer(client_capabilities) abort
   nnoremap <buffer><silent> <leader>rn :lua vim.lsp.buf.rename()<CR>
   let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> <leader>rn'
 
-  autocmd CursorHold <buffer> lua vim.diagnostic.open_float(nil, { focusable = false, scope = "cursor" })
-  let b:[s:undo_configure_key] .= '| autocmd! CursorHold <buffer>'
-
+  " autocmd CompleteChanged <buffer> call lsp#ShowCompleteSignature()
 
   if a:client_capabilities.document_formatting
     " Format on write.
