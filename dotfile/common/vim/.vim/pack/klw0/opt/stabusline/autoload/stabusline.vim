@@ -118,7 +118,5 @@ endfunction
 
 augroup stabusline_dev
   autocmd!
-
-  " Automatically apply color changes after writing this file.
-  autocmd BufWritePost stabusline.vim so <sfile>
+  autocmd BufWritePost <buffer> so <sfile>
 augroup END

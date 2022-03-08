@@ -69,7 +69,5 @@ highlight link CursorIM Cursor
 
 augroup klw0_dev
   autocmd!
-
-  " Automatically apply the color scheme after writing.
-  autocmd BufWritePost klw0.vim colorscheme klw0
+  autocmd BufWritePost <buffer> colorscheme klw0
 augroup END
