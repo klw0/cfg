@@ -17,3 +17,5 @@
     path = nvim
 [tag]
     gpgSign = true
+[include]
+    path = ~/.gitconfig.local
