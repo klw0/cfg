@@ -15,7 +15,7 @@ highlight PreProc       cterm=none            ctermfg=none  ctermbg=none
 highlight Special       cterm=none            ctermfg=none  ctermbg=none
 highlight Statement     cterm=none            ctermfg=none  ctermbg=none
 highlight Tag           cterm=none            ctermfg=1     ctermbg=none
-highlight Todo          cterm=bold            ctermfg=5     ctermbg=none
+highlight Todo          cterm=bold            ctermfg=6     ctermbg=none
 highlight Type          cterm=none            ctermfg=none  ctermbg=none
 highlight Underlined    cterm=none            ctermfg=13    ctermbg=none
 highlight link SpecialChar Constant
@@ -48,7 +48,7 @@ highlight PmenuThumb    cterm=none            ctermfg=none  ctermbg=8
 highlight Question      cterm=bold            ctermfg=none  ctermbg=none
 highlight Search        cterm=reverse         ctermfg=3     ctermbg=none
 highlight SignColumn    cterm=none            ctermfg=none  ctermbg=none
-highlight SpecialKey    cterm=bold            ctermfg=7     ctermbg=0
+highlight SpecialKey    cterm=bold            ctermfg=none  ctermbg=none
 highlight SpellBad      cterm=underline       ctermfg=none  ctermbg=none
 highlight SpellCap      cterm=underline       ctermfg=none  ctermbg=none
 highlight SpellLocal    cterm=underline       ctermfg=none  ctermbg=none
@@ -62,8 +62,8 @@ highlight Title         cterm=bold            ctermfg=none  ctermbg=none
 highlight VertSplit     cterm=none            ctermfg=8     ctermbg=none
 highlight Visual        cterm=reverse         ctermfg=3     ctermbg=none
 highlight VisualNOS     cterm=bold,underline  ctermfg=none  ctermbg=none
-highlight WarningMsg    cterm=bold            ctermfg=9     ctermbg=none
-highlight link WildMenu PmenuSel
+highlight WarningMsg    cterm=bold            ctermfg=3     ctermbg=none
+highlight WildMenu      cterm=reverse         ctermfg=8     ctermbg=none
 highlight link lCursor Cursor
 highlight link CursorIM Cursor
 
