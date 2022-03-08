@@ -144,6 +144,8 @@ unlet g:attn_strings g:attn_string g:attn_map_seq g:attn_id_string
 cnoremap <expr> <C-N> wildmenumode() ? "\<C-N>" : "\<Down>"
 cnoremap <expr> <C-P> wildmenumode() ? "\<C-P>" : "\<Up>"
 
+nnoremap <silent> <leader>m :silent make<CR>
+
 " ------------------------------------------------------------------------------
 " Custom Functionality
 " ------------------------------------------------------------------------------
@@ -168,8 +170,8 @@ nnoremap <leader>lg :lgrep<C-]><Space>
 
 augroup quickfix
   autocmd!
-  autocmd QuickFixCmdPost grep botright cwindow
-  autocmd QuickFixCmdPost lgrep botright lwindow
+  autocmd QuickFixCmdPost grep,make botright cwindow
+  autocmd QuickFixCmdPost lgrep,lmake botright lwindow
 augroup END
 
 augroup autocomplete
