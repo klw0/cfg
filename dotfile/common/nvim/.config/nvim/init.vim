@@ -3,4 +3,3 @@ let &packpath = &runtimepath
 nunmap Y
 
 source ~/.vimrc
-

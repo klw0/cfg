@@ -13,7 +13,7 @@ function! fuzzy#CheapMatchFuzzy(items, query) abort
   let l:qchars = split(a:query, '\zs')
   for l:c in l:qchars[0:-2]
     let l:c = escape(l:c, s:escape_chars)
-    let l:pat .= printf('%s[^%s]\{-}', l:c, l:c)      " \{-} is vim's ungreedy *
+    let l:pat .= printf('%s[^%s]\{-}', l:c, l:c)    " \{-} is vim's ungreedy *
   endfor
   let l:pat .= escape(l:qchars[-1], s:escape_chars)
   let l:pat .= '\C'

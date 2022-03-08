@@ -55,8 +55,7 @@ set wildoptions=pum
 set wildignore+=.git/*
 
 set complete+=kspell
-set completeopt+=menuone,noselect,noinsert
-set completeopt-=preview
+set completeopt=menuone,noselect,noinsert
 set shortmess+=cF
 set shortmess-=S
 
@@ -71,6 +70,8 @@ set undofile
 " XXX: Setting context is a kludge to prevent folding in diff mode (how is
 " there not a proper option for this!?).
 set diffopt+=algorithm:histogram,context:2147483647,foldcolumn:1
+
+colorscheme klw0
 
 " ------------------------------------------------------------------------------
 " Mappings
@@ -176,10 +177,10 @@ augroup END
 
 augroup autocomplete
   autocmd!
-  autocmd InsertCharPre * call AutoComplete()
+  autocmd InsertCharPre * call s:AutoComplete()
 augroup END
 
-function! AutoComplete() abort
+function! s:AutoComplete() abort
   if pumvisible() | return | endif
   if &omnifunc ==# '' | return | endif
 
@@ -310,9 +311,3 @@ let g:tex_flavor = 'latex'
 " csv.vim
 let g:csv_autocmd_arrange = 1
 let g:csv_no_conceal = 1
-
-" ------------------------------------------------------------------------------
-" Post-plugin configuration
-" ------------------------------------------------------------------------------
-
-colorscheme klw0
