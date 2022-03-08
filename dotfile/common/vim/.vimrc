@@ -80,9 +80,6 @@ colorscheme klw0
 " Create the directory containing the file in the buffer
 nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 
-" Set text wrapping toggles
-nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
-
 nnoremap <C-L> <Cmd>nohlsearch<Bar>diffupdate<CR><C-L>
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
@@ -229,8 +226,6 @@ Plug 'chooh/brightscript.vim'
 Plug 'chrisbra/csv.vim'
 Plug 'sebdah/vim-delve'
 
-Plug 'robertmeta/nofrils'
-
 call plug#end()
 
 " ------------------------------------------------------------------------------
@@ -253,7 +248,6 @@ local on_attach = function(client)
 end
 
 local servers = {
-  bashls = {},
   clangd = {},
   efm = {
     filetypes = { "pandoc", "sh" },
