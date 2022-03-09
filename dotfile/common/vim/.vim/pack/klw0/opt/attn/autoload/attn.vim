@@ -11,18 +11,21 @@ function! attn#Add(attn_string, direction = 'n') abort
   let l:rhs = len(l:rhs) == 0 || l:rhs =~ '^\s\S\+' ? l:rhs : ' ' . l:rhs
 
   let l:comment = printf('%s%s%s', l:lhs, a:attn_string . ' ', l:rhs)
-  let l:line = getline('.')
   if a:direction ==# 'n' || a:direction ==# 's'
-    let l:indent = matchstr(l:line, '^\s*')
-    let l:new_line = l:indent . l:comment
-    let l:new_lnum = line('.') + (a:direction ==# 'n' ? -1 : 0)
+    let l:offsets = {
+      \ 'n': { 'indent': 0, 'append': -1, 'cursor': -1 },
+      \ 's': { 'indent': 1, 'append':  0, 'cursor':  1 },
+      \ }[a:direction]
 
-    call append(l:new_lnum, l:new_line)
-    call cursor(l:new_lnum + 1, len(l:new_line) - len(l:rhs))
+    let l:indent = matchstr(getline(line('.') + l:offsets['indent']), '^\s*')
+    let l:line = l:indent . l:comment
+
+    call append(line('.') + l:offsets['append'], l:line)
+    call cursor(line('.') + l:offsets['cursor'], len(l:line) - len(l:rhs))
   elseif a:direction ==# 'w'
-    let l:new_line = l:line . "\t" . l:comment
+    let l:line = getline('.') . "\t" . l:comment
 
-    call setline('.', l:new_line)
-    call cursor('.', len(l:new_line) - len(l:rhs))
+    call setline('.', l:line)
+    call cursor('.', len(l:line) - len(l:rhs))
   endif
 endfunction
