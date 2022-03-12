@@ -1,0 +1,25 @@
+AlignEscapedNewlines: Left
+AlignOperands: Align
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+AlwaysBreakAfterReturnType: AllDefinitions
+BinPackArguments: false
+BinPackParameters: false
+BreakBeforeBinaryOperators: true
+BreakBeforeBraces: Attach
+BreakBeforeTernaryOperators: true
+ColumnLimit: 80
+ContinuationIndentWidth: 4
+IndentWidth: 4
+MaxEmptyLinesToKeep: 1
+PointerAlignment: Right
+ReferenceAlignment: Pointer
+SortIncludes: CaseSensitive
+SortIncludes: true
+SpaceBeforeParens: ControlStatements
+SpacesBeforeTrailingComments: 1
+SpacesInLineCommentPrefix:
+    Minimum: 1
+    Maximum: -1
+TabWidth: 4
+UseTab: Always
