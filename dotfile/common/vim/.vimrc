@@ -227,6 +227,7 @@ Plug 'lervag/vimtex'
 Plug 'chooh/brightscript.vim'
 Plug 'chrisbra/csv.vim'
 Plug 'sebdah/vim-delve'
+Plug 'ledger/vim-ledger'
 
 call plug#end()
 
