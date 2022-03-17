@@ -2,11 +2,8 @@ let s:undo_configure_key = 'undo_lsp_configure_buffer'
 
 " Configure the buffer with common LSP options and mappings.
 function! lsp#ConfigureBuffer(client_capabilities) abort
-  setlocal omnifunc=v:lua.vim.lsp.omnifunc
-  let b:[s:undo_configure_key] = '| setlocal omnifunc<'
-
   nnoremap <buffer><silent> gd :lua vim.lsp.buf.declaration()<CR>
-  let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> gd'
+  let b:[s:undo_configure_key] = '| silent! nunmap <buffer> gd'
 
   nnoremap <buffer><silent> <C-]> :lua vim.lsp.buf.definition()<CR>
   let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> <C-]>'
@@ -33,6 +30,11 @@ function! lsp#ConfigureBuffer(client_capabilities) abort
   let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> <leader>rn'
 
   " autocmd CompleteChanged <buffer> call lsp#ShowCompleteSignature()
+
+  if a:client_capabilities.completion
+    setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    let b:[s:undo_configure_key] .= '| setlocal omnifunc<'
+  endif
 
   if a:client_capabilities.document_formatting
     " Format on write.
