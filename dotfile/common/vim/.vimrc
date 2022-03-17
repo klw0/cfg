@@ -67,9 +67,11 @@ set viewdir=~/.local/share/vim/view | call mkdir(&viewdir, 'p', 0700)
 set history=10000
 set undofile
 
+set diffopt+=algorithm:histogram,vertical
+
 " XXX: Setting context is a kludge to prevent folding in diff mode (how is
 " there not a proper option for this!?).
-set diffopt+=algorithm:histogram,context:2147483647,foldcolumn:1
+set diffopt+=context:2147483647,foldcolumn:1
 
 colorscheme klw0
 
