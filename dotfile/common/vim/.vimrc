@@ -270,6 +270,7 @@ local servers = {
 
       -- Remove mappings that are better handled by vim than vim-language-server.
       vim.api.nvim_buf_del_keymap(bufnr, "n", "K")
+      vim.api.nvim_buf_del_keymap(bufnr, "n", "gd")
       vim.api.nvim_buf_del_keymap(bufnr, "n", "gD")
       vim.api.nvim_buf_del_keymap(bufnr, "n", "1gD")
     end
