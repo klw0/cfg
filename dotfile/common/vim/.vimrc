@@ -260,6 +260,9 @@ local servers = {
   gopls = {},
   jsonls = {},
   sumneko_lua = {},
+  sourcekit = {
+    filetypes = { "swift", "objective-c" },
+  },
   vimls = {
     on_attach = function(client, bufnr)
       on_attach(client)
