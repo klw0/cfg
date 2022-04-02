@@ -57,7 +57,6 @@ function t() {
 setopt AUTO_PUSHD
 setopt CDABLE_VARS
 setopt COMBINING_CHARS
-setopt CORRECT
 setopt EXTENDED_GLOB
 setopt INTERACTIVE_COMMENTS
 setopt LONG_LIST_JOBS
@@ -130,7 +129,6 @@ zstyle ":completion:*:-tilde-:*" tag-order "!users"
 
 zstyle ":completion:*:default" list-prompt "%S%M matches%s"
 zstyle ":completion:*" format " %F{yellow}── %d ──%f"
-zstyle ":completion:*:corrections" format " %F{green}── %d (errors: %e) ──%f"
 zstyle ":completion:*:descriptions" format " %F{yellow}── %d ──%f"
 zstyle ":completion:*:messages" format " %F{purple}── %d ──%f"
 zstyle ":completion:*:warnings" format " %F{red}── no matches found ──%f"
