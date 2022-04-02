@@ -145,13 +145,22 @@ zstyle ":completion:*:warnings" format ""
 # zsh: Prompt
 # -----------------------------------------------------------------------------
 
-typeset -gU fpath
-fpath=("${ZDOTDIR:-$HOME/.zsh}/functions" $fpath)
+setopt PROMPT_CR
+setopt PROMPT_SP
+setopt PROMPT_PERCENT
+setopt PROMPT_SUBST
 
-autoload -Uz promptinit
-promptinit
+autoload -Uz add-zsh-hook
+autoload -Uz vcs_info
+add-zsh-hook precmd vcs_info
 
-prompt keithy
+zstyle ":vcs_info:*" enable git cvs
+zstyle ":vcs_info:*:*" disable-patterns "*.git*"
+zstyle ":vcs_info:*:*" actionformats "%s:%b %u%c (%a)"
+zstyle ":vcs_info:*:*" formats "%s:%b %u%c"
+
+PS1="${SSH_TTY:+'%m:'}%~ %(!.#.$) "
+RPS1='%(?.. [%?])${vcs_info_msg_0_:+ ${vcs_info_msg_0_}}'
 
 # -----------------------------------------------------------------------------
 # zsh: Line Editing
