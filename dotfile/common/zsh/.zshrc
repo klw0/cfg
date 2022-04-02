@@ -5,13 +5,11 @@
 alias cp="cp -i"
 alias dirs="dirs -v"
 alias find="noglob find"
-alias history="noglob history"
 alias ls="ls -F"
 alias mv="mv -i"
 alias rm="rm -i"
 alias rsync="noglob rsync"
 alias scp="noglob scp"
-alias sftp="noglob sftp"
 alias vim="nvim"
 alias wiki="vim +VimwikiIndex"
 alias xclip="xclip -selection clipboard"
@@ -57,19 +55,16 @@ function t() {
 # -----------------------------------------------------------------------------
 
 setopt AUTO_PUSHD
-setopt AUTO_RESUME
 setopt CDABLE_VARS
 setopt COMBINING_CHARS
 setopt CORRECT
 setopt EXTENDED_GLOB
 setopt INTERACTIVE_COMMENTS
 setopt LONG_LIST_JOBS
-setopt MULTIOS
 setopt NOTIFY
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_SILENT
 setopt PUSHD_TO_HOME
-setopt RC_QUOTES
 unsetopt BG_NICE
 unsetopt CASE_GLOB
 unsetopt CHECK_JOBS
@@ -85,9 +80,7 @@ HISTFILE="${ZDOTDIR:-$HOME}/.zhistory"
 HISTSIZE=50000
 SAVEHIST=50000
 
-setopt BANG_HIST
 setopt EXTENDED_HISTORY
-setopt HIST_BEEP
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
