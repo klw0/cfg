@@ -171,6 +171,7 @@ KEYTIMEOUT=10
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd "^v" edit-command-line
+bindkey -M vicmd "#" vi-pound-insert
 
 zmodload zsh/terminfo
 bindkey -M viins "${terminfo[kcbt]}" reverse-menu-complete
