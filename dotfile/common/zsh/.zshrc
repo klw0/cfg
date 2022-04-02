@@ -2,6 +2,7 @@
 # Executes commands in interactive shells.
 #
 
+alias cd="cd > /dev/null"
 alias cp="cp -i"
 alias dirs="dirs -v"
 alias find="noglob find"
@@ -43,8 +44,12 @@ path=(
     $HOME/go/bin
 )
 
-hash -d src=~/src
-hash -d cfg=~/src/klw0/cfg
+typeset -U cdpath
+cdpath=(
+    .
+    $HOME/src
+    $HOME/src/klw0
+)
 
 function t() {
     cd $(mktemp -d -t "${1:-tmp}".XXXXXXXXXX)
@@ -55,7 +60,6 @@ function t() {
 # -----------------------------------------------------------------------------
 
 setopt AUTO_PUSHD
-setopt CDABLE_VARS
 setopt COMBINING_CHARS
 setopt EXTENDED_GLOB
 setopt INTERACTIVE_COMMENTS
@@ -124,7 +128,7 @@ zstyle ":completion:*" matcher-list "m:{a-zA-Z}={A-Za-z}" "r:|[._-]=* r:|=*" "l:
 zstyle ":completion:*" completer _complete _match _approximate
 zstyle ":completion:*:match:*" original only
 zstyle ":completion:*" users ""
-zstyle ":completion:*:cd:*" tag-order "!users"
+zstyle ":completion:*:cd:*" tag-order "! users path-directories"
 zstyle ":completion:*:-tilde-:*" tag-order "!users"
 
 zstyle ":completion:*:default" list-prompt "%S%M matches%s"
