@@ -111,6 +111,8 @@ setopt AUTO_MENU
 setopt AUTO_PARAM_SLASH
 setopt COMPLETE_IN_WORD
 setopt EXTENDED_GLOB
+setopt LIST_PACKED
+setopt LIST_ROWS_FIRST
 unsetopt MENU_COMPLETE
 
 autoload -Uz compinit
@@ -118,6 +120,7 @@ compinit -i
 
 zstyle ":completion:*" menu select
 zstyle ":completion:*" group-name ""
+zstyle ":completion:*" show-ambiguity true
 zstyle ":completion:*" special-dirs true
 zstyle ":completion:*" squeeze-slashes true
 zstyle ":completion:*" verbose yes
@@ -135,10 +138,8 @@ zstyle ":completion:*:cd:*" tag-order "! users path-directories"
 zstyle ":completion:*:-tilde-:*" tag-order "!users"
 
 zstyle ":completion:*:default" list-prompt "%S%M matches%s"
-zstyle ":completion:*" format " %F{yellow}── %d ──%f"
-zstyle ":completion:*:descriptions" format " %F{yellow}── %d ──%f"
-zstyle ":completion:*:messages" format " %F{purple}── %d ──%f"
-zstyle ":completion:*:warnings" format " %F{red}── no matches found ──%f"
+zstyle ":completion:*" format "%F{cyan}# %d%f"
+zstyle ":completion:*:warnings" format ""
 
 # -----------------------------------------------------------------------------
 # zsh: Prompt
@@ -167,3 +168,6 @@ bindkey -M viins "${terminfo[kcbt]}" reverse-menu-complete
 # Use vim-style backspace behavior, not the default vi-style which disallows
 # backspacing over the start of insert.
 bindkey -M viins "^?" backward-delete-char
+
+zmodload zsh/complist
+bindkey -M menuselect '^e' send-break
