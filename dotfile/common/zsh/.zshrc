@@ -2,6 +2,8 @@
 # Executes commands in interactive shells.
 #
 
+bindkey -v
+
 alias cd="cd > /dev/null"
 alias cp="cp -i"
 alias dirs="dirs -v"
