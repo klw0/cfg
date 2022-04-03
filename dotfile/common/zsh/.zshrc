@@ -1,7 +1,3 @@
-#
-# Executes commands in interactive shells.
-#
-
 bindkey -v
 
 alias cd="cd > /dev/null"
@@ -30,16 +26,15 @@ fi
 
 export PREFIX=~
 export LC_ALL=en_US.UTF-8
-export EDITOR="${aliases[vim]}"
-export VISUAL="${aliases[vim]}"
+export EDITOR=$(whence vim)
+export VISUAL="${EDITOR}"
 export PAGER="less"
 export LESS="-g -i -M -R -S -w -X -z-4 -j10 -c"
 export GPG_TTY=$(tty)
-export FZF_DEFAULT_COMMAND="rg --files"
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
 export GIT_MYREMOTE_ADDR="git@git.ksrv.home"
 
-typeset -gU path
+typeset -U path
 path=(
     $HOME/bin
     $path
