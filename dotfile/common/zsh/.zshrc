@@ -18,12 +18,6 @@ unalias run-help
 autoload -Uz run-help
 alias help="run-help"
 
-if [[ "${OSTYPE}" == "openbsd"* ]]; then
-    alias man="man -m ~/share/man"
-elif [[ "${OSTYPE}" == "freebsd"* ]]; then
-    alias man="man -S 0p:1:1p:8:2:3:3p:n:4:5:6:7:9:l"
-fi
-
 export PREFIX=~
 export LC_ALL=en_US.UTF-8
 export EDITOR=$(whence vim)
@@ -51,6 +45,18 @@ cdpath=(
 function t() {
     cd $(mktemp -d -t "${1:-tmp}".XXXXXXXXXX)
 }
+
+case $(uname | tr "[A-Z]" "[a-z]") in
+    openbsd)
+        alias man="man -m ~/share/man"
+        ;;
+    freebsd)
+        alias man="man -S 0p:1:1p:8:2:3:3p:n:4:5:6:7:9:l"
+        ;;
+    darwin)
+        export MANWIDTH=78
+        ;;
+esac
 
 # -----------------------------------------------------------------------------
 # zsh: General
