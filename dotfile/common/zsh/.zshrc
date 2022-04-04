@@ -55,6 +55,7 @@ case $(uname | tr "[A-Z]" "[a-z]") in
         ;;
     darwin)
         export MANWIDTH=78
+        eval $(/opt/homebrew/bin/brew shellenv)
         ;;
 esac
 
