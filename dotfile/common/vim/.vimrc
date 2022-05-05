@@ -263,7 +263,9 @@ local servers = {
   sourcekit = {
     filetypes = { "swift", "objective-c" },
   },
-  tsserver = {},
+  tsserver = {
+    cmd = { "npx", "typescript-language-server", "--stdio" },
+  },
   vimls = {
     on_attach = function(client, bufnr)
       on_attach(client)
