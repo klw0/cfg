@@ -267,6 +267,7 @@ local servers = {
     cmd = { "npx", "typescript-language-server", "--stdio" },
   },
   vimls = {
+    cmd = { "npx", "vim-language-server", "--stdio" },
     on_attach = function(client, bufnr)
       on_attach(client)
 
