@@ -41,6 +41,16 @@ function! lsp#ConfigureBuffer(client_capabilities) abort
     autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
     let b:[s:undo_configure_key] .= '| autocmd! BufWritePre <buffer>'
   endif
+
+  let l:code_actions = []
+  if type(a:client_capabilities.code_action) == v:t_dict
+    let l:code_actions = get(a:client_capabilities.code_action, 'codeActionKinds', [])
+  endif
+
+  if match(l:code_actions, 'source.organizeImports') != -1
+    autocmd BufWritePre <buffer> lua require('lsp').do_code_action_sync('source.organizeImports')
+    let b:[s:undo_configure_key] .= '| autocmd! BufWritePre <buffer>'
+  endif
 endfunction
 
 " Reverses configuration changes made by `lsp#ConfigureBuffer()`.
