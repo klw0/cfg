@@ -38,6 +38,11 @@ function! fuzzy#CheapMatchFuzzy(items, query) abort
   return l:matches
 endfunction
 
+function! fuzzy#MatchFuzzy(items, query) abort
+    let l:Matcher = exists('*matchfuzzy') ? function('matchfuzzy') : function('fuzzy#CheapMatchFuzzy')
+    return l:Matcher(a:items, a:query)
+endfunction
+
 function! fuzzy#EditCompleter(argLead, cmdLine, cursorPos) abort
   let l:cache_key = expand('<sfile>')
   let l:cache = {}
@@ -69,8 +74,7 @@ function! fuzzy#EditCompleter(argLead, cmdLine, cursorPos) abort
   endif
 
   if len(a:argLead) > 0
-    let l:Matcher = exists('*matchfuzzy') ? function('matchfuzzy') : function('fuzzy#CheapMatchFuzzy')
-    let l:matches = l:Matcher(l:files, a:argLead)
+    let l:matches = fuzzy#MatchFuzzy(l:files, a:argLead)
     let l:cache[l:cache_key_matches] = l:matches
     return l:matches
   else
