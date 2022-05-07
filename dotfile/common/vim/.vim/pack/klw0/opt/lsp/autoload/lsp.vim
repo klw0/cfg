@@ -5,9 +5,6 @@ function! lsp#ConfigureBuffer(client_capabilities) abort
   nnoremap <buffer><silent> gd :lua vim.lsp.buf.declaration()<CR>
   let b:[s:undo_configure_key] = '| silent! nunmap <buffer> gd'
 
-  nnoremap <buffer><silent> <C-]> :lua vim.lsp.buf.definition()<CR>
-  let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> <C-]>'
-
   nnoremap <buffer><silent> K :lua vim.lsp.buf.hover()<CR>
   let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> K'
 
@@ -30,6 +27,9 @@ function! lsp#ConfigureBuffer(client_capabilities) abort
   let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> <leader>rn'
 
   " autocmd CompleteChanged <buffer> call lsp#ShowCompleteSignature()
+
+  setlocal tagfunc=v:lua.vim.lsp.tagfunc
+  let b:[s:undo_configure_key] .= '| setlocal tagfunc<'
 
   if a:client_capabilities.completion
     setlocal omnifunc=v:lua.vim.lsp.omnifunc
