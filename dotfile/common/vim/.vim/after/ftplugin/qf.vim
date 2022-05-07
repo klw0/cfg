@@ -1,4 +1,5 @@
 set nobuflisted
+let &l:winheight = &lines / 3
 
 " Inspired by Ack.vim and qf-vim.
 nnoremap <buffer> <silent> t <C-w><CR><C-w>T
