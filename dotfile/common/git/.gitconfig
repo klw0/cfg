@@ -17,5 +17,7 @@
     path = nvim
 [tag]
     gpgSign = true
+[includeIf "gitdir:~/src/whitneylabs/"]
+    path = ~/.gitconfig.whitneylabs
 [include]
     path = ~/.gitconfig.local
