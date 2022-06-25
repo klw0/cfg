@@ -50,9 +50,6 @@ case $(uname | tr "[A-Z]" "[a-z]") in
     openbsd)
         alias man="man -m ~/share/man"
         ;;
-    freebsd)
-        alias man="man -S 0p:1:1p:8:2:3:3p:n:4:5:6:7:9:l"
-        ;;
     darwin)
         export MANWIDTH=78
         eval $(/opt/homebrew/bin/brew shellenv)
