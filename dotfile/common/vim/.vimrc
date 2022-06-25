@@ -51,7 +51,7 @@ set showcmd
 set splitright
 set wildmenu
 set wildmode=longest:full,full
-set wildoptions=pum
+set wildoptions=pum,tagfile
 set wildignore+=.git/*
 
 set complete+=kspell
