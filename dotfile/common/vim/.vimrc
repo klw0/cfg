@@ -79,6 +79,13 @@ colorscheme klw0
 " Mappings
 " ------------------------------------------------------------------------------
 
+nnoremap ## <C-a>
+xnoremap ## <C-a>
+nnoremap #+ <C-a>
+xnoremap #+ <C-a>
+nnoremap #- <C-x>
+xnoremap #- <C-x>
+
 " Create the directory containing the file in the buffer
 nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 
