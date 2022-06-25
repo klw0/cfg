@@ -1,0 +1,16 @@
+set autoindent
+set autowrite
+set cedit=
+set extended
+set iclower
+set number
+set ruler
+set searchincr
+set shiftwidth=4
+set showmode
+set tabstop=4
+set windowname
+
+map gg 1G
+map v :Edit 1G
+map s :Edit 1G
