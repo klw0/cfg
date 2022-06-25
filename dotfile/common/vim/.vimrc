@@ -301,6 +301,9 @@ nmap <leader><leader> <Plug>Commentary<CR>
 omap <leader><leader> <Plug>Commentary
 nmap <leader><leader> <Plug>CommentaryLine<CR>
 
+" vim-fugitive
+call s:AbbreviateCommand('G', 'vertical topleft G')
+
 " vimwiki
 let g:vimwiki_list = [{ 'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md' }]
 let g:vimwiki_global_ext = 0
