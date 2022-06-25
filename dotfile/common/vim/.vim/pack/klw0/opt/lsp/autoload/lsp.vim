@@ -1,6 +1,5 @@
 let s:undo_configure_key = 'undo_lsp_configure_buffer'
 
-" Configure the buffer with common LSP options and mappings.
 function! lsp#ConfigureBuffer(client_capabilities) abort
   nnoremap <buffer><silent> gD :lua vim.lsp.buf.declaration()<CR>
   let b:[s:undo_configure_key] = '| silent! nunmap <buffer> gD'
@@ -23,8 +22,6 @@ function! lsp#ConfigureBuffer(client_capabilities) abort
   nnoremap <buffer><silent> <leader>in :lua vim.lsp.buf.incoming_calls()<CR>
   let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> <leader>in'
 
-  " autocmd CompleteChanged <buffer> call lsp#ShowCompleteSignature()
-
   setlocal tagfunc=v:lua.vim.lsp.tagfunc
   let b:[s:undo_configure_key] .= '| setlocal tagfunc<'
 
@@ -34,7 +31,6 @@ function! lsp#ConfigureBuffer(client_capabilities) abort
   endif
 
   if a:client_capabilities.document_formatting
-    " Format on write.
     autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
     let b:[s:undo_configure_key] .= '| autocmd! BufWritePre <buffer>'
   endif
@@ -50,7 +46,6 @@ function! lsp#ConfigureBuffer(client_capabilities) abort
   endif
 endfunction
 
-" Reverses configuration changes made by `lsp#ConfigureBuffer()`.
 function! lsp#UnconfigureBuffer() abort
   if !has_key(b:, s:undo_configure_key) | return | endif
 
