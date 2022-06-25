@@ -2,29 +2,26 @@ let s:undo_configure_key = 'undo_lsp_configure_buffer'
 
 " Configure the buffer with common LSP options and mappings.
 function! lsp#ConfigureBuffer(client_capabilities) abort
-  nnoremap <buffer><silent> gd :lua vim.lsp.buf.declaration()<CR>
+  nnoremap <buffer><silent> gD :lua vim.lsp.buf.declaration()<CR>
+  let b:[s:undo_configure_key] = '| silent! nunmap <buffer> gD'
+
+  nnoremap <buffer><silent> gd :lua vim.lsp.buf.definition()<CR>
   let b:[s:undo_configure_key] = '| silent! nunmap <buffer> gd'
 
   nnoremap <buffer><silent> K :lua vim.lsp.buf.hover()<CR>
   let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> K'
 
-  nnoremap <buffer><silent> gD :lua vim.lsp.buf.implementation()<CR>
-  let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> gD'
+  nnoremap <buffer><silent> <leader>ca :lua vim.lsp.buf.code_action()<CR>
+  let b:[s:undo_configure_key] = '| silent! nunmap <buffer> <leader>ca'
 
-  nnoremap <buffer><silent> <C-K> :lua vim.lsp.buf.signature_help()<CR>
-  let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> <C-K>'
-
-  nnoremap <buffer><silent> 1gD :lua vim.lsp.buf.type_definition()<CR>
-  let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> 1gD'
-
-  nnoremap <buffer><silent> gr :lua vim.lsp.buf.references()<CR>
-  let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> gr'
-
-  nnoremap <buffer><silent> g0 :lua vim.lsp.buf.document_symbol()<CR>
-  let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> g0'
+  nnoremap <buffer><silent> <leader>ref :lua vim.lsp.buf.references()<CR>
+  let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> <leader>ref'
 
   nnoremap <buffer><silent> <leader>rn :lua vim.lsp.buf.rename()<CR>
   let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> <leader>rn'
+
+  nnoremap <buffer><silent> <leader>in :lua vim.lsp.buf.incoming_calls()<CR>
+  let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> <leader>in'
 
   " autocmd CompleteChanged <buffer> call lsp#ShowCompleteSignature()
 
