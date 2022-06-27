@@ -122,8 +122,6 @@ nnoremap [Q :cfirst<CR>
 noremap <leader>dg :diffget<CR>
 noremap <leader>dp :diffput<CR>
 
-nnoremap <leader>n :Lexplore<CR>
-
 let g:attn_strings = {
   \ 'TODO': 'td',
   \ 'FIXME': 'fm',
@@ -219,6 +217,7 @@ packadd vim-plug
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
@@ -244,11 +243,8 @@ call plug#end()
 " Plugin Configuration
 " ------------------------------------------------------------------------------
 
-let g:netrw_altv = 1
-let g:netrw_banner = 0
-let g:netrw_browse_split = 4
-let g:netrw_liststyle = 3
-let g:netrw_winsize = -24
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
 
 if has('nvim')
 " nvim-lspconfig
@@ -294,6 +290,11 @@ for server, config in pairs(servers) do
 end
 EOF
 endif
+
+" NERDTree
+map <leader>n :NERDTreeToggle<CR>
+let NERDTreeShowBookmarks = 1
+let NERDTreeMouseMode = 2
 
 " vim-commentary
 xmap <leader><leader> <Plug>Commentary<CR>
