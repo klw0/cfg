@@ -195,6 +195,19 @@ function! s:AutoComplete() abort
   endif
 endfunction
 
+function! s:DeleteHiddenBuffers(bang) abort
+  let l:hidden = []
+  for b in getbufinfo({'bufloaded': v:true})
+    if !b.hidden | continue | endif
+    call add(l:hidden, b.bufnr)
+  endfor
+
+  if len(l:hidden) == 0 | return | endif
+  execute printf(':bd%s %s', a:bang, join(l:hidden, ' '))
+endfunction
+
+command! -nargs=0 -bang -bar Bdh call s:DeleteHiddenBuffers('<bang>')
+
 " ------------------------------------------------------------------------------
 " Packages
 " ------------------------------------------------------------------------------
