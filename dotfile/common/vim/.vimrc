@@ -96,6 +96,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-P>" : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<C-G>u\<CR>"
 
 nnoremap <leader>e :FuzzyEdit<Space>
+nnoremap <leader>E :FuzzyTabEdit<Space>
 nnoremap <leader>b :buffer <C-Z>
 
 nnoremap ]b :bnext<CR>
