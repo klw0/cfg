@@ -295,6 +295,9 @@ local servers = {
       vim.api.nvim_buf_del_keymap(bufnr, "n", "gD")
     end
   },
+  yamlls = {
+    cmd = { "npx", "yaml-language-server", "--stdio" },
+  },
 }
 
 for server, config in pairs(servers) do
