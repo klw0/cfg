@@ -283,6 +283,7 @@ local servers = {
   tsserver = {
     cmd = { "npx", "typescript-language-server", "--stdio" },
   },
+  solargraph = {},
   vimls = {
     cmd = { "npx", "vim-language-server", "--stdio" },
     on_attach = function(client, bufnr)
