@@ -60,7 +60,7 @@ highlight TabLineFill   cterm=none            ctermfg=none  ctermbg=0
 highlight TabLineSel    cterm=reverse         ctermfg=8     ctermbg=none
 highlight Title         cterm=bold            ctermfg=none  ctermbg=none
 highlight VertSplit     cterm=none            ctermfg=8     ctermbg=none
-highlight Visual        cterm=reverse         ctermfg=3     ctermbg=none
+highlight Visual        cterm=reverse         ctermfg=7     ctermbg=none
 highlight VisualNOS     cterm=bold,underline  ctermfg=none  ctermbg=none
 highlight WarningMsg    cterm=bold            ctermfg=3     ctermbg=none
 highlight WildMenu      cterm=reverse         ctermfg=8     ctermbg=none
