@@ -27,10 +27,10 @@ highlight Cursor        cterm=reverse         ctermfg=7     ctermbg=none
 highlight CursorColumn  cterm=none            ctermfg=none  ctermbg=0
 highlight CursorLine    cterm=none            ctermfg=none  ctermbg=0
 highlight CursorLineNr  cterm=none            ctermfg=none  ctermbg=0
-highlight DiffAdd       cterm=bold            ctermfg=2     ctermbg=0
-highlight DiffChange    cterm=bold            ctermfg=3     ctermbg=0
-highlight DiffDelete    cterm=bold            ctermfg=1     ctermbg=0
-highlight DiffText      cterm=bold            ctermfg=4     ctermbg=0
+highlight DiffAdd       cterm=none            ctermfg=2     ctermbg=0
+highlight DiffChange    cterm=none            ctermfg=3     ctermbg=0
+highlight DiffDelete    cterm=none            ctermfg=1     ctermbg=0
+highlight DiffText      cterm=none            ctermfg=4     ctermbg=0
 highlight Directory     cterm=none            ctermfg=4     ctermbg=none
 highlight ErrorMsg      cterm=reverse         ctermfg=1     ctermbg=none
 highlight FoldColumn    cterm=none            ctermfg=none  ctermbg=0
