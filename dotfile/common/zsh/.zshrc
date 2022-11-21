@@ -28,6 +28,17 @@ export GPG_TTY=$(tty)
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
 export GIT_MYREMOTE_ADDR="git@git.ksrv.home"
 
+case $(uname | tr "[A-Z]" "[a-z]") in
+    openbsd)
+        alias man="man -m ~/share/man"
+        ;;
+    darwin)
+        export MANWIDTH=78
+        eval $(/opt/homebrew/bin/brew shellenv)
+        export SSH_AUTH_SOCK=~/.ssh/agent.brew
+        ;;
+esac
+
 typeset -U path
 path=(
     $HOME/bin
@@ -45,17 +56,6 @@ cdpath=(
 function t() {
     cd $(mktemp -d -t "${1:-tmp}".XXXXXXXXXX)
 }
-
-case $(uname | tr "[A-Z]" "[a-z]") in
-    openbsd)
-        alias man="man -m ~/share/man"
-        ;;
-    darwin)
-        export MANWIDTH=78
-        eval $(/opt/homebrew/bin/brew shellenv)
-        export SSH_AUTH_SOCK=~/.ssh/agent.brew
-        ;;
-esac
 
 # -----------------------------------------------------------------------------
 # zsh: General
@@ -137,7 +137,7 @@ zstyle ":completion:*" completer _complete _match _approximate
 zstyle ":completion:*:match:*" original only
 zstyle ":completion:*" users ""
 zstyle ":completion:*:cd:*" tag-order "! users path-directories"
-zstyle ":completion:*:-tilde-:*" tag-order "!users"
+zstyle ":completion:*:-tilde-:*" tag-order "! users"
 
 zstyle ":completion:*:default" list-prompt "%S%M matches%s"
 zstyle ":completion:*" format "%F{cyan}# %d%f"
