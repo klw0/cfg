@@ -10,7 +10,7 @@ alias rm="rm -i"
 alias rsync="noglob rsync"
 alias scp="noglob scp"
 alias vim="nvim"
-alias wiki="vim +VimwikiIndex"
+alias wiki="cd ~/wiki && vim +VimwikiIndex"
 alias xclip="xclip -selection clipboard"
 
 # Add `help` alias for help with builtins.
