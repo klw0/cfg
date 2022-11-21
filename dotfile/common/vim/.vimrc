@@ -176,6 +176,8 @@ nnoremap <leader>g :grep<C-]><Space>
 call s:AbbreviateCommand('lgrep', 'silent! lgrep!')
 nnoremap <leader>lg :lgrep<C-]><Space>
 
+call s:AbbreviateCommand('qa', 'q')
+
 augroup quickfix
   autocmd!
   autocmd QuickFixCmdPost grep,make botright cwindow
