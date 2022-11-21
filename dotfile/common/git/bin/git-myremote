@@ -5,7 +5,7 @@
 set -eu
 
 usage() {
-    die "usage: ${0##*/} [-a address] desc|help|list|info|init [arg ...]"
+    die "usage: ${0##*/} [-a address] desc|help|list|info|init|visibility [arg ...]"
 }
 
 die() {
@@ -37,7 +37,7 @@ main() {
 
     command="$1"
     case "${command}" in
-        desc | help | list | info | init) shift ;;
+        desc | help | list | info | init | visibility) shift ;;
         *) usage ;;
     esac
 
