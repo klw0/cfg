@@ -50,13 +50,13 @@ main() {
     repo_dir="$(pwd | awk 'BEGIN { FS="/" }{ printf("%s/%s", $(NF - 1), $NF)}')"
     url="${addr}:${repo_dir}.git"
 
-    has_remote=false
-    if git remote show "${name}" >/dev/null 2>&1; then
-        has_remote=true
+    has_remote=0
+    if git remote get-url "${name}" >/dev/null 2>&1; then
+        has_remote=1
     fi
 
     push_urls=
-    if "${has_remote}"; then
+    if [ "${has_remote}" -eq 1 ]; then
         push_urls=$(git remote get-url --all --push "${name}" | grep -v "${url}" || true)
         git remote remove "${name}"
     fi
