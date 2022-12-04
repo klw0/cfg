@@ -328,7 +328,7 @@ EOF
 endif
 
 " NERDTree
-map <leader>n :NERDTreeToggle<CR>
+nnoremap <expr> <leader>n expand('%') != "" ? ":NERDTreeFind\<CR>" : ":NERDTreeToggle\<CR>"
 let NERDTreeShowBookmarks = 1
 let NERDTreeMouseMode = 2
 
