@@ -239,6 +239,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'preservim/tagbar'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 " Needed by null-ls.vim.
 Plug 'nvim-lua/plenary.nvim'
@@ -364,3 +365,9 @@ let g:tex_flavor = 'latex'
 " csv.vim
 let g:csv_autocmd_arrange = 1
 let g:csv_no_conceal = 1
+
+" tagbar
+nnoremap <silent> <leader>toc :TagbarToggle<CR>
+let g:tagbar_compact = 1
+let g:tagbar_autoclose = 1
+let g:tagbar_silent = 1
