@@ -239,6 +239,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'jose-elias-alvarez/null-ls.nvim'
+" Needed by null-ls.vim.
+Plug 'nvim-lua/plenary.nvim'
 
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -273,9 +276,6 @@ end
 
 local servers = {
   clangd = {},
-  efm = {
-    filetypes = { "pandoc", "sh" },
-  },
   gopls = {},
   jsonls = {},
   sumneko_lua = {},
@@ -308,6 +308,18 @@ for server, config in pairs(servers) do
     on_exit = vim.call("lsp#UnconfigureBuffer"),
   }))
 end
+EOF
+
+" null-ls
+lua << EOF
+local null_ls = require("null-ls")
+
+null_ls.setup({
+    sources = {
+        null_ls.builtins.diagnostics.shellcheck,
+        null_ls.builtins.code_actions.shellcheck,
+    }
+})
 EOF
 endif
 
