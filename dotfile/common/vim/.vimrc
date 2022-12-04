@@ -271,7 +271,7 @@ lua << EOF
 local lspconfig = require('lspconfig')
 
 local on_attach = function(client)
-  vim.fn["lsp#ConfigureBuffer"](client.resolved_capabilities)
+  vim.fn["lsp#ConfigureBuffer"](client.server_capabilities)
 end
 
 local servers = {

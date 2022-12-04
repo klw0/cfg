@@ -1,6 +1,6 @@
 let s:undo_configure_key = 'undo_lsp_configure_buffer'
 
-function! lsp#ConfigureBuffer(client_capabilities) abort
+function! lsp#ConfigureBuffer(capabilities) abort
   nnoremap <buffer><silent> gD :lua vim.lsp.buf.declaration()<CR>
   let b:[s:undo_configure_key] = '| silent! nunmap <buffer> gD'
 
@@ -25,19 +25,19 @@ function! lsp#ConfigureBuffer(client_capabilities) abort
   setlocal tagfunc=v:lua.vim.lsp.tagfunc
   let b:[s:undo_configure_key] .= '| setlocal tagfunc<'
 
-  if a:client_capabilities.completion
+  if has_key(a:capabilities, "completionProvider")
     setlocal omnifunc=v:lua.vim.lsp.omnifunc
     let b:[s:undo_configure_key] .= '| setlocal omnifunc<'
   endif
 
-  if a:client_capabilities.document_formatting
-    autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+  if has_key(a:capabilities, "documentFormattingProvider")
+    autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
     let b:[s:undo_configure_key] .= '| autocmd! BufWritePre <buffer>'
   endif
 
   let l:code_actions = []
-  if type(a:client_capabilities.code_action) == v:t_dict
-    let l:code_actions = get(a:client_capabilities.code_action, 'codeActionKinds', [])
+  if has_key(a:capabilities, "codeActionProvider")
+    let l:code_actions = get(a:capabilities.codeActionProvider, 'codeActionKinds', [])
   endif
 
   if match(l:code_actions, 'source.organizeImports') != -1
