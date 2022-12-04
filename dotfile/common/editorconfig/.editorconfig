@@ -18,7 +18,7 @@ indent_style = tab
 [*.lua]
 indent_size = 2
 
-[Makefile]
+[*{M,m}akefile]
 indent_style = tab
 
 [*.yaml]
