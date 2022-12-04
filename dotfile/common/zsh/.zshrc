@@ -26,7 +26,7 @@ export PAGER="less"
 export LESS="-g -i -M -R -S -w -X -z-4 -j10 -c"
 export GPG_TTY=$(tty)
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
-export GIT_MYREMOTE_ADDR="git@git.ksrv.home"
+export GIT_MYREMOTE_ADDR="git@git.ksrv.home.arpa"
 
 case $(uname | tr "[A-Z]" "[a-z]") in
     openbsd)
