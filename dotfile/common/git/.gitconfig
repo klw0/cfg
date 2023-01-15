@@ -8,6 +8,8 @@
     gpgSign = true
 [diff]
     algorithm = histogram
+[gpg]
+    format = ssh
 [merge]
     tool = vimdiff
     conflictstyle = diff3
@@ -15,6 +17,8 @@
     prompt = false
 [mergetool "vimdiff"]
     path = nvim
+[user]
+    signingkey = ~/.ssh/keys/git-signing.pub
 [tag]
     gpgSign = true
 [includeIf "gitdir:~/src/whitneylabs/"]
