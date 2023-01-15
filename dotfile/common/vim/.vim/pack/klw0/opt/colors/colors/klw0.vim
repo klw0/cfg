@@ -6,7 +6,7 @@ endif
 let g:colors_name = 'klw0'
 
 highlight Comment       cterm=none            ctermfg=8     ctermbg=none
-highlight Constant      cterm=none            ctermfg=none  ctermbg=none
+highlight Constant      cterm=none            ctermfg=6     ctermbg=none
 highlight Debug         cterm=none            ctermfg=1     ctermbg=none
 highlight Error         cterm=bold            ctermfg=1     ctermbg=none
 highlight Identifier    cterm=none            ctermfg=none  ctermbg=none
