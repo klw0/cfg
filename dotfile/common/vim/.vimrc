@@ -243,6 +243,7 @@ Plug 'preservim/tagbar'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 " Needed by null-ls.vim.
 Plug 'nvim-lua/plenary.nvim'
+Plug 'github/copilot.vim'
 
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -371,3 +372,10 @@ nnoremap <silent> <leader>toc :TagbarToggle<CR>
 let g:tagbar_compact = 1
 let g:tagbar_autoclose = 1
 let g:tagbar_silent = 1
+
+" Copilot.vim
+inoremap <C-E> <Plug>(copilot-dismiss)
+inoremap <C-N> <Plug>(copilot-next)
+inoremap <C-P> <Plug>(copilot-previous)
+inoremap <C-\> <Plug>(copilot-suggest)
+nnoremap <leader>cp :Copilot panel<CR>
