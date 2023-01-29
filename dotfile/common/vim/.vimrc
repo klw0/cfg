@@ -267,6 +267,8 @@ call plug#end()
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
 
+let g:markdown_folding = 1
+
 if has('nvim')
 " nvim-lspconfig
 lua << EOF
