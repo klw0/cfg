@@ -211,6 +211,10 @@ endfunction
 
 command! -nargs=0 -bang -bar Bdh call s:DeleteHiddenBuffers('<bang>')
 
+" wiki
+nnoremap <leader>ww :e ~/wiki/index.md<CR>
+command! -nargs=0 -bang -bar WikiReindex :r !cd ~/wiki && find . -iname \*.md
+
 " ------------------------------------------------------------------------------
 " Packages
 " ------------------------------------------------------------------------------
@@ -236,7 +240,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'preservim/tagbar'
@@ -342,10 +345,6 @@ nmap <leader><leader> <Plug>CommentaryLine<CR>
 
 " vim-fugitive
 call s:AbbreviateCommand('G', 'tabedit \| :vertical topleft G')
-
-" vimwiki
-let g:vimwiki_list = [{ 'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md' }]
-let g:vimwiki_global_ext = 0
 
 " vim-gitgutter
 let g:gitgutter_map_keys = 0
