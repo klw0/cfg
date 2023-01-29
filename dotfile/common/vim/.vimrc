@@ -248,9 +248,6 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'github/copilot.vim'
 
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-
 if has('nvim')
   Plug 'neovim/nvim-lspconfig'
 endif
@@ -352,12 +349,6 @@ let g:gitgutter_map_keys = 0
 nmap <leader>hp <Plug>(GitGutterPreviewHunk)
 nmap [c <Plug>(GitGutterPrevHunk)
 nmap ]c <Plug>(GitGutterNextHunk)
-
-" vim-pandoc
-let g:pandoc#modules#disabled = ['folding']
-let g:pandoc#formatting#mode = 'h'
-let g:pandoc#toc#close_after_navigating = 0
-let g:pandoc#keyboard#use_default_mappings = 0
 
 " vimtex
 let g:tex_flavor = 'latex'
