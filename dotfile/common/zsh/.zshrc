@@ -183,3 +183,6 @@ bindkey -M viins "^?" backward-delete-char
 
 zmodload zsh/complist
 bindkey -M menuselect '^e' send-break
+
+
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
