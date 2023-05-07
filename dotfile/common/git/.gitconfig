@@ -1,3 +1,5 @@
+[alias]
+    checkpoint = !git add -A && git commit -m \"reflog checkpoint\" --no-verify --no-gpg-sign && git reset HEAD~1
 [user]
     name = Keith Whitney
     email = klw0@klw0.org
