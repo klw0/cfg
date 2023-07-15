@@ -161,7 +161,8 @@ zstyle ":vcs_info:*:*" disable-patterns "*.git*"
 zstyle ":vcs_info:*:*" actionformats "%s:%b %u%c (%a)"
 zstyle ":vcs_info:*:*" formats "%s:%b %u%c"
 
-PS1="${SSH_TTY:+'%m:'}%~ %(!.#.$) "
+autoload -U colors && colors
+PS1="%{$fg_bold[cyan]%}${SSH_TTY:+'%m:'}%~ %(!.#.$) %{$reset_color%}"
 RPS1='%(?.. [%?])${vcs_info_msg_0_:+ ${vcs_info_msg_0_}}'
 
 # -----------------------------------------------------------------------------
