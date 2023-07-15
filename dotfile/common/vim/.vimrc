@@ -247,6 +247,7 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 " Needed by null-ls.vim.
 Plug 'nvim-lua/plenary.nvim'
 Plug 'github/copilot.vim'
+Plug 'vim-test/vim-test'
 
 if has('nvim')
   Plug 'neovim/nvim-lspconfig'
@@ -371,3 +372,12 @@ inoremap <C-N> <Plug>(copilot-next)
 inoremap <C-P> <Plug>(copilot-previous)
 inoremap <C-\> <Plug>(copilot-suggest)
 nnoremap <leader>cp :Copilot panel<CR>
+
+" vim-test
+nnoremap <silent> <leader>tn :TestNearest<CR>
+nnoremap <silent> <leader>tf :TestFile<CR>
+nnoremap <silent> <leader>ts :TestSuite<CR>
+nnoremap <silent> <leader>tl :TestLast<CR>
+nnoremap <silent> <leader>tv :TestVisit<CR>
+let test#strategy = "neovim"
+let g:test#neovim#start_normal = 1
