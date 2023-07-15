@@ -82,8 +82,8 @@ unsetopt HUP
 # -----------------------------------------------------------------------------
 
 HISTFILE="${ZDOTDIR:-$HOME}/.zhistory"
-HISTSIZE=50000
-SAVEHIST=50000
+HISTSIZE=1000000
+SAVEHIST=1000000
 
 setopt EXTENDED_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
