@@ -248,6 +248,7 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'github/copilot.vim'
 Plug 'machakann/vim-sandwich'
+Plug 'jmckiern/vim-venter'
 Plug 'vim-test/vim-test'
 
 if has('nvim')
