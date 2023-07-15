@@ -247,6 +247,7 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 " Needed by null-ls.vim.
 Plug 'nvim-lua/plenary.nvim'
 Plug 'github/copilot.vim'
+Plug 'machakann/vim-sandwich'
 Plug 'vim-test/vim-test'
 
 if has('nvim')
