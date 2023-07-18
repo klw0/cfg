@@ -383,3 +383,4 @@ nnoremap <silent> <leader>tl :TestLast<CR>
 nnoremap <silent> <leader>tv :TestVisit<CR>
 let test#strategy = "neovim"
 let g:test#neovim#start_normal = 1
+let g:test#neovim#term_position = "vert"
