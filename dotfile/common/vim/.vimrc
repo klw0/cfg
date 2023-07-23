@@ -285,7 +285,7 @@ local servers = {
   clangd = {},
   gopls = {},
   jsonls = {},
-  sumneko_lua = {},
+  lua_ls = {},
   sourcekit = {
     filetypes = { "swift", "objective-c" },
   },
