@@ -36,6 +36,7 @@ case $(uname | tr "[A-Z]" "[a-z]") in
         export MANWIDTH=78
         eval $(/opt/homebrew/bin/brew shellenv)
         export SSH_AUTH_SOCK=~/.ssh/agent.brew
+        . $(brew --prefix asdf)/libexec/asdf.sh
         ;;
 esac
 
