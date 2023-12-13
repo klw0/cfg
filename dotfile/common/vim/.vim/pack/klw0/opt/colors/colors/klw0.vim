@@ -73,6 +73,8 @@ highlight rustAttribute cterm=none          ctermfg=8     ctermbg=none
 highlight link rustDerive rustAttribute
 highlight link rustDeriveTrait rustAttribute
 
+highlight link CopilotSuggestion Comment
+
 augroup klw0_dev
   autocmd!
   autocmd BufWritePost <buffer> colorscheme klw0
