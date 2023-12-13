@@ -67,6 +67,12 @@ highlight WildMenu      cterm=reverse         ctermfg=8     ctermbg=none
 highlight link lCursor Cursor
 highlight link CursorIM Cursor
 
+
+" Rust
+highlight rustAttribute cterm=none          ctermfg=8     ctermbg=none
+highlight link rustDerive rustAttribute
+highlight link rustDeriveTrait rustAttribute
+
 augroup klw0_dev
   autocmd!
   autocmd BufWritePost <buffer> colorscheme klw0
