@@ -282,6 +282,7 @@ local on_attach = function(client)
 end
 
 local servers = {
+  bright_script = {},
   clangd = {},
   gopls = {},
   jsonls = {},
