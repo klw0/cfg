@@ -96,7 +96,7 @@ function! stabusline#BufferName(bufnr) abort
   if getbufvar(a:bufnr, '&filetype') ==# 'help'
     return fnamemodify(l:filename, ':t')
   elseif l:filename !=# ''
-    return pathshorten(l:filename)
+    return pathshorten(l:filename, 3)
   elseif get(get(getwininfo(l:winid), 0, {}), 'loclist')
     return '[Location List] ' . getloclist(l:winid, {'title': 0}).title
   elseif get(get(getwininfo(l:winid), 0, {}), 'quickfix')
