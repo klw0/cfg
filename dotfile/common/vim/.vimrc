@@ -156,6 +156,8 @@ nnoremap <silent> <leader>m :silent make<CR>
 
 nnoremap <RightMouse> <C-W>c
 
+nnoremap <leader>w :w<CR>
+
 " ------------------------------------------------------------------------------
 " Custom Functionality
 " ------------------------------------------------------------------------------
