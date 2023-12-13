@@ -215,10 +215,6 @@ endfunction
 
 command! -nargs=0 -bang -bar Bdh call s:DeleteHiddenBuffers('<bang>')
 
-" wiki
-nnoremap <leader>ww :e ~/wiki/index.md<CR>
-command! -nargs=0 -bang -bar WikiReindex :r !cd ~/wiki && find . -iname \*.md
-
 " ------------------------------------------------------------------------------
 " Packages
 " ------------------------------------------------------------------------------
