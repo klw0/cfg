@@ -154,6 +154,8 @@ cnoremap <expr> <C-P> wildmenumode() ? "\<C-P>" : "\<Up>"
 
 nnoremap <silent> <leader>m :silent make<CR>
 
+nnoremap <RightMouse> <C-W>c
+
 " ------------------------------------------------------------------------------
 " Custom Functionality
 " ------------------------------------------------------------------------------
