@@ -2,6 +2,7 @@
     checkpoint = !git add -A && git commit -m \"reflog checkpoint\" --no-verify --no-gpg-sign && git reset HEAD~1
     recommit = !git commit --edit --file .git/COMMIT_EDITMSG
     rbc = "!f() { git rebase -i --autosquash --autostash --committer-date-is-author-date \"$@\"; }; f"
+    wt = worktree
 [user]
     name = Keith Whitney
     email = klw0@klw0.org
