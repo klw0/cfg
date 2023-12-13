@@ -40,7 +40,7 @@ set ignorecase
 set incsearch
 set smartcase
 
-set background=dark
+set background=light
 set fillchars+=vert:│
 set laststatus=2
 set nofoldenable
