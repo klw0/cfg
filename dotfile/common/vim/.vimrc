@@ -250,6 +250,7 @@ Plug 'github/copilot.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'jmckiern/vim-venter'
 Plug 'vim-test/vim-test'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
 
 if has('nvim')
   Plug 'neovim/nvim-lspconfig'
@@ -387,3 +388,24 @@ nnoremap <silent> <leader>tv :TestVisit<CR>
 let test#strategy = "neovim"
 let g:test#neovim#start_normal = 1
 let g:test#neovim#term_position = "vert"
+
+" telescope.nvim
+nnoremap <leader>b :Telescope buffers<CR>
+nnoremap <leader>e :Telescope find_files<CR>
+nnoremap <leader>h :Telescope help_tags<CR>
+nnoremap <leader>lg :Telescope live_grep<CR>
+lua << EOF
+require("telescope").setup {
+  pickers = {
+    find_files = {
+      mappings = {
+        i = {
+          ["<C-x>"] = nil,
+          ["<C-s>"] = require("telescope.actions").select_horizontal,
+
+        },
+      },
+    },
+  },
+}
+EOF
