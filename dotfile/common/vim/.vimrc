@@ -375,6 +375,9 @@ inoremap <C-P> <Plug>(copilot-previous)
 inoremap <C-\> <Plug>(copilot-suggest)
 nnoremap <leader>cp :Copilot panel<CR>
 
+" vim-venter
+nnoremap <leader>vt :VenterToggle<CR>
+
 " vim-test
 nnoremap <silent> <leader>tn :TestNearest<CR>
 nnoremap <silent> <leader>tf :TestFile<CR>
