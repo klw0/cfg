@@ -67,6 +67,9 @@ highlight WildMenu      cterm=reverse         ctermfg=8     ctermbg=none
 highlight link lCursor Cursor
 highlight link CursorIM Cursor
 
+if &background ==# "light"
+  highlight Visual      cterm=none            ctermfg=none  ctermbg=7
+endif
 
 " Rust
 highlight rustAttribute cterm=none          ctermfg=8     ctermbg=none
