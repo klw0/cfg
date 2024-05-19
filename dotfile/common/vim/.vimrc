@@ -40,6 +40,7 @@ set ignorecase
 set incsearch
 set smartcase
 
+set notermguicolors
 set background=light
 set fillchars+=vert:│
 set laststatus=2

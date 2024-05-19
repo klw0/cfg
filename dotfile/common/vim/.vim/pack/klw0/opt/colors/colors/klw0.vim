@@ -14,6 +14,7 @@ highlight Ignore        cterm=none            ctermfg=none  ctermbg=none
 highlight PreProc       cterm=none            ctermfg=none  ctermbg=none
 highlight Special       cterm=none            ctermfg=none  ctermbg=none
 highlight Statement     cterm=none            ctermfg=none  ctermbg=none
+highlight String        cterm=none            ctermfg=6     ctermbg=none
 highlight Tag           cterm=none            ctermfg=1     ctermbg=none
 highlight Todo          cterm=bold            ctermfg=6     ctermbg=none
 highlight Type          cterm=none            ctermfg=none  ctermbg=none
@@ -41,6 +42,7 @@ highlight MatchParen    cterm=reverse         ctermfg=8     ctermbg=none
 highlight ModeMsg       cterm=none            ctermfg=none  ctermbg=none
 highlight MoreMsg       cterm=none            ctermfg=none  ctermbg=none
 highlight NonText       cterm=none            ctermfg=none  ctermbg=none
+highlight NormalFloat   cterm=none            ctermfg=none  ctermbg=0
 highlight Pmenu         cterm=reverse         ctermfg=none  ctermbg=none
 highlight PmenuSbar     cterm=none            ctermfg=none  ctermbg=7
 highlight PmenuSel      cterm=reverse         ctermfg=8     ctermbg=none
@@ -64,8 +66,10 @@ highlight Visual        cterm=reverse         ctermfg=7     ctermbg=none
 highlight VisualNOS     cterm=bold,underline  ctermfg=none  ctermbg=none
 highlight WarningMsg    cterm=bold            ctermfg=3     ctermbg=none
 highlight WildMenu      cterm=reverse         ctermfg=8     ctermbg=none
-highlight link lCursor Cursor
+highlight link FloatBorder WinSeparator
 highlight link CursorIM Cursor
+highlight link WinSeparator VertSplit
+highlight link lCursor Cursor
 
 if &background ==# "light"
   highlight Visual      cterm=none            ctermfg=none  ctermbg=7
