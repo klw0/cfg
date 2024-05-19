@@ -106,8 +106,9 @@ nnoremap ]B :blast<CR>
 nnoremap [B :bfirst<CR>
 
 nnoremap <leader>d :lwindow<CR><C-W>p
-nnoremap ]d :lafter<CR>
-nnoremap [d :lbefore<CR>
+" Provided by Neovim 0.10+.
+" nnoremap ]d :lafter<CR>
+" nnoremap [d :lbefore<CR>
 nnoremap ]D :llast<CR>
 nnoremap [D :lfirst<CR>
 

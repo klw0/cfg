@@ -7,9 +7,6 @@ function! lsp#ConfigureBuffer(capabilities) abort
   nnoremap <buffer><silent> gd :lua vim.lsp.buf.definition()<CR>
   let b:[s:undo_configure_key] = '| silent! nunmap <buffer> gd'
 
-  nnoremap <buffer><silent> K :lua vim.lsp.buf.hover()<CR>
-  let b:[s:undo_configure_key] .= '| silent! nunmap <buffer> K'
-
   nnoremap <buffer><silent> <leader>ca :lua vim.lsp.buf.code_action()<CR>
   let b:[s:undo_configure_key] = '| silent! nunmap <buffer> <leader>ca'
 
