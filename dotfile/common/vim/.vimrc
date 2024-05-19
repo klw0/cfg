@@ -160,6 +160,10 @@ nnoremap <RightMouse> <C-W>c
 
 nnoremap <leader>w :w<CR>
 
+xmap <leader><leader> gc
+nmap <leader><leader> gcc<CR>
+omap <leader><leader> gc
+
 " ------------------------------------------------------------------------------
 " Custom Functionality
 " ------------------------------------------------------------------------------
@@ -240,7 +244,6 @@ packadd vim-plug
 call plug#begin('~/.vim/plugged')
 
 Plug 'preservim/nerdtree'
-Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
